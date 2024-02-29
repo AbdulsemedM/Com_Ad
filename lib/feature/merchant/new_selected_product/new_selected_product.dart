@@ -1309,17 +1309,32 @@ class _NewSelectedProductState extends State<NewSelectedProduct> {
   }
 
   String extractInstructions(String instruction) {
-    instruction = instruction.replaceAll(r'\"', '"');
+    try {
+      instruction = instruction.replaceAll(r'\"', '"');
 
-    print("here instruction");
-    print(instruction);
-    String instructions = "";
-    jsonDecode(instruction).forEach((element) {
-      final data = element['data'];
-      instructions = "$instructions- $data\n";
-    });
+      print("here instruction");
+      print(instruction);
+      String instructions = "";
+      jsonDecode(instruction).forEach((element) {
+        final data = element['data'];
+        instructions = "$instructions- $data\n";
+      });
 
-    return instructions;
+      return instructions;
+    } catch (e) {
+      return '';
+    }
+    // instruction = instruction.replaceAll(r'\"', '"');
+
+    // print("here instruction");
+    // print(instruction);
+    // String instructions = "";
+    // jsonDecode(instruction).forEach((element) {
+    //   final data = element['data'];
+    //   instructions = "$instructions- $data\n";
+    // });
+
+    // return instructions;
   }
 
   String _formatDescription(String description) {
