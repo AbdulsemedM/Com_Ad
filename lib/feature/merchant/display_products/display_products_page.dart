@@ -5,13 +5,13 @@ import 'package:commercepal_admin_flutter/core/widgets/app_error_widget.dart';
 import 'package:commercepal_admin_flutter/core/widgets/app_loading.dart';
 import 'package:commercepal_admin_flutter/core/widgets/app_scaffold.dart';
 import 'package:commercepal_admin_flutter/feature/merchant/new_selected_product/new_selected_product.dart';
-import 'package:commercepal_admin_flutter/feature/merchant/selected_product/selected_product_page.dart';
+// import 'package:commercepal_admin_flutter/feature/merchant/selected_product/selected_product_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:injectable/injectable.dart';
+// import 'package:injectable/injectable.dart';
 
 import '../../../core/products/domain/models/product.dart';
-import '../../../core/products/presentation/widgets/category_widget.dart';
+// import '../../../core/products/presentation/widgets/category_widget.dart';
 import '../../../core/widgets/product_item_widget.dart';
 
 class DisplayProductsPage extends StatelessWidget {

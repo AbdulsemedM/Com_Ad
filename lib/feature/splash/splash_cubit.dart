@@ -1,4 +1,3 @@
-
 import 'package:bloc/bloc.dart';
 import 'package:commercepal_admin_flutter/core/model/generic_cubit_state.dart';
 import 'package:injectable/injectable.dart';
@@ -17,6 +16,7 @@ class SplashCubit extends Cubit<GenericCubitState> {
 
       // will throw an exception if user is not found locally
       final user = await sessionRepo.getUser();
+      print(user);
       // user found so redirect to dashboard
       emit(const GenericCubitState.success("redirect"));
     } catch (e) {

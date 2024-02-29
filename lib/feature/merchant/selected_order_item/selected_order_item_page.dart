@@ -13,11 +13,11 @@ import 'package:commercepal_admin_flutter/core/widgets/app_error_widget.dart';
 import 'package:commercepal_admin_flutter/core/widgets/app_loading.dart';
 import 'package:commercepal_admin_flutter/core/widgets/app_scaffold.dart';
 import 'package:commercepal_admin_flutter/core/widgets/app_textfield.dart';
-import 'package:commercepal_admin_flutter/feature/login/presentation/login_page.dart';
+// import 'package:commercepal_admin_flutter/feature/login/presentation/login_page.dart';
 import 'package:commercepal_admin_flutter/feature/merchant/selected_order_item/widgets/order_item_product_info_bs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:injectable/injectable.dart';
+// import 'package:injectable/injectable.dart';
 
 import '../../../app/utils/app_colors.dart';
 import '../../../core/widgets/title_with_description_widget.dart';
@@ -110,7 +110,7 @@ class _SelectedOrderItemPageState extends State<SelectedOrderItemPage> {
                                                   Container(
                                                 color: Colors.grey,
                                               ),
-                                              imageUrl: e ?? '',
+                                              imageUrl: e,
                                             ),
                                           ))
                                       .toList(),
@@ -264,7 +264,7 @@ class _SelectedOrderItemPageState extends State<SelectedOrderItemPage> {
                         print(_pickUpCode!);
                         FocusScope.of(context).unfocus();
                         ctx.read<OrdersCubit>().validatePickUpCode(
-                            orderId!, _orderComments!, _pickUpCode!);
+                            orderId, _orderComments!, _pickUpCode!);
                       }
                     }),
               )
@@ -329,7 +329,7 @@ class _SelectedOrderItemPageState extends State<SelectedOrderItemPage> {
                       if (_formKey.currentState?.validate() == true) {
                         print(orderId);
                         FocusScope.of(context).unfocus();
-                        bool isSuccess = await ctx
+                        ctx
                             .read<OrdersCubit>()
                             .acceptOrderForPickUp(orderId!, _orderComments!);
                       }

@@ -1,7 +1,6 @@
 import 'package:commercepal_admin_flutter/core/session/presentation/session_cubit.dart';
 import 'package:commercepal_admin_flutter/core/session/presentation/session_state.dart';
 import 'package:commercepal_admin_flutter/core/widgets/app_button.dart';
-import 'package:commercepal_admin_flutter/feature/merchant/add_product/add_product_page.dart';
 import 'package:commercepal_admin_flutter/feature/merchant/dashboard_orders/dashboard_orders.dart';
 import 'package:commercepal_admin_flutter/feature/merchant/dashboard_products/dashboard_products.dart';
 import 'package:commercepal_admin_flutter/feature/merchant/dashboard_transactions/dashboard_transactions.dart';

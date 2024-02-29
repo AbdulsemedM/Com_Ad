@@ -149,7 +149,7 @@ class _RoleCheckerState extends State<RoleChecker> {
                           child: Center(
                               child: loading
                                   ? Container()
-                                  : Text(!loading && name!.isNotEmpty
+                                  : Text(loading == false && name != null
                                       ? '${name![0]}'
                                       : '')),
                         ),
@@ -158,7 +158,7 @@ class _RoleCheckerState extends State<RoleChecker> {
                           child: loading
                               ? Container()
                               : Text(
-                                  !loading && name!.isNotEmpty ? name! : "",
+                                  loading == false && name != null ? name! : "",
                                   // '${name!.isNotEmpty ? name : ""}',
                                   style: TextStyle(
                                       fontSize: sWidth * 0.07,

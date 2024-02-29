@@ -139,7 +139,7 @@ class _MessengerDashboardState extends State<MessengerDashboard> {
                             backgroundColor: AppColors.bgCreamWhite,
                             radius: sWidth * 0.06,
                             child: Center(
-                                child: Text(!loading && name!.isNotEmpty
+                                child: Text(loading == false && name != null
                                     ? '${name![0]}'
                                     : '')),
                           ),
@@ -149,7 +149,7 @@ class _MessengerDashboardState extends State<MessengerDashboard> {
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 8.0),
                                 child: Text(
-                                  !loading && name!.isNotEmpty ? name! : "",
+                                  loading == false && name != null ? name! : "",
                                   style: TextStyle(
                                       fontSize: sWidth * 0.05,
                                       color: AppColors.bgCreamWhite,

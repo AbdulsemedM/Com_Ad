@@ -6,7 +6,6 @@ import 'package:commercepal_admin_flutter/core/widgets/app_loading.dart';
 import 'package:commercepal_admin_flutter/feature/merchant/dashboard_transactions/cubit/dashboard_transactions_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 
 import '../../../app/utils/app_colors.dart';
 import '../../../core/transactions/domain/models/transaction_item.dart';
@@ -22,7 +21,6 @@ class DashboardTransactions extends StatefulWidget {
 
 class _DashboardTransactionsState extends State<DashboardTransactions>
     with SingleTickerProviderStateMixin {
-  int _tabIndex = 0;
   TabController? _tabController;
 
   @override
@@ -85,9 +83,7 @@ class _DashboardTransactionsState extends State<DashboardTransactions>
                                 .fetchTransactions(index == 0
                                     ? TransactionType.payment
                                     : TransactionType.commission);
-                            setState(() {
-                              _tabIndex = index;
-                            });
+                            setState(() {});
                           },
                           tabs: const [
                             Tab(

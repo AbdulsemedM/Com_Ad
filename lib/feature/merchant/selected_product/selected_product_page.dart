@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:commercepal_admin_flutter/app/di/injector.dart';
-import 'package:commercepal_admin_flutter/app/utils/string_utils.dart';
+// import 'package:commercepal_admin_flutter/app/utils/string_utils.dart';
 import 'package:commercepal_admin_flutter/core/database/prefs_data.dart';
 import 'package:commercepal_admin_flutter/core/database/prefs_data_impl.dart';
 import 'package:commercepal_admin_flutter/core/extensions/context_ext.dart';
@@ -334,7 +334,7 @@ class _SelectedProductPageState extends State<SelectedProductPage> {
                               ],
                             ),
                             TextFormField(
-                              initialValue: product.productName ?? null,
+                              initialValue: product.productName,
                               decoration: const InputDecoration(
                                   filled: true,
                                   fillColor: AppColors.greyColor,
@@ -364,7 +364,7 @@ class _SelectedProductPageState extends State<SelectedProductPage> {
                               ],
                             ),
                             TextFormField(
-                              initialValue: product.quantity.toString() ?? null,
+                              initialValue: product.quantity.toString(),
                               decoration: const InputDecoration(
                                   filled: true,
                                   fillColor: AppColors.greyColor,
@@ -647,8 +647,7 @@ class _SelectedProductPageState extends State<SelectedProductPage> {
                                       product.productType
                                           .toString()
                                           .toLowerCase()
-                                          .substring(1) ??
-                                  null,
+                                          .substring(1),
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   return 'Product type field is required';
@@ -713,7 +712,7 @@ class _SelectedProductPageState extends State<SelectedProductPage> {
                             ),
                             TextFormField(
                               initialValue:
-                                  product.discountValue.toString() ?? null,
+                                  product.discountValue.toString(),
                               decoration: const InputDecoration(
                                   filled: true,
                                   fillColor: AppColors.greyColor,
@@ -745,7 +744,7 @@ class _SelectedProductPageState extends State<SelectedProductPage> {
                             TextFormField(
                               maxLines: 3,
                               initialValue:
-                                  product.shortDescription.toString() ?? null,
+                                  product.shortDescription.toString(),
                               decoration: const InputDecoration(
                                   filled: true,
                                   fillColor: AppColors.greyColor,
@@ -777,7 +776,7 @@ class _SelectedProductPageState extends State<SelectedProductPage> {
                             ),
                             TextFormField(
                               maxLines: 6,
-                              initialValue: formattedData ?? null,
+                              initialValue: formattedData,
                               decoration: const InputDecoration(
                                   filled: true,
                                   fillColor: AppColors.greyColor,
@@ -809,7 +808,7 @@ class _SelectedProductPageState extends State<SelectedProductPage> {
                             ),
                             TextFormField(
                               maxLines: 6,
-                              initialValue: formattedData2 ?? null,
+                              initialValue: formattedData2,
                               decoration: const InputDecoration(
                                   filled: true,
                                   fillColor: AppColors.greyColor,
@@ -915,7 +914,7 @@ class _SelectedProductPageState extends State<SelectedProductPage> {
                                       errorWidget: (_, __, ___) => Container(
                                         color: Colors.grey,
                                       ),
-                                      imageUrl: e ?? '',
+                                      imageUrl: e,
                                     ),
                                   ))
                               .toList(),
