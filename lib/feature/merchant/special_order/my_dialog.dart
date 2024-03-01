@@ -201,8 +201,12 @@ class _MyDialogState extends State<MyDialog> {
                               width: 200,
                               height: 40,
                               child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                        AppColors.colorPrimaryDark),
                                 onPressed: () => _selectDate(context),
-                                child: Text('Change date'),
+                                child: Text('Change date',
+                                    style: TextStyle(color: Colors.white)),
                               ),
                             ),
                           ],
