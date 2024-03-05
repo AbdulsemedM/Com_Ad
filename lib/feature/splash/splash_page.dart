@@ -7,6 +7,7 @@ import 'package:commercepal_admin_flutter/feature/login/presentation/login_page.
 import 'package:commercepal_admin_flutter/app/utils/roles/roles_checker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:upgrader/upgrader.dart';
 
 import '../../core/model/generic_cubit_state.dart';
 import 'splash_cubit.dart';
