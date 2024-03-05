@@ -212,11 +212,16 @@ class NotificationButton extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         ElevatedButton(
+          style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.colorPrimaryDark),
           onPressed: onPressed,
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('Special Orders'),
+              Text(
+                'Special Orders',
+                style: TextStyle(color: Colors.white),
+              ),
               SizedBox(
                   width:
                       10), // Adjust the spacing between button text and notification badge
