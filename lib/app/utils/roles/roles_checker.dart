@@ -46,6 +46,7 @@ class _RoleCheckerState extends State<RoleChecker> {
     var sHeight = MediaQuery.of(context).size.height * 1;
     var sWidth = MediaQuery.of(context).size.width * 1;
     return UpgradeAlert(
+      showLater: false,
       showIgnore: false,
       // showReleaseNotes: false,
       child: Scaffold(

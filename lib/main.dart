@@ -6,13 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
-// import 'package:upgrader/upgrader.dart';
+import 'package:upgrader/upgrader.dart';
 import 'app/di/injector.dart';
 import 'app/utils/app_bloc_observer.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Upgrader.clearSavedSettings();
+  await Upgrader.clearSavedSettings();
   await OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
   await OneSignal.shared.setAppId('93ea5812-db88-42b8-abc2-010c99e48b56');
   bool accepted =
