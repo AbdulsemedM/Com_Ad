@@ -64,8 +64,8 @@ class _NewSelectedProductState extends State<NewSelectedProduct> {
         : widget.myProduct.productType.toString();
     myProductDisc.text =
         extractInstructions(widget.myProduct.productDescription.toString());
-    myProductSpecialInstructions.text =
-        extractInstructions(widget.myProduct.specialInstruction.toString());
+    // myProductSpecialInstructions.text =
+    //     extractInstructions(widget.myProduct.specialInstruction.toString());
   }
 
   var editting = false;
@@ -88,8 +88,8 @@ class _NewSelectedProductState extends State<NewSelectedProduct> {
   String? myProductType;
   final TextEditingController myProductDisc = TextEditingController();
   final TextEditingController unitPriceController = TextEditingController();
-  final TextEditingController myProductSpecialInstructions =
-      TextEditingController();
+  // final TextEditingController myProductSpecialInstructions =
+  //     TextEditingController();
   // String? myProductSpecialInstructions;
   List<SubCategoryData> subCat = [];
   List<ProductCategory> proCat = [];
@@ -901,35 +901,35 @@ class _NewSelectedProductState extends State<NewSelectedProduct> {
                     return null;
                   },
                 ),
-                const Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8.0),
-                      child: Text(
-                          "Special Instructions (Use '-' to separate points)"),
-                    ),
-                  ],
-                ),
-                TextFormField(
-                  controller: myProductSpecialInstructions,
-                  maxLines: 6,
-                  decoration: const InputDecoration(
-                      filled: true,
-                      fillColor: AppColors.greyColor,
-                      focusedBorder: InputBorder.none,
-                      focusedErrorBorder: InputBorder.none,
-                      enabledBorder: InputBorder.none),
-                  // : 'Full Name',
-                  keyboardType: TextInputType.text,
-                  // onChanged: (value) {
-                  //   setState(() {
-                  //     myProductSpecialInstructions = value;
-                  //   });
-                  // },
-                  validator: (value) {
-                    return null;
-                  },
-                ),
+                // const Row(
+                //   children: [
+                //     Padding(
+                //       padding: EdgeInsets.symmetric(vertical: 8.0),
+                //       child: Text(
+                //           "Special Instructions (Use '-' to separate points)"),
+                //     ),
+                //   ],
+                // ),
+                // TextFormField(
+                //   controller: myProductSpecialInstructions,
+                //   maxLines: 6,
+                //   decoration: const InputDecoration(
+                //       filled: true,
+                //       fillColor: AppColors.greyColor,
+                //       focusedBorder: InputBorder.none,
+                //       focusedErrorBorder: InputBorder.none,
+                //       enabledBorder: InputBorder.none),
+                //   // : 'Full Name',
+                //   keyboardType: TextInputType.text,
+                //   // onChanged: (value) {
+                //   //   setState(() {
+                //   //     myProductSpecialInstructions = value;
+                //   //   });
+                //   // },
+                //   validator: (value) {
+                //     return null;
+                //   },
+                // ),
                 const Row(
                   children: [
                     Padding(
@@ -1408,8 +1408,7 @@ class _NewSelectedProductState extends State<NewSelectedProduct> {
         "productParentCateoryId": myParentCategory,
         "productSubCategoryId": myProductSubCategory,
         "productType": myProductType,
-        "specialInstruction":
-            _formatDescription(myProductSpecialInstructions.text),
+        "specialInstruction": "",
         // "manufucturer": myProductManufacturer,
         "discountType": myProductDiscount,
         "discountValue": myProductDiscountPercentage.text,
