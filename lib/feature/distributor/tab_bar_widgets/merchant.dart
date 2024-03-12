@@ -176,7 +176,7 @@ class _MerchantTabState extends State<MerchantTab> {
               merchants.add(MerchantData(
                   userId: datas['userId'].toString(),
                   city: datas['city'].toString(),
-                  name: datas['firstName'],
+                  name: datas['name'],
                   ownerPhoneNumber: datas['ownerPhoneNumber']));
             }
             loading = false;
@@ -193,6 +193,9 @@ class _MerchantTabState extends State<MerchantTab> {
             await fetchMerchantData(retryCount: retryCount + 1);
           } else {
             // Retry limit reached, handle accordingly
+            
+
+            
             setState(() {
               loading = false;
             });

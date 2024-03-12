@@ -354,6 +354,8 @@ class _RegisterMerchantState extends State<RegisterMerchant> {
                                 "Merchant registered successfully");
                             await Future.delayed(Duration(seconds: 3));
                             Navigator.pop(context);
+                          } else {
+                            context.displaySnack(userId!);
                           }
                         },
                   child: const Text("Submit for Verification")),
@@ -486,7 +488,7 @@ class _RegisterMerchantState extends State<RegisterMerchant> {
             });
             return true;
           } else {
-            userId = data['statusMessage:'];
+            userId = data['statusMessage'];
             setState(() {
               loading = false;
             });
