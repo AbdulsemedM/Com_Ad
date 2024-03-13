@@ -166,17 +166,19 @@ class _DashboardOrdersState extends State<DashboardOrders> {
         myBids.clear();
         if (datas['statusCode'] == "000") {
           for (var i in datas['data']) {
-            myBids.add(AssignedSpecialOrders(
-              assignedDate: i['assignedDate'].toString() ?? '0',
-              merchantId: i['merchantId'].toString() ?? '',
-              specialOrderId: i['specialOrderId'].toString(),
-              bidId: i['bidId'].toString(),
-              quantity: i['quantity'].toString(),
-              productName: i['productName'].toString(),
-              estimatePrice: i['estimatePrice'].toString(),
-              linkToProduct: i['linkToProduct'].toString(),
-              imageOne: i['imageOne'].toString(),
-            ));
+            if (i['status'] != 3) {
+              myBids.add(AssignedSpecialOrders(
+                assignedDate: i['assignedDate'].toString() ?? '0',
+                merchantId: i['merchantId'].toString() ?? '',
+                specialOrderId: i['specialOrderId'].toString(),
+                bidId: i['bidId'].toString(),
+                quantity: i['quantity'].toString(),
+                productName: i['productName'].toString(),
+                estimatePrice: i['estimatePrice'].toString(),
+                linkToProduct: i['linkToProduct'].toString(),
+                imageOne: i['imageOne'].toString(),
+              ));
+            }
           }
           // if (myBids.isEmpty) {
           //   throw 'No special orders found';
