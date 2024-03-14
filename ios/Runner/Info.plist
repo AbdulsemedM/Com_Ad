@@ -38,6 +38,8 @@
 	<string>We need your location to provide you with location-based services and enhance your user experience.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>The app needs permission to access photos for you to pick an image</string>
+	<key>NSPrivacyAccessedAPICategoryUserDefaults</key>
+    <string>CommmercePal accesses user defaults to store and retrieve user preferences for a personalized user experience.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UIBackgroundModes</key>
