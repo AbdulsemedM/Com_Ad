@@ -111,44 +111,44 @@ class _AcceptMTWOrderState extends State<AcceptMTWOrder> {
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
-                        GestureDetector(
-                          onTap: () async {
-                            bool change = await showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: const Text('Change role'),
-                                  content: const Text(
-                                      'Do you want to change this role?'),
-                                  actions: <Widget>[
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop(
-                                            false); // User does not confirm deletion
-                                      },
-                                      child: const Text('Cancel'),
-                                    ),
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop(
-                                            true); // User confirms deletion
-                                      },
-                                      child: const Text('Yes'),
-                                    ),
-                                  ],
-                                );
-                              },
-                            );
-                            if (change) {
-                              Navigator.pop(context);
-                            }
-                          },
-                          child: Icon(
-                            Icons.change_circle_outlined,
-                            color: AppColors.textColor,
-                            size: sWidth * 0.08,
-                          ),
-                        )
+                        // GestureDetector(
+                        //   onTap: () async {
+                        //     bool change = await showDialog(
+                        //       context: context,
+                        //       builder: (BuildContext context) {
+                        //         return AlertDialog(
+                        //           title: const Text('Change role'),
+                        //           content: const Text(
+                        //               'Do you want to change this role?'),
+                        //           actions: <Widget>[
+                        //             TextButton(
+                        //               onPressed: () {
+                        //                 Navigator.of(context).pop(
+                        //                     false); // User does not confirm deletion
+                        //               },
+                        //               child: const Text('Cancel'),
+                        //             ),
+                        //             TextButton(
+                        //               onPressed: () {
+                        //                 Navigator.of(context).pop(
+                        //                     true); // User confirms deletion
+                        //               },
+                        //               child: const Text('Yes'),
+                        //             ),
+                        //           ],
+                        //         );
+                        //       },
+                        //     );
+                        //     if (change) {
+                        //       Navigator.pop(context);
+                        //     }
+                        //   },
+                        //   child: Icon(
+                        //     Icons.change_circle_outlined,
+                        //     color: AppColors.textColor,
+                        //     size: sWidth * 0.08,
+                        //   ),
+                        // )
                       ],
                     ),
                   ),

@@ -7,6 +7,7 @@ import 'package:commercepal_admin_flutter/core/database/prefs_data.dart';
 import 'package:commercepal_admin_flutter/core/database/prefs_data_impl.dart';
 import 'package:commercepal_admin_flutter/core/extensions/context_ext.dart';
 import 'package:commercepal_admin_flutter/feature/login/presentation/login_page.dart';
+import 'package:commercepal_admin_flutter/feature/warehouse/accept_warehouse_to_warehouse.dart';
 import 'package:commercepal_admin_flutter/feature/warehouse/merchant_to_warehouse.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
@@ -232,8 +233,13 @@ class _WarehouseDashboardState extends State<WarehouseDashboard> {
                                       .displaySnack("Will be available soon");
                                   break;
                                 case 'From Warehouse':
-                                  context
-                                      .displaySnack("Will be available soon");
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              AcceptItemsFromWarehouse(
+                                                userName: name!,
+                                              )));
                                   break;
                               }
                             },
