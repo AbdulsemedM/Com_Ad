@@ -77,6 +77,7 @@ class LoginRepoImpl implements LoginRepo {
           Uri.https("api.commercepal.com:2052", "/api/v1/admin/authenticate"),
           body: jsonEncode(payload));
       var myWare = jsonDecode(warehouse.body);
+      print("herereisthewarehouse");
       print(myWare);
       if (myWare['statusCode'] == '000') {
         print("hererererere");

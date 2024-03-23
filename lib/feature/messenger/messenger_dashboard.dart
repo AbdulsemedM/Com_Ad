@@ -211,27 +211,31 @@ class _MessengerDashboardState extends State<MessengerDashboard> {
           child: SingleChildScrollView(
         child: Column(
           children: [
-            LayoutBuilder(
-                builder: (BuildContext context, BoxConstraints constraints) {
-              return SizedBox(
-                height: sHeight * 0.5,
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
-                  child: GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: sHeight > 896 ? 2 : 1.2,
-                      crossAxisCount: 2, // Number of columns in the grid
-                      crossAxisSpacing: 2.0, // Spacing between columns
-                      mainAxisSpacing: 0, // Spacing between rows
+            loading
+                ? SizedBox(
+                    height: sHeight * 0.5,
+                    child: const Center(
+                      child: CircularProgressIndicator(),
                     ),
-                    itemCount: 4, // Number of items in the grid
-                    itemBuilder: (context, index) {
-                      return loading
-                          ? const Center(
-                              child: CircularProgressIndicator(),
-                            )
-                          : GestureDetector(
+                  )
+                : LayoutBuilder(builder:
+                    (BuildContext context, BoxConstraints constraints) {
+                    return SizedBox(
+                      height: sHeight * 0.5,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 12),
+                        child: GridView.builder(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            childAspectRatio: sHeight > 896 ? 2 : 1.2,
+                            crossAxisCount: 2, // Number of columns in the grid
+                            crossAxisSpacing: 2.0, // Spacing between columns
+                            mainAxisSpacing: 0, // Spacing between rows
+                          ),
+                          itemCount: 4, // Number of items in the grid
+                          itemBuilder: (context, index) {
+                            return GestureDetector(
                               onTap: () {
                                 switch (status[index]) {
                                   case 'Open Orders':
@@ -316,11 +320,11 @@ class _MessengerDashboardState extends State<MessengerDashboard> {
                                 ),
                               ),
                             );
-                    },
-                  ),
-                ),
-              );
-            })
+                          },
+                        ),
+                      ),
+                    );
+                  })
           ],
         ),
       )),
