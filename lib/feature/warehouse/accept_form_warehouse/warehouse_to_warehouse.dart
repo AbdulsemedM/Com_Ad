@@ -1,20 +1,54 @@
+import 'dart:convert';
+
+import 'package:commercepal_admin_flutter/app/di/injector.dart';
 import 'package:commercepal_admin_flutter/app/utils/app_colors.dart';
 import 'package:commercepal_admin_flutter/app/utils/routes.dart';
+import 'package:commercepal_admin_flutter/core/database/prefs_data.dart';
+import 'package:commercepal_admin_flutter/core/database/prefs_data_impl.dart';
 import 'package:commercepal_admin_flutter/feature/login/presentation/login_page.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
-class AcceptItemsFromWarehouse extends StatefulWidget {
+class WarehouseToWarehouse extends StatefulWidget {
   final String userName;
 
-  AcceptItemsFromWarehouse({Key? key, required this.userName})
-      : super(key: key);
+  WarehouseToWarehouse({Key? key, required this.userName}) : super(key: key);
 
   @override
-  State<AcceptItemsFromWarehouse> createState() =>
-      _AcceptItemsFromWarehouseState();
+  State<WarehouseToWarehouse> createState() => _WarehouseToWarehouseState();
 }
 
-class _AcceptItemsFromWarehouseState extends State<AcceptItemsFromWarehouse> {
+class ItemsDataFromWarehouse {
+  final String UnitPrice;
+  final String SubOrderNumber;
+  final String ItemId;
+  final String QrCodeNumber;
+  final String OrderId;
+  final String TotalAmount;
+  final String ProductId;
+  final String SubProductId;
+  final String CreatedDate;
+  ItemsDataFromWarehouse(
+      {required this.UnitPrice,
+      required this.SubOrderNumber,
+      required this.ItemId,
+      required this.QrCodeNumber,
+      required this.OrderId,
+      required this.TotalAmount,
+      required this.ProductId,
+      required this.CreatedDate,
+      required this.SubProductId});
+}
+
+class _WarehouseToWarehouseState extends State<WarehouseToWarehouse> {
+  List<ItemsDataFromWarehouse> deliveryOrders = [];
+  var loading = false;
+  @override
+  void initState() {
+    super.initState();
+    fetchOrders();
+  }
+
   @override
   Widget build(BuildContext context) {
     var sHeight = MediaQuery.of(context).size.height * 1;
@@ -167,6 +201,88 @@ class _AcceptItemsFromWarehouseState extends State<AcceptItemsFromWarehouse> {
           ),
         ),
       ),
+      body: SafeArea(
+          child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Accept Item',
+                style: TextStyle(
+                    fontSize: sWidth * 0.06,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: Divider(),
+            ),
+          ],
+        ),
+      )),
     );
+  }
+
+  Future<void> fetchOrders({int retryCount = 0}) async {
+    try {
+      setState(() {
+        loading = true;
+      });
+      final prefsData = getIt<PrefsData>();
+      final isUserLoggedIn = await prefsData.contains(PrefsKeys.userToken.name);
+      if (isUserLoggedIn) {
+        final token = await prefsData.readData(PrefsKeys.userToken.name);
+
+        final response = await http.get(
+          Uri.https(
+              "api.commercepal.com:2095",
+              "/prime/api/v1/ware-house/shipping/orderItems",
+              {'recipientWarehouseId': "2", "sortDirection": "desc"}),
+          headers: <String, String>{"Authorization": "Bearer $token"},
+        );
+
+        var data = jsonDecode(response.body);
+        print(data);
+        if (data['statusCode'] == '000') {
+          setState(() {
+            deliveryOrders.clear();
+            for (var delivery in data['orderItems']) {
+              // if (delivery['DeliveryType'] == 'MW') {
+              deliveryOrders.add(ItemsDataFromWarehouse(
+                  SubOrderNumber: delivery['SubOrderNumber'].toString(),
+                  QrCodeNumber: delivery['QrCodeNumber'].toString(),
+                  ItemId: delivery['ItemId'].toString(),
+                  OrderId: delivery['OrderId'].toString(),
+                  TotalAmount: delivery['TotalAmount'].toString(),
+                  ProductId: delivery['ProductId'].toString(),
+                  SubProductId: delivery['SubProductId'].toString(),
+                  CreatedDate: delivery['CreatedDate'].toString(),
+                  UnitPrice: delivery['UnitPrice'].toString()));
+              // }
+            }
+            deliveryOrders.sort((b, a) {
+              DateTime dateA = DateTime.parse(a.CreatedDate);
+              DateTime dateB = DateTime.parse(b.CreatedDate);
+              return dateA.compareTo(dateB);
+            });
+            loading = false;
+          });
+        } else {
+          setState(() {
+            loading = false;
+          });
+        }
+      }
+
+      print(deliveryOrders.length);
+    } catch (e) {
+      print(e.toString());
+      setState(() {
+        loading = false;
+      });
+      // Handle other exceptions
+    }
   }
 }

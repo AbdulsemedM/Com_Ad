@@ -7,8 +7,8 @@ import 'package:commercepal_admin_flutter/core/database/prefs_data.dart';
 import 'package:commercepal_admin_flutter/core/database/prefs_data_impl.dart';
 import 'package:commercepal_admin_flutter/core/extensions/context_ext.dart';
 import 'package:commercepal_admin_flutter/feature/login/presentation/login_page.dart';
-import 'package:commercepal_admin_flutter/feature/warehouse/accept_warehouse_to_warehouse.dart';
-import 'package:commercepal_admin_flutter/feature/warehouse/merchant_to_warehouse.dart';
+import 'package:commercepal_admin_flutter/feature/warehouse/accept_form_warehouse/warehouse_to_warehouse.dart';
+import 'package:commercepal_admin_flutter/feature/warehouse/accept_from_messenger/merchant_to_warehouse.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -240,7 +240,7 @@ class _WarehouseDashboardState extends State<WarehouseDashboard> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              AcceptItemsFromWarehouse(
+                                              WarehouseToWarehouse(
                                                 userName: name!,
                                               )));
                                   break;
@@ -260,6 +260,13 @@ class _WarehouseDashboardState extends State<WarehouseDashboard> {
                                     child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
+                                    CircleAvatar(
+                                      radius: sWidth * 0.08,
+                                      backgroundColor: AppColors.colorAccent,
+                                      child: Center(
+                                        child: myIcons[index],
+                                      ),
+                                    ),
                                     Padding(
                                       padding: const EdgeInsets.symmetric(
                                           vertical: 8.0),
@@ -270,13 +277,6 @@ class _WarehouseDashboardState extends State<WarehouseDashboard> {
                                             color: Colors.black),
                                       ),
                                     ),
-                                    CircleAvatar(
-                                      radius: sWidth * 0.08,
-                                      backgroundColor: AppColors.colorAccent,
-                                      child: Center(
-                                        child: myIcons[index],
-                                      ),
-                                    )
                                   ],
                                 )),
                               ),

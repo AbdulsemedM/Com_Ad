@@ -298,6 +298,13 @@ class _MessengerDashboardState extends State<MessengerDashboard> {
                                       child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
+                                      CircleAvatar(
+                                        radius: sWidth * 0.08,
+                                        backgroundColor: AppColors.colorAccent,
+                                        child: Center(
+                                          child: myIcons[index],
+                                        ),
+                                      ),
                                       Padding(
                                         padding: const EdgeInsets.symmetric(
                                             vertical: 8.0),
@@ -308,13 +315,6 @@ class _MessengerDashboardState extends State<MessengerDashboard> {
                                               color: Colors.black),
                                         ),
                                       ),
-                                      CircleAvatar(
-                                        radius: sWidth * 0.08,
-                                        backgroundColor: AppColors.colorAccent,
-                                        child: Center(
-                                          child: myIcons[index],
-                                        ),
-                                      )
                                     ],
                                   )),
                                 ),

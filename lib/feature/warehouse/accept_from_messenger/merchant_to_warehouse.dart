@@ -7,7 +7,7 @@ import 'package:commercepal_admin_flutter/core/database/prefs_data.dart';
 import 'package:commercepal_admin_flutter/core/database/prefs_data_impl.dart';
 import 'package:commercepal_admin_flutter/feature/login/presentation/login_page.dart';
 import 'package:commercepal_admin_flutter/feature/messenger/order_items/order_items.dart';
-import 'package:commercepal_admin_flutter/feature/warehouse/accept_merchant_to_warehouse_order.dart';
+import 'package:commercepal_admin_flutter/feature/warehouse/accept_from_messenger/accept_merchant_to_warehouse_order.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
@@ -188,7 +188,7 @@ class _MerchantToWarehouseState extends State<MerchantToWarehouse> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              'Accept Order',
+              'Accept Item',
               style: TextStyle(
                   fontSize: sWidth * 0.06,
                   fontWeight: FontWeight.w600,
