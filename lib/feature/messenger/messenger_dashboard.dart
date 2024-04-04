@@ -365,11 +365,9 @@ class _MessengerDashboardState extends State<MessengerDashboard> {
             name = data['Details']['firstName'] +
                 " " +
                 data['Details']['lastName'];
-            // image = data[]
             loading = false;
             print(name);
           });
-          // Handle the case when statusCode is '000'
         } else {
           // Retry logic
           if (retryCount < 5) {
