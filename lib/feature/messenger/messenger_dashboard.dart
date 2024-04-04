@@ -371,12 +371,9 @@ class _MessengerDashboardState extends State<MessengerDashboard> {
         } else {
           // Retry logic
           if (retryCount < 5) {
-            // Retry after num + 1 seconds
             await Future.delayed(Duration(seconds: retryCount++));
-            // Call the function again with an increased retryCount
             await fetchUser(retryCount: retryCount + 1);
           } else {
-            // Retry limit reached, handle accordingly
             setState(() {
               name = "- -";
               loading = false;
