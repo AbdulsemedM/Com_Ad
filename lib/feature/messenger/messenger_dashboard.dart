@@ -369,7 +369,6 @@ class _MessengerDashboardState extends State<MessengerDashboard> {
             print(name);
           });
         } else {
-          // Retry logic
           if (retryCount < 5) {
             await Future.delayed(Duration(seconds: retryCount++));
             await fetchUser(retryCount: retryCount + 1);
