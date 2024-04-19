@@ -1,3 +1,5 @@
+import 'package:commercepal_admin_flutter/app/utils/app_colors.dart';
+import 'package:commercepal_admin_flutter/feature/merchant/promo_code/promo_code_dashboard.dart';
 import 'package:commercepal_admin_flutter/feature/merchant/sub_category/sub_categories_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,9 +25,27 @@ class DashboardProducts extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Your products',
-                  style: TextStyle(fontSize: 14),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Your products',
+                      style: TextStyle(fontSize: 14),
+                    ),
+                    ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.colorPrimaryDark),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const PromoCodeDashboard()));
+                        },
+                        child: Text(
+                          "Promo-Code",
+                        ))
+                  ],
                 ),
                 const SizedBox(
                   height: 10,
