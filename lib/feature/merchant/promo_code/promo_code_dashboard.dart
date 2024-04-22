@@ -27,6 +27,7 @@ class PromoCodes {
   final String startDate;
   final String endDate;
   final String promoCodeStatus;
+  final String status;
   PromoCodes(
       {required this.id,
       required this.code,
@@ -36,6 +37,7 @@ class PromoCodes {
       required this.discountType,
       required this.startDate,
       required this.endDate,
+      required this.status,
       required this.promoCodeStatus});
 }
 
@@ -68,10 +70,13 @@ class _PromoCodeDashboardState extends State<PromoCodeDashboard> {
                       style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.colorPrimaryDark),
                       onPressed: () {
-                        Navigator.push(
+                        var result = Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const AddPromoCode()));
+                        if (result != null) {
+                          fetchMyPromoCodes();
+                        }
                       },
                       child: Text("Add Promo-Code")),
                 ),
@@ -142,11 +147,23 @@ class _PromoCodeDashboardState extends State<PromoCodeDashboard> {
                                           Text(myPromocodes[index].discountType)
                                         ],
                                       ),
-                                      Text(
-                                        myPromocodes[index].discountAmount,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium,
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            myPromocodes[index].discountAmount,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium,
+                                          ),
+                                          Text(
+                                            myPromocodes[index].status,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium,
+                                          ),
+                                        ],
                                       ),
                                     ],
                                   ),
@@ -237,6 +254,7 @@ class _PromoCodeDashboardState extends State<PromoCodeDashboard> {
               discountType: i['discountType'].toString(),
               startDate: i['startDate'].toString(),
               endDate: i['endDate'].toString(),
+              status: i['promoCodeStatus'].toString(),
               promoCodeStatus: i['promoCodeStatus'].toString(),
             ));
           }
@@ -253,6 +271,9 @@ class _PromoCodeDashboardState extends State<PromoCodeDashboard> {
         loading = false;
       });
     } catch (e) {
+      setState(() {
+        loading = false;
+      });
       print(e.toString());
       rethrow;
     }

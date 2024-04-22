@@ -266,8 +266,8 @@ class _AddPromoCodeDialogState extends State<AddPromoCodeDialog> {
                           "discountType": "PERCENTAGE",
                           "discountAmount":
                               int.parse(discountAmountController.text),
-                          "startDate": startController.text,
-                          "endDate": endController.text
+                          "startDate": "${startController.text} 12",
+                          "endDate": "${endController.text} 12"
                         };
                         print(body);
                         try {
@@ -282,7 +282,9 @@ class _AddPromoCodeDialogState extends State<AddPromoCodeDialog> {
                                     "prime/api/v1/product/promo-codes"),
                                 body: jsonEncode(body),
                                 headers: <String, String>{
-                                  "Authorization": "Bearer $token"
+                                  "Authorization": "Bearer $token",
+                                  'Content-Type':
+                                      'application/json; charset=UTF-8',
                                 });
                             // print(response.body);
                             var data = jsonDecode(response.body);

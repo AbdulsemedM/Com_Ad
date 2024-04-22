@@ -6,6 +6,7 @@ import 'package:commercepal_admin_flutter/app/utils/app_colors.dart';
 import 'package:commercepal_admin_flutter/core/database/prefs_data.dart';
 import 'package:commercepal_admin_flutter/core/database/prefs_data_impl.dart';
 import 'package:commercepal_admin_flutter/feature/merchant/promo_code/add_dialog.dart';
+import 'package:commercepal_admin_flutter/feature/merchant/selected_product/selected_product_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
@@ -33,11 +34,19 @@ class NewProducts {
 
 class _AddPromoCodeState extends State<AddPromoCode> {
   var loading = false;
+  var loading1 = false;
   List<NewProducts> myProducts = [];
+  String? myParentCategory;
+  String? myProductCategory;
+  String? myProductSubCategory;
+  List<SubCategoryData> subCat = [];
+  List<ProductCategory> proCat = [];
+  List<ParentCategoryData> parCat = [];
   @override
   void initState() {
     super.initState();
     fetchMyProducts(null, null, null);
+    fetchParentCategory();
   }
 
   @override
@@ -66,47 +75,40 @@ class _AddPromoCodeState extends State<AddPromoCode> {
                   Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: Container(
-                      height: 30,
-                      width: 120,
+                      height: 50,
+                      width: 250,
                       child: DropdownButtonFormField<String>(
                         decoration: const InputDecoration(
-                          filled: true,
-                          fillColor: AppColors.greyColor,
-                          focusedBorder: InputBorder.none,
-                          focusedErrorBorder: InputBorder.none,
-                          enabledBorder: InputBorder.none,
-                        ),
-                        items: const [
-                          DropdownMenuItem<String>(
-                            value: 'PERCENTAGE',
+                            filled: true,
+                            fillColor: AppColors.greyColor,
+                            focusedBorder: InputBorder.none,
+                            focusedErrorBorder: InputBorder.none,
+                            enabledBorder: InputBorder.none),
+                        items: parCat.map((ParentCategoryData par) {
+                          return DropdownMenuItem<String>(
+                            value: par.id.toString(),
                             child: Text(
-                              'Discounted',
-                              style:
-                                  TextStyle(fontSize: 14, color: Colors.black),
+                              par.name,
+                              style: const TextStyle(
+                                  fontSize: 14, color: Colors.black),
                             ),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: 'Fixed',
-                            child: Text(
-                              'Not discounted',
-                              style:
-                                  TextStyle(fontSize: 14, color: Colors.black),
-                            ),
-                          ),
-                        ],
+                          );
+                        }).toList(),
                         onChanged: (value) {
                           setState(() {
-                            // myProductDiscount = value;
-                            // if (myProductDiscount == "Fixed") {
-                            //   myProductDiscountPercentage.text = "0";
-                            // } else {
-                            //   myProductDiscountPercentage.clear();
-                            // }
+                            // _addedProductVariants.clear();
+                            myProducts.clear();
+                            myProductCategory = null;
+                            myProductSubCategory = null;
+                            // featureId = null;
+                            myParentCategory = value;
+                            fetchMyProducts(myParentCategory, null, null);
+                            fetchProductCategory(myParentCategory!);
                           });
                         },
                         validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Product discount field is required';
+                          if (value == null) {
+                            return 'Parent category field is required';
                           }
                           return null;
                         },
@@ -116,47 +118,42 @@ class _AddPromoCodeState extends State<AddPromoCode> {
                   Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: Container(
-                      height: 30,
-                      width: 120,
+                      height: 50,
+                      width: 250,
                       child: DropdownButtonFormField<String>(
                         decoration: const InputDecoration(
-                          filled: true,
-                          fillColor: AppColors.greyColor,
-                          focusedBorder: InputBorder.none,
-                          focusedErrorBorder: InputBorder.none,
-                          enabledBorder: InputBorder.none,
-                        ),
-                        items: const [
-                          DropdownMenuItem<String>(
-                            value: 'PERCENTAGE',
+                            filled: true,
+                            fillColor: AppColors.greyColor,
+                            focusedBorder: InputBorder.none,
+                            focusedErrorBorder: InputBorder.none,
+                            enabledBorder: InputBorder.none),
+                        items: proCat.map((ProductCategory pro) {
+                          // print(pro.name);
+                          return DropdownMenuItem<String>(
+                            value: pro.id.toString(),
                             child: Text(
-                              'Discounted',
-                              style:
-                                  TextStyle(fontSize: 14, color: Colors.black),
+                              pro.name,
+                              style: const TextStyle(
+                                  fontSize: 14, color: Colors.black),
                             ),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: 'Fixed',
-                            child: Text(
-                              'Not discounted',
-                              style:
-                                  TextStyle(fontSize: 14, color: Colors.black),
-                            ),
-                          ),
-                        ],
+                          );
+                        }).toList(),
+                        value: myProductCategory,
                         onChanged: (value) {
                           setState(() {
-                            // myProductDiscount = value;
-                            // if (myProductDiscount == "Fixed") {
-                            //   myProductDiscountPercentage.text = "0";
-                            // } else {
-                            //   myProductDiscountPercentage.clear();
-                            // }
+                            // _addedProductVariants.clear();
+                            // featureId = null;
+                            myProducts.clear();
+                            myProductSubCategory = null;
+                            myProductCategory = value;
+                            fetchSubCategory(myProductCategory!);
+                            fetchMyProducts(
+                                myParentCategory, myProductCategory, null);
                           });
                         },
                         validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Product discount field is required';
+                          if (value == null) {
+                            return 'Product category field is required';
                           }
                           return null;
                         },
@@ -166,47 +163,39 @@ class _AddPromoCodeState extends State<AddPromoCode> {
                   Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: Container(
-                      height: 30,
-                      width: 120,
+                      height: 50,
+                      width: 250,
                       child: DropdownButtonFormField<String>(
                         decoration: const InputDecoration(
-                          filled: true,
-                          fillColor: AppColors.greyColor,
-                          focusedBorder: InputBorder.none,
-                          focusedErrorBorder: InputBorder.none,
-                          enabledBorder: InputBorder.none,
-                        ),
-                        items: const [
-                          DropdownMenuItem<String>(
-                            value: 'PERCENTAGE',
+                            filled: true,
+                            fillColor: AppColors.greyColor,
+                            focusedBorder: InputBorder.none,
+                            focusedErrorBorder: InputBorder.none,
+                            enabledBorder: InputBorder.none),
+                        items: subCat.map((SubCategoryData sub) {
+                          return DropdownMenuItem<String>(
+                            value: sub.id,
                             child: Text(
-                              'Discounted',
-                              style:
-                                  TextStyle(fontSize: 14, color: Colors.black),
+                              sub.unique_name,
+                              style: const TextStyle(
+                                  fontSize: 14, color: Colors.black),
                             ),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: 'Fixed',
-                            child: Text(
-                              'Not discounted',
-                              style:
-                                  TextStyle(fontSize: 14, color: Colors.black),
-                            ),
-                          ),
-                        ],
+                          );
+                        }).toList(),
+                        value: myProductSubCategory,
                         onChanged: (value) {
                           setState(() {
-                            // myProductDiscount = value;
-                            // if (myProductDiscount == "Fixed") {
-                            //   myProductDiscountPercentage.text = "0";
-                            // } else {
-                            //   myProductDiscountPercentage.clear();
-                            // }
+                            // _addedProductVariants.clear();
+                            // featureId = null;
+                            myProducts.clear();
+                            myProductSubCategory = value;
                           });
+                          fetchMyProducts(myParentCategory, myProductCategory,
+                              myProductSubCategory);
                         },
                         validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Product discount field is required';
+                          if (value == null) {
+                            return 'Product sub category field is required';
                           }
                           return null;
                         },
@@ -338,19 +327,21 @@ class _AddPromoCodeState extends State<AddPromoCode> {
                                               ),
                                               Row(
                                                 children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 8),
-                                                    child: Text(
-                                                      "ETB ${myProducts[index].actualPrice}",
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .titleMedium
-                                                          ?.copyWith(
-                                                              fontSize: 14.sp,
-                                                              color: AppColors
-                                                                  .colorPrimary),
+                                                  Flexible(
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 8),
+                                                      child: Text(
+                                                        "ETB ${myProducts[index].actualPrice}",
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .titleMedium
+                                                            ?.copyWith(
+                                                                fontSize: 14.sp,
+                                                                color: AppColors
+                                                                    .colorPrimary),
+                                                      ),
                                                     ),
                                                   ),
                                                   const Spacer(),
@@ -377,6 +368,8 @@ class _AddPromoCodeState extends State<AddPromoCode> {
 
   Future<void> fetchMyProducts(
       String? parent, String? category, String? subCategory) async {
+    print(parent);
+    print(category);
     try {
       setState(() {
         loading = true;
@@ -519,8 +512,123 @@ class _AddPromoCodeState extends State<AddPromoCode> {
         loading = false;
       });
     } catch (e) {
+      setState(() {
+        loading = false;
+      });
       print(e.toString());
       rethrow;
+    }
+  }
+
+  Future<bool> fetchSubCategory(String id) async {
+    try {
+      setState(() {
+        loading1 = true;
+      });
+      print("subcat");
+      print(id);
+      final response = await http.get(Uri.https(
+        "api.commercepal.com:2096",
+        "/prime/api/v1/portal/category/GetSubCategories",
+        {'category': id},
+      ));
+      var data = jsonDecode(response.body);
+      subCat.clear();
+      for (var b in data['details']) {
+        subCat.add(
+            SubCategoryData(unique_name: b['name'], id: b['id'].toString()));
+      }
+      print(subCat.length);
+      setState(() {
+        loading1 = false;
+      });
+
+      // Check the condition for success
+      bool success = subCat.length > 0;
+      return success;
+    } catch (e) {
+      print(e.toString());
+      setState(() {
+        loading1 = false;
+      });
+      return false; // Return false in case of an exception
+    } finally {
+      setState(() {
+        loading1 = false;
+      });
+    }
+  }
+
+  Future<bool> fetchProductCategory(String id) async {
+    try {
+      setState(() {
+        loading1 = true;
+      });
+      print("product category");
+      final response = await http.get(Uri.https(
+        "api.commercepal.com:2096",
+        "/prime/api/v1/portal/category/GetCategories",
+        {'parentCat': id},
+      ));
+      var data = jsonDecode(response.body);
+      proCat.clear();
+      for (var b in data['details']) {
+        proCat.add(ProductCategory(name: b['name'], id: b['id'].toString()));
+      }
+      print(proCat.length);
+      setState(() {
+        loading1 = false;
+      });
+
+      // Check the condition for success
+      bool success = proCat.length > 0;
+      return success;
+    } catch (e) {
+      print(e.toString());
+      setState(() {
+        loading1 = false;
+      });
+      return false; // Return false in case of an exception
+    } finally {
+      setState(() {
+        loading1 = false;
+      });
+    }
+  }
+
+  Future<bool> fetchParentCategory() async {
+    try {
+      setState(() {
+        loading1 = true;
+      });
+      print("parent category");
+      final response = await http.get(Uri.https(
+        "api.commercepal.com:2096",
+        "prime/api/v1/portal/category/GetParentCategories",
+      ));
+      var data = jsonDecode(response.body);
+      parCat.clear();
+      for (var b in data['details']) {
+        parCat.add(ParentCategoryData(name: b['name'], id: b['id'].toString()));
+      }
+      print(parCat.length);
+      setState(() {
+        loading1 = false;
+      });
+
+      // Check the condition for success
+      bool success = parCat.length > 0;
+      return success;
+    } catch (e) {
+      print(e.toString());
+      setState(() {
+        loading1 = false;
+      });
+      return false; // Return false in case of an exception
+    } finally {
+      setState(() {
+        loading1 = false;
+      });
     }
   }
 }
