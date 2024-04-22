@@ -5,6 +5,7 @@ import 'package:commercepal_admin_flutter/app/utils/app_colors.dart';
 import 'package:commercepal_admin_flutter/app/utils/dialog_utils.dart';
 import 'package:commercepal_admin_flutter/core/database/prefs_data.dart';
 import 'package:commercepal_admin_flutter/core/database/prefs_data_impl.dart';
+import 'package:commercepal_admin_flutter/feature/merchant/promo_code/promo_code_dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
@@ -293,6 +294,7 @@ class _AddPromoCodeDialogState extends State<AddPromoCodeDialog> {
                             if (data['statusCode'] == '000') {
                               displaySnack(
                                   context, "Promo-code placed successfully.");
+                              // PromoCodeDashboard.FetchthePromocodes(context);
                               Navigator.pop(context, true);
                               // fetchSpecialBids();
                               setState(() {

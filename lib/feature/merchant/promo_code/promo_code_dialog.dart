@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:commercepal_admin_flutter/app/di/injector.dart';
+import 'package:commercepal_admin_flutter/app/utils/app_colors.dart';
 import 'package:commercepal_admin_flutter/app/utils/dialog_utils.dart';
 import 'package:commercepal_admin_flutter/core/database/prefs_data.dart';
 import 'package:commercepal_admin_flutter/core/database/prefs_data_impl.dart';
@@ -98,22 +99,29 @@ class _PromoCodeDialogState extends State<PromoCodeDialog> {
                         if (isUserLoggedIn) {
                           final token = await prefsData
                               .readData(PrefsKeys.userToken.name);
+                          final body = {
+                            "owner": "MERCHANT",
+                            "code": widget.code
+                          };
                           final response = await http.put(
                               Uri.https(
                                   "api.commercepal.com:2096",
-                                  "prime/api/v1/merchant/promo-codes/cancel",
-                                  {"code": widget.code}),
+                                  "prime/api/v1/product/promo-codes/cancel",
+                                  {"code": widget.code, "owner": "MERCHANT"}),
                               // body: jsonEncode(body),
                               headers: <String, String>{
-                                "Authorization": "Bearer $token"
-                              });
+                                "Authorization": "Bearer $token",
+                                'Content-Type':
+                                    'application/json; charset=UTF-8',
+                              },
+                              body: jsonEncode(body));
                           // print(response.body);
                           var data = jsonDecode(response.body);
                           print(data);
 
                           if (data['statusCode'] == '000') {
                             displaySnack(
-                                context, "Promo-Code deleted successfully.");
+                                context, "Promo-Code canceled successfully.");
                             Navigator.pop(context, true);
                             // fetchSpecialBids();
                             setState(() {
@@ -138,7 +146,7 @@ class _PromoCodeDialogState extends State<PromoCodeDialog> {
                     },
                     child: loading
                         ? const CircularProgressIndicator(
-                            color: Colors.orange,
+                            color: AppColors.colorPrimaryDark,
                           )
                         : Text(
                             'Yes',

@@ -15,6 +15,11 @@ class PromoCodeDashboard extends StatefulWidget {
 
   @override
   State<PromoCodeDashboard> createState() => _PromoCodeDashboardState();
+  static void FetchthePromocodes(BuildContext context) {
+    final _PromoCodeDashboardState state =
+        context.findAncestorStateOfType<_PromoCodeDashboardState>()!;
+    state.fetchMyPromoCodes();
+  }
 }
 
 class PromoCodes {
@@ -74,11 +79,15 @@ class _PromoCodeDashboardState extends State<PromoCodeDashboard> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const AddPromoCode()));
-                        if (result != null) {
+                        result.then((value) {
+                          // Print a message after the dialog is dismissed
                           fetchMyPromoCodes();
-                        }
+                        });
+                        // print(result);
+                        // if (result != null) {
+                        // }
                       },
-                      child: Text("Add Promo-Code")),
+                      child: const Text("Add Promo-Code")),
                 ),
               ],
             ),
@@ -116,9 +125,12 @@ class _PromoCodeDashboardState extends State<PromoCodeDashboard> {
                                       code: myPromocodes[index].code,
                                     );
                                   });
-                              if (result != null) {
+                              result.then((value) {
+                                // Print a message after the dialog is dismissed
                                 fetchMyPromoCodes();
-                              }
+                              });
+                              // print("object");
+                              // print(result);
                             },
                             child: Container(
                               color: Colors.white,
