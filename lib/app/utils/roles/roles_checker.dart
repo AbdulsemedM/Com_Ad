@@ -46,7 +46,11 @@ class _RoleCheckerState extends State<RoleChecker> {
   Widget build(BuildContext context) {
     var sHeight = MediaQuery.of(context).size.height * 1;
     var sWidth = MediaQuery.of(context).size.width * 1;
-    fetchUser1(context: context);
+    // fetchUser1(context: context);
+    if (logout == "logout") {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const LoginPage()));
+    }
 
     return UpgradeAlert(
       // showLater: false,
@@ -398,6 +402,8 @@ class _RoleCheckerState extends State<RoleChecker> {
                 data['Details']['lastName'];
             // image = data[]
             loading = false;
+
+            print("name");
             print(name);
           });
           // Handle the case when statusCode is '000'
@@ -411,6 +417,7 @@ class _RoleCheckerState extends State<RoleChecker> {
           } else {
             // Retry limit reached, handle accordingly
             setState(() async {
+              logout = "logout";
               name = "-" + " " + "-";
               loading = false;
             });
@@ -450,6 +457,9 @@ class _RoleCheckerState extends State<RoleChecker> {
 
         if (data['statusCode'] == '000') {
           // Handle the case when statusCode is '000'
+          setState(() {
+            loading = false;
+          });
         } else {
           // Retry logic
           if (retryCount < 5) {
@@ -460,7 +470,6 @@ class _RoleCheckerState extends State<RoleChecker> {
           } else {
             // Retry limit reached, handle accordingly
             setState(() async {
-              logout = "logout";
               loading = false;
             });
             final prefsData = getIt<PrefsData>();
