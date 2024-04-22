@@ -150,7 +150,7 @@ class _AddPromoCodeDialogState extends State<AddPromoCodeDialog> {
                               borderSide: const BorderSide(
                                   color: AppColors.colorPrimaryDark),
                             ),
-                            labelText: "Discount Amount",
+                            labelText: "Discount Amount (%)",
                           ),
                         ),
                       ),
