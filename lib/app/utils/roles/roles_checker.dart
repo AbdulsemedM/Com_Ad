@@ -40,11 +40,14 @@ class _RoleCheckerState extends State<RoleChecker> {
   var loading = false;
   List<String>? myRoles = [];
   String myWarehouse = "";
+  String? logout;
 
   @override
   Widget build(BuildContext context) {
     var sHeight = MediaQuery.of(context).size.height * 1;
     var sWidth = MediaQuery.of(context).size.width * 1;
+    fetchUser1(context: context);
+
     return UpgradeAlert(
       // showLater: false,
       showIgnore: false,
@@ -53,16 +56,6 @@ class _RoleCheckerState extends State<RoleChecker> {
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(sHeight * 0.3),
           child: AppBar(
-            // title: Padding(
-            //   padding: const EdgeInsets.symmetric(vertical: 20.0),
-            //   child: Text(
-            //     "Choose Role",
-            //     style: TextStyle(
-            //         fontSize: sWidth * 0.06,
-            //         color: AppColors.bgCreamWhite,
-            //         fontWeight: FontWeight.bold),
-            //   ),
-            // ),
             backgroundColor: AppColors.colorAccent,
             elevation: 1, // Set elevation to 0 to remove shadow
             shape: const RoundedRectangleBorder(
@@ -417,7 +410,7 @@ class _RoleCheckerState extends State<RoleChecker> {
             await fetchUser(retryCount: retryCount + 1);
           } else {
             // Retry limit reached, handle accordingly
-            setState(() {
+            setState(() async {
               name = "-" + " " + "-";
               loading = false;
             });
@@ -428,6 +421,59 @@ class _RoleCheckerState extends State<RoleChecker> {
       print(e.toString());
       setState(() {
         name = "-" + " " + "-";
+        loading = false;
+      });
+      // Handle other exceptions
+    }
+  }
+
+  Future<void> fetchUser1({int retryCount = 0, BuildContext? context}) async {
+    try {
+      setState(() {
+        loading = true;
+      });
+      final prefsData = getIt<PrefsData>();
+      final isUserLoggedIn = await prefsData.contains(PrefsKeys.userToken.name);
+      if (isUserLoggedIn) {
+        final token = await prefsData.readData(PrefsKeys.userToken.name);
+        final response = await http.get(
+          Uri.https(
+            "api.commercepal.com:2096",
+            "prime/api/v1/get-details",
+            {"userType": "BUSINESS"},
+          ),
+          headers: <String, String>{"Authorization": "Bearer $token"},
+        );
+
+        var data = jsonDecode(response.body);
+        print(data);
+
+        if (data['statusCode'] == '000') {
+          // Handle the case when statusCode is '000'
+        } else {
+          // Retry logic
+          if (retryCount < 5) {
+            // Retry after num + 1 seconds
+            await Future.delayed(Duration(seconds: retryCount++));
+            // Call the function again with an increased retryCount
+            await fetchUser(retryCount: retryCount + 1);
+          } else {
+            // Retry limit reached, handle accordingly
+            setState(() async {
+              logout = "logout";
+              loading = false;
+            });
+            final prefsData = getIt<PrefsData>();
+            await prefsData.deleteData(PrefsKeys.userToken.name);
+            // ignore: use_build_context_synchronously
+            Navigator.pushReplacement(context!,
+                MaterialPageRoute(builder: (context) => const LoginPage()));
+          }
+        }
+      }
+    } catch (e) {
+      print(e.toString());
+      setState(() {
         loading = false;
       });
       // Handle other exceptions

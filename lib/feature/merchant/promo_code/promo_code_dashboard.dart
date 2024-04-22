@@ -118,17 +118,20 @@ class _PromoCodeDashboardState extends State<PromoCodeDashboard> {
                           itemBuilder: (BuildContext context, int index) =>
                               GestureDetector(
                             onTap: () async {
-                              var result = showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return PromoCodeDialog(
-                                      code: myPromocodes[index].code,
-                                    );
-                                  });
-                              result.then((value) {
-                                // Print a message after the dialog is dismissed
-                                fetchMyPromoCodes();
-                              });
+                              if (myPromocodes[index].status.toLowerCase() !=
+                                  "canceled") {
+                                var result = showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return PromoCodeDialog(
+                                        code: myPromocodes[index].code,
+                                      );
+                                    });
+                                result.then((value) {
+                                  // Print a message after the dialog is dismissed
+                                  fetchMyPromoCodes();
+                                });
+                              }
                               // print("object");
                               // print(result);
                             },
