@@ -23,11 +23,11 @@ class LoginPage extends StatelessWidget {
                   child: const Image(
                       image: AssetImage("assets/images/app_icon.png")),
                 ),
-                Text("Login to continue"),
-                SizedBox(
+                const Text("Login to continue"),
+                const SizedBox(
                   height: 20,
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.all(16.0),
                   child: LoginForm(),
                 )
