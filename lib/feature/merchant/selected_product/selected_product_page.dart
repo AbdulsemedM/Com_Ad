@@ -642,12 +642,12 @@ class _SelectedProductPageState extends State<SelectedProductPage> {
                                 });
                               },
                               value: product.productType
-                                          .toString()[0]
-                                          .toUpperCase() +
-                                      product.productType
-                                          .toString()
-                                          .toLowerCase()
-                                          .substring(1),
+                                      .toString()[0]
+                                      .toUpperCase() +
+                                  product.productType
+                                      .toString()
+                                      .toLowerCase()
+                                      .substring(1),
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   return 'Product type field is required';
@@ -711,8 +711,7 @@ class _SelectedProductPageState extends State<SelectedProductPage> {
                               ],
                             ),
                             TextFormField(
-                              initialValue:
-                                  product.discountValue.toString(),
+                              initialValue: product.discountValue.toString(),
                               decoration: const InputDecoration(
                                   filled: true,
                                   fillColor: AppColors.greyColor,
@@ -743,8 +742,7 @@ class _SelectedProductPageState extends State<SelectedProductPage> {
                             ),
                             TextFormField(
                               maxLines: 3,
-                              initialValue:
-                                  product.shortDescription.toString(),
+                              initialValue: product.shortDescription.toString(),
                               decoration: const InputDecoration(
                                   filled: true,
                                   fillColor: AppColors.greyColor,
@@ -1334,7 +1332,7 @@ class _SelectedProductPageState extends State<SelectedProductPage> {
       setState(() {
         loading = true;
       });
-      print("unit of measure");
+      // print("unit of measure");
       // print(id);
       final response = await http.get(Uri.https(
         "api.commercepal.com:2096",
@@ -1349,8 +1347,6 @@ class _SelectedProductPageState extends State<SelectedProductPage> {
       setState(() {
         loading = false;
       });
-
-      // Check the condition for success
       bool success = uom.length > 0;
       return success;
     } catch (e) {
@@ -1358,7 +1354,7 @@ class _SelectedProductPageState extends State<SelectedProductPage> {
       setState(() {
         loading = false;
       });
-      return false; // Return false in case of an exception
+      return false;
     } finally {
       setState(() {
         loading = false;
@@ -1384,12 +1380,12 @@ class _SelectedProductPageState extends State<SelectedProductPage> {
   }
 
   void printAll(Product pro) async {
-    print("start");
-    print(pro.manufacturer);
-    print(pro.unitOfMeasure);
-    print(pro.productSubCategoryId);
-    print(pro.productParentCategoryId);
-    print(pro.productCategoryId);
-    print("end");
+    // print("start");
+    // print(pro.manufacturer);
+    // print(pro.unitOfMeasure);
+    // print(pro.productSubCategoryId);
+    // print(pro.productParentCategoryId);
+    // print(pro.productCategoryId);
+    // print("end");
   }
 }
