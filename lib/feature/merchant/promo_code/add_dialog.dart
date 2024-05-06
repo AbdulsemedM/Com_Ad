@@ -268,7 +268,8 @@ class _AddPromoCodeDialogState extends State<AddPromoCodeDialog> {
                           "discountAmount":
                               int.parse(discountAmountController.text),
                           "startDate": "${startController.text} 12",
-                          "endDate": "${endController.text} 12"
+                          "endDate": "${endController.text} 12",
+                          "promoCodeDescription": "-"
                         };
                         print(body);
                         try {

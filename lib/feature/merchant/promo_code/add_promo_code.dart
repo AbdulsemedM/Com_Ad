@@ -256,8 +256,8 @@ class _AddPromoCodeState extends State<AddPromoCode> {
                                                 myProducts[index].subProductId,
                                           );
                                         });
-                                    print("result");
-                                    print(result);
+                                    // print("result");
+                                    // print(result);
                                   },
                                   child: Wrap(
                                     children: [
