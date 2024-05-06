@@ -255,11 +255,6 @@ class _AddPromoCodeDialogState extends State<AddPromoCodeDialog> {
                         });
                         print(widget.subProductId);
                         final body = {
-                          // "bidId": int.parse(widget.bidId),
-                          // "isMerchantAccepted": 1,
-                          // "offerDetails": fullNameController.text,
-                          // "offerPrice": int.parse(phoneNumberController.text),
-                          // "offerExpireDate": dateController.text
                           "owner": "MERCHANT",
                           "code": codeController.text,
                           "productId": int.parse(widget.productId),
