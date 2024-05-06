@@ -103,7 +103,7 @@ class _PromoCodeDashboardState extends State<PromoCodeDashboard> {
                     ),
                   )
                 : loading && myPromocodes.isEmpty
-                    ? Center(
+                    ? const Center(
                         child: CircularProgressIndicator(
                           color: AppColors.colorPrimaryDark,
                         ),
