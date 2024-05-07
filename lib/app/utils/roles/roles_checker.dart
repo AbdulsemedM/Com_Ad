@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:commercepal_admin_flutter/app/di/injector.dart';
 import 'package:commercepal_admin_flutter/app/utils/app_colors.dart';
+import 'package:commercepal_admin_flutter/app/utils/dialog_utils.dart';
 import 'package:commercepal_admin_flutter/core/database/prefs_data.dart';
 import 'package:commercepal_admin_flutter/core/database/prefs_data_impl.dart';
 import 'package:commercepal_admin_flutter/core/extensions/context_ext.dart';
@@ -40,17 +41,19 @@ class _RoleCheckerState extends State<RoleChecker> {
   var loading = false;
   List<String>? myRoles = [];
   String myWarehouse = "";
-  String? logout;
+  String logout = "login";
 
   @override
   Widget build(BuildContext context) {
     var sHeight = MediaQuery.of(context).size.height * 1;
     var sWidth = MediaQuery.of(context).size.width * 1;
     // fetchUser1(context: context);
-    if (logout == "logout") {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const LoginPage()));
-    }
+    // if (logout == "logout") {
+    //   // final prefsData = getIt<PrefsData>();
+    //   // await prefsData.deleteData(PrefsKeys.userToken.name);
+    //   Navigator.pushReplacement(
+    //       context, MaterialPageRoute(builder: (context) => const LoginPage()));
+    // }
 
     return UpgradeAlert(
       // showLater: false,
@@ -102,6 +105,18 @@ class _RoleCheckerState extends State<RoleChecker> {
                         PopupMenuButton<String>(
                           onSelected: (value) async {
                             if (value == 'reset') {
+                              if (logout == "logout") {
+                                displaySnack(context,
+                                    "Your session has been expired. Please login again");
+                                final prefsData = getIt<PrefsData>();
+                                await prefsData
+                                    .deleteData(PrefsKeys.userToken.name);
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const LoginPage()));
+                              }
                               Navigator.pushNamed(
                                   context, ResetPassword1.routeName,
                                   arguments: {"router": "role"});
@@ -179,7 +194,19 @@ class _RoleCheckerState extends State<RoleChecker> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               ElevatedButton(
-                                  onPressed: () {
+                                  onPressed: () async {
+                                    if (logout == "logout") {
+                                      displaySnack(context,
+                                          "Your session has been expired. Please login again");
+                                      final prefsData = getIt<PrefsData>();
+                                      await prefsData
+                                          .deleteData(PrefsKeys.userToken.name);
+                                      Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const LoginPage()));
+                                    }
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
@@ -230,7 +257,17 @@ class _RoleCheckerState extends State<RoleChecker> {
                   itemCount: myRoles!.length, // Number of items in the grid
                   itemBuilder: (context, index) {
                     return GestureDetector(
-                      onTap: () {
+                      onTap: () async {
+                        if (logout == "logout") {
+                          displaySnack(context,
+                              "Your session has been expired. Please login again");
+                          final prefsData = getIt<PrefsData>();
+                          await prefsData.deleteData(PrefsKeys.userToken.name);
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const LoginPage()));
+                        }
                         switch (myRoles![index].toLowerCase()) {
                           case "messenger":
                             Navigator.pushNamed(
@@ -417,7 +454,6 @@ class _RoleCheckerState extends State<RoleChecker> {
           } else {
             // Retry limit reached, handle accordingly
             setState(() async {
-              logout = "logout";
               name = "-" + " " + "-";
               loading = false;
             });
@@ -462,22 +498,21 @@ class _RoleCheckerState extends State<RoleChecker> {
           });
         } else {
           // Retry logic
-          if (retryCount < 5) {
-            // Retry after num + 1 seconds
-            await Future.delayed(Duration(seconds: retryCount++));
-            // Call the function again with an increased retryCount
-            await fetchUser(retryCount: retryCount + 1);
-          } else {
-            // Retry limit reached, handle accordingly
-            setState(() async {
-              loading = false;
-            });
-            final prefsData = getIt<PrefsData>();
-            await prefsData.deleteData(PrefsKeys.userToken.name);
-            // ignore: use_build_context_synchronously
-            Navigator.pushReplacement(context!,
-                MaterialPageRoute(builder: (context) => const LoginPage()));
-          }
+          // if (retryCount < 5) {
+          //   // Retry after num + 1 seconds
+          //   await Future.delayed(Duration(seconds: retryCount++));
+          //   // Call the function again with an increased retryCount
+          //   await fetchUser(retryCount: retryCount + 1);
+
+          // Retry limit reached, handle accordingly
+          setState(() async {
+            loading = false;
+            logout = "logout";
+          });
+
+          // ignore: use_build_context_synchronously
+          // Navigator.pushReplacement(context!,
+          //     MaterialPageRoute(builder: (context) => const LoginPage()));
         }
       }
     } catch (e) {
