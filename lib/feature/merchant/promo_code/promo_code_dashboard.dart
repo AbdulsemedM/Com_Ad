@@ -173,7 +173,12 @@ class _PromoCodeDashboardState extends State<PromoCodeDashboard> {
                                                 .bodyMedium,
                                           ),
                                           Text(
-                                            myPromocodes[index].status,
+                                            myPromocodes[index]
+                                                        .status
+                                                        .toString() ==
+                                                    "PENDING_WAREHOUSE_APPROVAL"
+                                                ? "PENDING"
+                                                : myPromocodes[index].status,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyMedium,
@@ -190,16 +195,12 @@ class _PromoCodeDashboardState extends State<PromoCodeDashboard> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
                                     children: [
-                                      Row(
-                                        children: [
-                                          Text(
-                                            "Start: ${DateFormat('dd MMM, yyyy').format(_parseDateString(myPromocodes[index].startDate))}",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium
-                                                ?.copyWith(),
-                                          ),
-                                        ],
+                                      Text(
+                                        "Start: ${DateFormat('dd MMM, yyyy').format(_parseDateString(myPromocodes[index].startDate))}",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium
+                                            ?.copyWith(),
                                       ),
                                       Text(
                                         "End: ${DateFormat('dd MMM, yyyy').format(_parseDateString(myPromocodes[index].endDate))}",
@@ -208,6 +209,30 @@ class _PromoCodeDashboardState extends State<PromoCodeDashboard> {
                                             .bodyMedium
                                             ?.copyWith(),
                                       ),
+                                      IconButton(
+                                          onPressed: () async {
+                                            if (myPromocodes[index]
+                                                    .status
+                                                    .toLowerCase() !=
+                                                "canceled") {
+                                              var result = showDialog(
+                                                  context: context,
+                                                  builder: (context) {
+                                                    return PromoCodeDialog(
+                                                      code: myPromocodes[index]
+                                                          .code,
+                                                    );
+                                                  });
+                                              result.then((value) {
+                                                // Print a message after the dialog is dismissed
+                                                fetchMyPromoCodes();
+                                              });
+                                            }
+                                          },
+                                          icon: Icon(
+                                            Icons.delete,
+                                            size: 20,
+                                          ))
                                     ],
                                   )
                                 ],
@@ -246,7 +271,7 @@ class _PromoCodeDashboardState extends State<PromoCodeDashboard> {
         final response = await http.get(
           Uri.https(
             "api.commercepal.com:2096",
-            "/prime/api/v1/product/promo-codes",
+            "/prime/api/v1/product/promo-codes/by-owner",
             {'owner': "MERCHANT"},
           ),
           headers: <String, String>{

@@ -70,13 +70,13 @@ class _PromoCodeDialogState extends State<PromoCodeDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Delete a PromoCode'),
+      title: Text('Cancel a PromoCode'),
       // content: Text("${selectedDate.toLocal()}".split(' ')[0]),
       actions: <Widget>[
         SingleChildScrollView(
           child: Column(
             children: [
-              Text("Do you want to delete ${widget.code} promocode?"),
+              Text("Do you want to cancel ${widget.code} promocode?"),
               Row(
                 children: [
                   TextButton(
