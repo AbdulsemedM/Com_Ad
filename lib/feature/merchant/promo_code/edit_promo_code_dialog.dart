@@ -5,7 +5,7 @@ import 'package:commercepal_admin_flutter/app/utils/app_colors.dart';
 import 'package:commercepal_admin_flutter/app/utils/dialog_utils.dart';
 import 'package:commercepal_admin_flutter/core/database/prefs_data.dart';
 import 'package:commercepal_admin_flutter/core/database/prefs_data_impl.dart';
-import 'package:commercepal_admin_flutter/feature/merchant/promo_code/promo_code_dashboard.dart';
+// import 'package:commercepal_admin_flutter/feature/merchant/promo_code/promo_code_dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
@@ -13,12 +13,20 @@ import 'package:url_launcher/url_launcher.dart';
 
 class EditPromoCodeDialog extends StatefulWidget {
   final String productId;
-  final String productName;
   final String subProductId;
+  final String startDate;
+  final String endDate;
+  final String code;
+  final String id;
+  final String discountAmount;
   const EditPromoCodeDialog(
       {super.key,
       required this.productId,
-      required this.productName,
+      required this.endDate,
+      required this.startDate,
+      required this.code,
+      required this.id,
+      required this.discountAmount,
       required this.subProductId});
   @override
   _EditPromoCodeDialogState createState() => _EditPromoCodeDialogState();
@@ -36,10 +44,12 @@ class _EditPromoCodeDialogState extends State<EditPromoCodeDialog> {
   @override
   void initState() {
     super.initState();
-    startController.text =
-        DateFormat('yyyy-MM-dd').format(DateTime.parse(startDate.toString()));
-    endController.text =
-        DateFormat('yyyy-MM-dd').format(DateTime.parse(endDate.toString()));
+    startController.text = DateFormat('yyyy-MM-dd')
+        .format(DateTime.parse(widget.startDate.toString()));
+    endController.text = DateFormat('yyyy-MM-dd')
+        .format(DateTime.parse(widget.endDate.toString()));
+    codeController.text = widget.code.toString();
+    discountAmountController.text = widget.discountAmount.toString();
   }
 
   Future<void> _startDate(BuildContext context) async {
@@ -98,7 +108,7 @@ class _EditPromoCodeDialogState extends State<EditPromoCodeDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(
-        'Add a Promo-code for ${widget.productName}',
+        'Edit a Promo-code for ${widget.code}',
         style: TextStyle(fontSize: 15),
       ),
       actions: <Widget>[
@@ -255,16 +265,16 @@ class _EditPromoCodeDialogState extends State<EditPromoCodeDialog> {
                         });
                         print(widget.subProductId);
                         final body = {
-                          "owner": "MERCHANT",
+                          // "owner": "MERCHANT",
                           "code": codeController.text,
-                          "productId": int.parse(widget.productId),
-                          "subProductId": int.parse(widget.subProductId),
-                          "discountType": "PERCENTAGE",
+                          // "productId": int.parse(widget.productId),
+                          // "subProductId": int.parse(widget.subProductId),
+                          // "discountType": "PERCENTAGE",
                           "discountAmount":
                               int.parse(discountAmountController.text),
                           "startDate": "${startController.text} 12",
                           "endDate": "${endController.text} 12",
-                          "promoCodeDescription": "-"
+                          // "promoCodeDescription": "-"
                         };
                         print(body);
                         try {
@@ -274,9 +284,11 @@ class _EditPromoCodeDialogState extends State<EditPromoCodeDialog> {
                           if (isUserLoggedIn) {
                             final token = await prefsData
                                 .readData(PrefsKeys.userToken.name);
-                            final response = await http.post(
-                                Uri.https("api.commercepal.com:2096",
-                                    "prime/api/v1/product/promo-codes"),
+                            final response = await http.put(
+                                Uri.https(
+                                  "api.commercepal.com:2096",
+                                  "/prime/api/v1/product/promo-codes/${widget.id}",
+                                ),
                                 body: jsonEncode(body),
                                 headers: <String, String>{
                                   "Authorization": "Bearer $token",
@@ -319,7 +331,7 @@ class _EditPromoCodeDialogState extends State<EditPromoCodeDialog> {
                             color: AppColors.colorPrimaryDark,
                           )
                         : Text(
-                            'Add',
+                            'Edit',
                           ),
                   ),
                   TextButton(

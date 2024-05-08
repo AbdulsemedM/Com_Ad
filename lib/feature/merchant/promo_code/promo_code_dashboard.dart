@@ -5,6 +5,7 @@ import 'package:commercepal_admin_flutter/app/utils/app_colors.dart';
 import 'package:commercepal_admin_flutter/core/database/prefs_data.dart';
 import 'package:commercepal_admin_flutter/core/database/prefs_data_impl.dart';
 import 'package:commercepal_admin_flutter/feature/merchant/promo_code/add_promo_code.dart';
+import 'package:commercepal_admin_flutter/feature/merchant/promo_code/edit_promo_code_dialog.dart';
 import 'package:commercepal_admin_flutter/feature/merchant/promo_code/promo_code_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -26,6 +27,7 @@ class PromoCodes {
   final String id;
   final String code;
   final String productId;
+  final String subProductId;
   final String merchantId;
   final String discountAmount;
   final String discountType;
@@ -43,6 +45,7 @@ class PromoCodes {
       required this.startDate,
       required this.endDate,
       required this.status,
+      required this.subProductId,
       required this.promoCodeStatus});
 }
 
@@ -123,8 +126,18 @@ class _PromoCodeDashboardState extends State<PromoCodeDashboard> {
                                 var result = showDialog(
                                     context: context,
                                     builder: (context) {
-                                      return PromoCodeDialog(
+                                      return EditPromoCodeDialog(
                                         code: myPromocodes[index].code,
+                                        productId:
+                                            myPromocodes[index].productId,
+                                        subProductId:
+                                            myPromocodes[index].subProductId,
+                                        endDate: myPromocodes[index].endDate,
+                                        startDate:
+                                            myPromocodes[index].startDate,
+                                        discountAmount:
+                                            myPromocodes[index].discountAmount,
+                                        id: myPromocodes[index].id,
                                       );
                                     });
                                 result.then((value) {
@@ -295,6 +308,7 @@ class _PromoCodeDashboardState extends State<PromoCodeDashboard> {
               startDate: i['startDate'].toString(),
               endDate: i['endDate'].toString(),
               status: i['promoCodeStatus'].toString(),
+              subProductId: i['subProductId'].toString(),
               promoCodeStatus: i['promoCodeStatus'].toString(),
             ));
           }
