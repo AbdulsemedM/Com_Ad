@@ -122,6 +122,7 @@ class _EditPromoCodeDialogState extends State<EditPromoCodeDialog> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(5, 2, 0, 8),
                         child: TextFormField(
+                          readOnly: true,
                           validator: _validateField,
                           controller: codeController,
                           decoration: InputDecoration(
@@ -188,25 +189,25 @@ class _EditPromoCodeDialogState extends State<EditPromoCodeDialog> {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: 200,
-                              height: 40,
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor:
-                                        AppColors.colorPrimaryDark),
-                                onPressed: () => _startDate(context),
-                                child: Text('Change date',
-                                    style: TextStyle(color: Colors.white)),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      // Padding(
+                      //   padding: const EdgeInsets.all(8.0),
+                      //   child: Row(
+                      //     children: [
+                      //       SizedBox(
+                      //         width: 200,
+                      //         height: 40,
+                      //         child: ElevatedButton(
+                      //           style: ElevatedButton.styleFrom(
+                      //               backgroundColor:
+                      //                   AppColors.colorPrimaryDark),
+                      //           onPressed: () => _startDate(context),
+                      //           child: Text('Change date',
+                      //               style: TextStyle(color: Colors.white)),
+                      //         ),
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
                       Padding(
                         padding: const EdgeInsets.all(8),
                         child: TextFormField(
