@@ -44,6 +44,7 @@ class DashboardProducts extends StatelessWidget {
                         },
                         child: Text(
                           "Promo-Code",
+                          style: TextStyle(color: AppColors.bg1),
                         ))
                   ],
                 ),

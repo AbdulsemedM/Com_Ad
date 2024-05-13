@@ -90,7 +90,10 @@ class _PromoCodeDashboardState extends State<PromoCodeDashboard> {
                         // if (result != null) {
                         // }
                       },
-                      child: const Text("Add Promo-Code")),
+                      child: const Text(
+                        "Add Promo-Code",
+                        style: TextStyle(color: AppColors.bg1),
+                      )),
                 ),
               ],
             ),
