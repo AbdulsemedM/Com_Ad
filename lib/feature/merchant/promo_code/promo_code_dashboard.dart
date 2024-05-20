@@ -62,10 +62,10 @@ class _PromoCodeDashboardState extends State<PromoCodeDashboard> {
   Widget build(BuildContext context) {
     var sHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Promo-Code",
-            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15)),
-      ),
+      // appBar: AppBar(
+      //   title: Text("Promo-Code",
+      //       style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15)),
+      // ),
       body: SingleChildScrollView(
         child: Column(
           children: [

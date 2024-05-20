@@ -1,5 +1,6 @@
 import 'package:commercepal_admin_flutter/app/utils/app_colors.dart';
 import 'package:commercepal_admin_flutter/feature/merchant/promo_code/promo_code_dashboard.dart';
+import 'package:commercepal_admin_flutter/feature/merchant/promotions/promotions.dart';
 import 'package:commercepal_admin_flutter/feature/merchant/sub_category/sub_categories_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,11 +40,10 @@ class DashboardProducts extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      const PromoCodeDashboard()));
+                                  builder: (context) => const PromotionTab()));
                         },
-                        child: Text(
-                          "Promo-Code",
+                        child: const Text(
+                          "Promotions",
                           style: TextStyle(color: AppColors.bg1),
                         ))
                   ],
