@@ -1,10 +1,12 @@
 import 'dart:convert';
 
 import 'package:commercepal_admin_flutter/app/di/injector.dart';
+import 'package:commercepal_admin_flutter/app/utils/app_colors.dart';
 import 'package:commercepal_admin_flutter/core/database/prefs_data.dart';
 import 'package:commercepal_admin_flutter/core/database/prefs_data_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 class FlashSaleDashboard extends StatefulWidget {
   const FlashSaleDashboard({super.key});
@@ -48,9 +50,266 @@ class _FlashSaleDashboardState extends State<FlashSaleDashboard> {
     fetchMyFlashSales();
   }
 
-  @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    var sHeight = MediaQuery.of(context).size.height;
+    return Scaffold(
+      // appBar: AppBar(
+      //   title: Text("Promo-Code",
+      //       style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15)),
+      // ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.colorPrimaryDark),
+                      onPressed: () {
+                        // var result = Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (context) => const AddPromoCode()));
+                        // result.then((value) {
+                        //   // Print a message after the dialog is dismissed
+                        //   fetchMyFlashSales();
+                        // });
+                        // print(result);
+                        // if (result != null) {
+                        // }
+                      },
+                      child: const Text(
+                        "Add Flash-Sales",
+                        style: TextStyle(color: AppColors.bg1),
+                      )),
+                ),
+              ],
+            ),
+            !loading && myFlashSales.isEmpty
+                ? SizedBox(
+                    height: sHeight * 0.9,
+                    child: Column(
+                      children: [
+                        Center(
+                          child: Center(child: Text('No Promo-codes found.')),
+                        ),
+                      ],
+                    ),
+                  )
+                : loading && myFlashSales.isEmpty
+                    ? const Center(
+                        child: CircularProgressIndicator(
+                          color: AppColors.colorPrimaryDark,
+                        ),
+                      )
+                    : SizedBox(
+                        height: sHeight * 0.8,
+                        child: ListView.separated(
+                          itemCount: myFlashSales.length,
+                          separatorBuilder: (_, __) => const SizedBox(
+                            height: 14,
+                          ),
+                          itemBuilder: (BuildContext context, int index) =>
+                              GestureDetector(
+                            onTap: () async {
+                              if (myFlashSales[index].status.toLowerCase() !=
+                                  "canceled") {
+                                // var result = showDialog(
+                                //     context: context,
+                                //     builder: (context) {
+                                // return EditPromoCodeDialog(
+                                //   code: myFlashSales[index].code,
+                                //   productId:
+                                //       myFlashSales[index].productId,
+                                //   subProductId:
+                                //       myFlashSales[index].subProductId,
+                                //   endDate: myFlashSales[index].endDate,
+                                //   startDate:
+                                //       myFlashSales[index].startDate,
+                                //   discountAmount:
+                                //       myFlashSales[index].discountAmount,
+                                //   id: myFlashSales[index].id,
+                                // );
+                                //     });
+                                // result.then((value) {
+                                //   // Print a message after the dialog is dismissed
+                                //   fetchMyFlashSales();
+                                // });
+                              }
+                              // print("object");
+                              // print(result);
+                            },
+                            child: Container(
+                              color: Colors.white,
+                              padding: const EdgeInsets.all(10),
+                              margin: const EdgeInsets.all(5),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Text("Prod. "),
+                                              Text(
+                                                myFlashSales[index].productName,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .titleMedium,
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text("Flash Pr. "),
+                                              Text(
+                                                  "${myFlashSales[index].flashSalePrice} ETB"),
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Text("Tot. Sold "),
+                                              Text(
+                                                myFlashSales[index]
+                                                    .flashSaleTotalQuantitySold,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium,
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text("Status "),
+                                              Text(
+                                                myFlashSales[index].status,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium,
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Text("Min. Quant "),
+                                              Text(
+                                                myFlashSales[index]
+                                                    .flashSaleMinQuantityPerCustomer,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium,
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text("Max. Quant "),
+                                              Text(
+                                                myFlashSales[index]
+                                                    .flashSaleMaxQuantityPerCustomer,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium,
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  Divider(),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Text(
+                                        "Start: ${DateFormat('dd MMM, yyyy').format(_parseDateString(myFlashSales[index].flashSaleStartDate))}",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium
+                                            ?.copyWith(),
+                                      ),
+                                      Text(
+                                        "End: ${DateFormat('dd MMM, yyyy').format(_parseDateString(myFlashSales[index].flashSaleEndDate))}",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium
+                                            ?.copyWith(),
+                                      ),
+                                      IconButton(
+                                          onPressed: () async {
+                                            if (myFlashSales[index]
+                                                    .status
+                                                    .toLowerCase() !=
+                                                "canceled") {
+                                              // var result = showDialog(
+                                              //     context: context,
+                                              //     builder: (context) {
+                                              //       return PromoCodeDialog(
+                                              //         code: myFlashSales[index]
+                                              //             .code,
+                                              //       );
+                                              //     });
+                                              // result.then((value) {
+                                              //   // Print a message after the dialog is dismissed
+                                              //   fetchMyFlashSales();
+                                              // });
+                                            }
+                                          },
+                                          icon: Icon(
+                                            Icons.delete,
+                                            size: 20,
+                                          ))
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  DateTime _parseDateString(String dateString) {
+    try {
+      // Parsing the ISO 8601 formatted date string
+      return DateTime.parse(dateString);
+    } catch (e) {
+      // Handle parsing error, return current date as fallback
+      print('Error parsing date: $e');
+      return DateTime.now();
+    }
   }
 
   Future<void> fetchMyFlashSales() async {
@@ -66,7 +325,7 @@ class _FlashSaleDashboardState extends State<FlashSaleDashboard> {
         final response = await http.get(
           Uri.https(
             "api.commercepal.com:2096",
-            "/api/v1/product/flash-sales/merchant",
+            "/prime/api/v1/product/flash-sales/merchant",
             {'page': "0", "size": "100", "sortDirection": "desc"},
           ),
           headers: <String, String>{
@@ -91,7 +350,7 @@ class _FlashSaleDashboardState extends State<FlashSaleDashboard> {
               productName: i['productName'].toString(),
               flashSaleStartDate: i['flashSaleStartDate'].toString(),
               flashSaleEndDate: i['flashSaleEndDate'].toString(),
-              status: i['promoCodeStatus'].toString(),
+              status: i['status'].toString(),
               flashSaleMinQuantityPerCustomer:
                   i['flashSaleMinQuantityPerCustomer'].toString(),
               flashSaleTotalQuantitySold:
@@ -103,7 +362,7 @@ class _FlashSaleDashboardState extends State<FlashSaleDashboard> {
           // }
           print(myFlashSales.length);
         } else {
-          throw datas['statusDescription'] ?? 'Error fetching Promo-Codes';
+          throw datas['statusDescription'] ?? 'Error fetching Flash-Sales';
         }
       }
 
