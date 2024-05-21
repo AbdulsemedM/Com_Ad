@@ -4,6 +4,7 @@ import 'package:commercepal_admin_flutter/app/di/injector.dart';
 import 'package:commercepal_admin_flutter/app/utils/app_colors.dart';
 import 'package:commercepal_admin_flutter/core/database/prefs_data.dart';
 import 'package:commercepal_admin_flutter/core/database/prefs_data_impl.dart';
+import 'package:commercepal_admin_flutter/feature/merchant/flash_sale/edit_flashsale_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
@@ -27,6 +28,7 @@ class FlashSales {
   final String flashSaleInventoryQuantity;
   final String flashSaleMaxQuantityPerCustomer;
   final String status;
+  final String isQuantityRestrictedPerCustomer;
   FlashSales(
       {required this.id,
       required this.flashSaleStartDate,
@@ -38,6 +40,7 @@ class FlashSales {
       required this.flashSalePrice,
       required this.flashSaleInventoryQuantity,
       required this.status,
+      required this.isQuantityRestrictedPerCustomer,
       required this.flashSaleMaxQuantityPerCustomer});
 }
 
@@ -117,27 +120,37 @@ class _FlashSaleDashboardState extends State<FlashSaleDashboard> {
                             onTap: () async {
                               if (myFlashSales[index].status.toLowerCase() !=
                                   "canceled") {
-                                // var result = showDialog(
-                                //     context: context,
-                                //     builder: (context) {
-                                // return EditPromoCodeDialog(
-                                //   code: myFlashSales[index].code,
-                                //   productId:
-                                //       myFlashSales[index].productId,
-                                //   subProductId:
-                                //       myFlashSales[index].subProductId,
-                                //   endDate: myFlashSales[index].endDate,
-                                //   startDate:
-                                //       myFlashSales[index].startDate,
-                                //   discountAmount:
-                                //       myFlashSales[index].discountAmount,
-                                //   id: myFlashSales[index].id,
-                                // );
-                                //     });
-                                // result.then((value) {
-                                //   // Print a message after the dialog is dismissed
-                                //   fetchMyFlashSales();
-                                // });
+                                var result = showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return EditFlashSaleDialog(
+                                        flashSalePrice:
+                                            myFlashSales[index].flashSalePrice,
+                                        flashSaleInventoryQuantity:
+                                            myFlashSales[index]
+                                                .flashSaleInventoryQuantity,
+                                        isQuantityRestrictionPerCustomer:
+                                            myFlashSales[index]
+                                                .isQuantityRestrictedPerCustomer,
+                                        flashSaleEndDate: myFlashSales[index]
+                                            .flashSaleEndDate,
+                                        flashSaleStartDate: myFlashSales[index]
+                                            .flashSaleStartDate,
+                                        flashSaleMinQuantityPerCustomer:
+                                            myFlashSales[index]
+                                                .flashSaleMinQuantityPerCustomer,
+                                        flashSaleMaxQuantityPerCustomer:
+                                            myFlashSales[index]
+                                                .flashSaleMaxQuantityPerCustomer,
+                                        id: myFlashSales[index].id,
+                                        productName:
+                                            myFlashSales[index].productName,
+                                      );
+                                    });
+                                result.then((value) {
+                                  // Print a message after the dialog is dismissed
+                                  fetchMyFlashSales();
+                                });
                               }
                               // print("object");
                               // print(result);
@@ -355,6 +368,8 @@ class _FlashSaleDashboardState extends State<FlashSaleDashboard> {
                   i['flashSaleMinQuantityPerCustomer'].toString(),
               flashSaleTotalQuantitySold:
                   i['flashSaleTotalQuantitySold'].toString(),
+              isQuantityRestrictedPerCustomer:
+                  'isQuantityRestrictedPerCustomer',
             ));
           }
           // if (myBids.isEmpty) {
