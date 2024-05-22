@@ -57,8 +57,9 @@ class _EditFlashSaleDialogState extends State<EditFlashSaleDialog> {
         .format(DateTime.parse(widget.flashSaleStartDate.toString()));
     flashSaleEndController.text = DateFormat('yyyy-MM-dd')
         .format(DateTime.parse(widget.flashSaleEndDate.toString()));
-    // flashSaleInventoryQuantityController.text = widget.code.toString();
-    // flashSalePrice.text = widget.discountAmount.toString();
+    flashSaleInventoryQuantityController.text =
+        widget.flashSaleInventoryQuantity.toString();
+    flashSalePriceController.text = widget.flashSalePrice.toString();
   }
 
   Future<void> _startDate(BuildContext context) async {
@@ -172,7 +173,7 @@ class _EditFlashSaleDialogState extends State<EditFlashSaleDialog> {
                               borderSide: const BorderSide(
                                   color: AppColors.colorPrimaryDark),
                             ),
-                            labelText: "Sale Price",
+                            labelText: "Sale Price (ETB)",
                           ),
                         ),
                       ),
@@ -277,16 +278,19 @@ class _EditFlashSaleDialogState extends State<EditFlashSaleDialog> {
                         });
                         // print(widget.subProductId);
                         final body = {
-                          // "owner": "MERCHANT",
-                          "code": flashSaleInventoryQuantityController.text,
-                          // "productId": int.parse(widget.productId),
-                          // "subProductId": int.parse(widget.subProductId),
-                          // "discountType": "PERCENTAGE",
-                          "discountAmount":
+                          "flashSalePrice":
                               int.parse(flashSalePriceController.text),
-                          "startDate": "${flashSaleStartController.text} 12",
-                          "endDate": "${flashSaleEndController.text} 12",
-                          // "promoCodeDescription": "-"
+                          "flashSaleStartDate":
+                              "${flashSaleStartController.text} 15",
+                          "flashSaleEndDate":
+                              "${flashSaleEndController.text} 15",
+                          "flashSaleInventoryQuantity": int.parse(
+                              flashSaleInventoryQuantityController.text),
+                          "isQuantityRestrictionPerCustomer": false,
+                          "flashSaleMinQuantityPerCustomer": int.parse(
+                              flashSaleMinQuantityPerCustomercontroller.text),
+                          "flashSaleMaxQuantityPerCustomer": int.parse(
+                              flashSaleMaxQuantityPerCustomerController.text)
                         };
                         print(body);
                         try {
