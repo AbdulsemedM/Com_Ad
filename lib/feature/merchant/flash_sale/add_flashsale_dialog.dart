@@ -5,48 +5,38 @@ import 'package:commercepal_admin_flutter/app/utils/app_colors.dart';
 import 'package:commercepal_admin_flutter/app/utils/dialog_utils.dart';
 import 'package:commercepal_admin_flutter/core/database/prefs_data.dart';
 import 'package:commercepal_admin_flutter/core/database/prefs_data_impl.dart';
-// import 'package:commercepal_admin_flutter/feature/merchant/promo_code/promo_code_dashboard.dart';
+import 'package:commercepal_admin_flutter/feature/merchant/promo_code/promo_code_dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 
-class EditFlashSaleDialog extends StatefulWidget {
-  final String id;
-  final String flashSalePrice;
-  final String flashSaleStartDate;
-  final String flashSaleEndDate;
-  final String flashSaleInventoryQuantity;
-  final String isQuantityRestrictionPerCustomer;
-  final String flashSaleMinQuantityPerCustomer;
-  final String flashSaleMaxQuantityPerCustomer;
+class AddFlashSaleDialog extends StatefulWidget {
+  final String productId;
   final String productName;
-  const EditFlashSaleDialog(
+  final String subProductId;
+  const AddFlashSaleDialog(
       {super.key,
-      required this.flashSalePrice,
-      required this.flashSaleInventoryQuantity,
-      required this.flashSaleEndDate,
-      required this.isQuantityRestrictionPerCustomer,
-      required this.id,
-      required this.flashSaleMinQuantityPerCustomer,
-      required this.flashSaleMaxQuantityPerCustomer,
+      required this.productId,
       required this.productName,
-      required this.flashSaleStartDate});
+      required this.subProductId});
   @override
-  _EditFlashSaleDialogState createState() => _EditFlashSaleDialogState();
+  _AddFlashSaleDialogState createState() => _AddFlashSaleDialogState();
 }
 
-class _EditFlashSaleDialogState extends State<EditFlashSaleDialog> {
+class _AddFlashSaleDialogState extends State<AddFlashSaleDialog> {
   var loading = false;
   TextEditingController flashSalePriceController = TextEditingController();
   TextEditingController flashSaleInventoryQuantityController =
       TextEditingController();
-  TextEditingController flashSaleStartController = TextEditingController();
-  TextEditingController flashSaleEndController = TextEditingController();
+  // TextEditingController isQuantityRestrictedPerCustomerController =
+  //     TextEditingController();
   TextEditingController flashSaleMinQuantityPerCustomercontroller =
       TextEditingController();
-  TextEditingController flashSaleMaxQuantityPerCustomerController =
+  TextEditingController flashSaleMaxQuantityPerCustomercontroller =
       TextEditingController();
+  TextEditingController flashSaleStartController = TextEditingController();
+  TextEditingController flashSaleEndController = TextEditingController();
   bool? isQuantityRestrictedPerCustomer;
   var loading1 = false;
   DateTime startDate = DateTime.now();
@@ -54,22 +44,10 @@ class _EditFlashSaleDialogState extends State<EditFlashSaleDialog> {
   @override
   void initState() {
     super.initState();
-    flashSaleStartController.text = DateFormat('yyyy-MM-dd')
-        .format(DateTime.parse(widget.flashSaleStartDate.toString()));
-    flashSaleEndController.text = DateFormat('yyyy-MM-dd')
-        .format(DateTime.parse(widget.flashSaleEndDate.toString()));
-    flashSaleInventoryQuantityController.text =
-        widget.flashSaleInventoryQuantity.toString();
-    flashSalePriceController.text = widget.flashSalePrice.toString();
-    flashSaleMaxQuantityPerCustomerController.text =
-        widget.flashSaleMaxQuantityPerCustomer;
-    flashSaleMinQuantityPerCustomercontroller.text =
-        widget.flashSaleMinQuantityPerCustomer;
-    if (widget.isQuantityRestrictionPerCustomer == "true") {
-      isQuantityRestrictedPerCustomer = true;
-    } else if (widget.isQuantityRestrictionPerCustomer == "false") {
-      isQuantityRestrictedPerCustomer = false;
-    }
+    flashSaleStartController.text =
+        DateFormat('yyyy-MM-dd').format(DateTime.parse(startDate.toString()));
+    flashSaleEndController.text =
+        DateFormat('yyyy-MM-dd').format(DateTime.parse(endDate.toString()));
   }
 
   Future<void> _startDate(BuildContext context) async {
@@ -128,7 +106,7 @@ class _EditFlashSaleDialogState extends State<EditFlashSaleDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(
-        'Edit ${widget.productName} Flash Sale',
+        'Add a Flash-Sale for ${widget.productName}',
         style: TextStyle(fontSize: 15),
       ),
       actions: <Widget>[
@@ -214,7 +192,7 @@ class _EditFlashSaleDialogState extends State<EditFlashSaleDialog> {
                         child: TextFormField(
                           keyboardType: TextInputType.number,
                           validator: _validateField,
-                          controller: flashSaleMaxQuantityPerCustomerController,
+                          controller: flashSaleMaxQuantityPerCustomercontroller,
                           decoration: InputDecoration(
                             contentPadding: const EdgeInsets.fromLTRB(
                                 12.0, 10.0, 12.0, 10.0),
@@ -235,10 +213,6 @@ class _EditFlashSaleDialogState extends State<EditFlashSaleDialog> {
                       Padding(
                         padding: const EdgeInsets.all(16),
                         child: DropdownButtonFormField<String>(
-                          value:
-                              widget.isQuantityRestrictionPerCustomer == 'true'
-                                  ? 'true'
-                                  : 'false',
                           decoration: InputDecoration(
                             contentPadding: const EdgeInsets.fromLTRB(
                                 12.0, 10.0, 12.0, 10.0),
@@ -319,25 +293,25 @@ class _EditFlashSaleDialogState extends State<EditFlashSaleDialog> {
                           ),
                         ),
                       ),
-                      // Padding(
-                      //   padding: const EdgeInsets.all(8.0),
-                      //   child: Row(
-                      //     children: [
-                      //       SizedBox(
-                      //         width: 200,
-                      //         height: 40,
-                      //         child: ElevatedButton(
-                      //           style: ElevatedButton.styleFrom(
-                      //               backgroundColor:
-                      //                   AppColors.colorPrimaryDark),
-                      //           onPressed: () => _startDate(context),
-                      //           child: Text('Change date',
-                      //               style: TextStyle(color: Colors.white)),
-                      //         ),
-                      //       ),
-                      //     ],
-                      //   ),
-                      // ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: 200,
+                              height: 40,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                        AppColors.colorPrimaryDark),
+                                onPressed: () => _startDate(context),
+                                child: Text('Change date',
+                                    style: TextStyle(color: Colors.white)),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                       Padding(
                         padding: const EdgeInsets.all(8),
                         child: TextFormField(
@@ -387,15 +361,17 @@ class _EditFlashSaleDialogState extends State<EditFlashSaleDialog> {
                 children: [
                   TextButton(
                     onPressed: () async {
-                      // print(widget.subProductId);
+                      print(widget.subProductId);
                       if (!_myForm.currentState!.validate()) {
-                        // print(widget.subProductId);
+                        print(widget.subProductId);
                       } else {
                         setState(() {
                           loading = true;
                         });
-                        // print(widget.subProductId);
+                        print(widget.subProductId);
                         final body = {
+                          "productId": int.parse(widget.productId),
+                          "subProductId": int.parse(widget.subProductId),
                           "flashSalePrice":
                               double.parse(flashSalePriceController.text),
                           "flashSaleStartDate":
@@ -404,12 +380,12 @@ class _EditFlashSaleDialogState extends State<EditFlashSaleDialog> {
                               "${flashSaleEndController.text} 15",
                           "flashSaleInventoryQuantity": int.parse(
                               flashSaleInventoryQuantityController.text),
-                          "isQuantityRestrictionPerCustomer":
+                          "isQuantityRestrictedPerCustomer":
                               isQuantityRestrictedPerCustomer,
                           "flashSaleMinQuantityPerCustomer": int.parse(
                               flashSaleMinQuantityPerCustomercontroller.text),
                           "flashSaleMaxQuantityPerCustomer": int.parse(
-                              flashSaleMaxQuantityPerCustomerController.text)
+                              flashSaleMaxQuantityPerCustomercontroller.text)
                         };
                         print(body);
                         try {
@@ -419,11 +395,9 @@ class _EditFlashSaleDialogState extends State<EditFlashSaleDialog> {
                           if (isUserLoggedIn) {
                             final token = await prefsData
                                 .readData(PrefsKeys.userToken.name);
-                            final response = await http.put(
-                                Uri.https(
-                                  "api.commercepal.com:2096",
-                                  "/prime/api/v1/product/flash-sales/${widget.id}",
-                                ),
+                            final response = await http.post(
+                                Uri.https("api.commercepal.com:2096",
+                                    "/prime/api/v1/product/flash-sales"),
                                 body: jsonEncode(body),
                                 headers: <String, String>{
                                   "Authorization": "Bearer $token",
@@ -436,7 +410,7 @@ class _EditFlashSaleDialogState extends State<EditFlashSaleDialog> {
 
                             if (data['statusCode'] == '000') {
                               displaySnack(
-                                  context, "Flash-Sale edited successfully.");
+                                  context, "Flash-Sale placed successfully.");
                               // PromoCodeDashboard.FetchthePromocodes(context);
                               Navigator.pop(context, true);
                               // fetchSpecialBids();
@@ -445,6 +419,7 @@ class _EditFlashSaleDialogState extends State<EditFlashSaleDialog> {
                               });
                               // return true;
                             } else {
+                              displaySnack(context, data['statusMessage']);
                               setState(() {
                                 loading = false;
                               });
@@ -466,7 +441,7 @@ class _EditFlashSaleDialogState extends State<EditFlashSaleDialog> {
                             color: AppColors.colorPrimaryDark,
                           )
                         : Text(
-                            'Edit',
+                            'Add',
                           ),
                   ),
                   TextButton(
@@ -483,16 +458,16 @@ class _EditFlashSaleDialogState extends State<EditFlashSaleDialog> {
     );
   }
 
-  void launchUrl(String myUrl) async {
-    String url = myUrl;
-    try {
-      // if (await canLaunch(url)) {
-      await launch(url);
-      // } else {
-      // print("Could not launch $url");
-      // }
-    } catch (e) {
-      displaySnack(context, "There was an error launching $url");
-    }
-  }
+  // void launchUrl(String myUrl) async {
+  //   String url = myUrl;
+  //   try {
+  //     // if (await canLaunch(url)) {
+  //     await launch(url);
+  //     // } else {
+  //     // print("Could not launch $url");
+  //     // }
+  //   } catch (e) {
+  //     displaySnack(context, "There was an error launching $url");
+  //   }
+  // }
 }

@@ -4,6 +4,7 @@ import 'package:commercepal_admin_flutter/app/di/injector.dart';
 import 'package:commercepal_admin_flutter/app/utils/app_colors.dart';
 import 'package:commercepal_admin_flutter/core/database/prefs_data.dart';
 import 'package:commercepal_admin_flutter/core/database/prefs_data_impl.dart';
+import 'package:commercepal_admin_flutter/feature/merchant/flash_sale/add_flash_sale.dart';
 import 'package:commercepal_admin_flutter/feature/merchant/flash_sale/edit_flashsale_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -72,17 +73,16 @@ class _FlashSaleDashboardState extends State<FlashSaleDashboard> {
                       style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.colorPrimaryDark),
                       onPressed: () {
-                        // var result = Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) => const AddPromoCode()));
-                        // result.then((value) {
-                        //   // Print a message after the dialog is dismissed
-                        //   fetchMyFlashSales();
-                        // });
-                        // print(result);
-                        // if (result != null) {
-                        // }
+                        var result = Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const AddFlashSale()));
+                        result.then((value) {
+                          // Print a message after the dialog is dismissed
+                          fetchMyFlashSales();
+                        });
+                        print(result);
+                        if (result != null) {}
                       },
                       child: const Text(
                         "Add Flash-Sales",
@@ -119,7 +119,9 @@ class _FlashSaleDashboardState extends State<FlashSaleDashboard> {
                               GestureDetector(
                             onTap: () async {
                               if (myFlashSales[index].status.toLowerCase() !=
-                                  "canceled") {
+                                      "canceled" &&
+                                  myFlashSales[index].status.toLowerCase() !=
+                                      "active") {
                                 var result = showDialog(
                                     context: context,
                                     builder: (context) {
