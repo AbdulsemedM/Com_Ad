@@ -192,7 +192,7 @@ class _AddFlashSaleState extends State<AddFlashSale> {
                 ],
               ),
             ),
-            !loading && myProducts.isEmpty
+            loading == false && myProducts.isEmpty
                 ? SizedBox(
                     height: sHeight * 0.9,
                     child: const Column(
