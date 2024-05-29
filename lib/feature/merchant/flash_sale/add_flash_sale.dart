@@ -104,7 +104,7 @@ class _AddFlashSaleState extends State<AddFlashSale> {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(4.0),
-                    child: Container(
+                    child: SizedBox(
                       height: 50,
                       width: 250,
                       child: DropdownButtonFormField<String>(
@@ -149,7 +149,7 @@ class _AddFlashSaleState extends State<AddFlashSale> {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(4.0),
-                    child: Container(
+                    child: SizedBox(
                       height: 50,
                       width: 250,
                       child: DropdownButtonFormField<String>(
@@ -204,7 +204,7 @@ class _AddFlashSaleState extends State<AddFlashSale> {
                     ),
                   )
                 : loading && myProducts.isEmpty
-                    ? Center(
+                    ? const Center(
                         child: CircularProgressIndicator(
                           color: AppColors.colorPrimaryDark,
                         ),
@@ -244,7 +244,7 @@ class _AddFlashSaleState extends State<AddFlashSale> {
                                           );
                                         });
                                     // print("result");
-                                    // print(result);
+                                    print(result);
                                   },
                                   child: Wrap(
                                     children: [
@@ -297,7 +297,7 @@ class _AddFlashSaleState extends State<AddFlashSale> {
                                                 padding: const EdgeInsets.only(
                                                     left: 8.0, right: 8.0),
                                                 child: Text(
-                                                  "${myProducts[index].productName}",
+                                                  myProducts[index].productName,
                                                   maxLines: 2,
                                                   overflow:
                                                       TextOverflow.ellipsis,
