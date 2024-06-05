@@ -32,6 +32,7 @@ class _RoleCheckerState extends State<RoleChecker> {
   @override
   void initState() {
     super.initState();
+    fetchUser1(context: context);
     getRoles();
     fetchUser();
   }
@@ -47,13 +48,11 @@ class _RoleCheckerState extends State<RoleChecker> {
   Widget build(BuildContext context) {
     var sHeight = MediaQuery.of(context).size.height * 1;
     var sWidth = MediaQuery.of(context).size.width * 1;
-    // fetchUser1(context: context);
-    // if (logout == "logout") {
-    //   // final prefsData = getIt<PrefsData>();
-    //   // await prefsData.deleteData(PrefsKeys.userToken.name);
-    //   Navigator.pushReplacement(
-    //       context, MaterialPageRoute(builder: (context) => const LoginPage()));
-    // }
+
+    if (logout == "logout") {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const LoginPage()));
+    }
 
     return UpgradeAlert(
       // showLater: false,
@@ -509,7 +508,9 @@ class _RoleCheckerState extends State<RoleChecker> {
             loading = false;
             logout = "logout";
           });
-
+          final prefsData = getIt<PrefsData>();
+          await prefsData.deleteData(PrefsKeys.userToken.name);
+          print("deleted");
           // ignore: use_build_context_synchronously
           // Navigator.pushReplacement(context!,
           //     MaterialPageRoute(builder: (context) => const LoginPage()));
