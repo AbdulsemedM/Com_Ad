@@ -57,7 +57,6 @@ class _RoleCheckerState extends State<RoleChecker> {
     return UpgradeAlert(
       // showLater: false,
       showIgnore: false,
-      // showReleaseNotes: false,
       child: Scaffold(
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(sHeight * 0.3),
@@ -72,7 +71,7 @@ class _RoleCheckerState extends State<RoleChecker> {
             ),
             bottom: PreferredSize(
               preferredSize:
-                  const Size.fromHeight(0), // Adjust the height as needed
+                  const Size.fromHeight(0),
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
