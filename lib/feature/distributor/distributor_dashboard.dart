@@ -361,7 +361,8 @@ class _DistributorDashboardState extends State<DistributorDashboard>
                                 }
                                 print(registered);
                               },
-                              child: const Text("Proceed to Registration form"),
+                              child: const Text("Proceed to Registration form",
+                                  style: TextStyle(color: AppColors.bg1)),
                             ),
                           )
                         ],

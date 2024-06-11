@@ -619,7 +619,10 @@ class _AddProductOneState extends State<AddProductOne> {
                                             "Please fill all the necessary fields.");
                                       }
                                     },
-                                    child: const Text("Next")),
+                                    child: const Text(
+                                      "Next",
+                                      style: TextStyle(color: AppColors.bg1),
+                                    )),
                               )
                       ],
                     ),
@@ -1215,7 +1218,10 @@ class _AddProductOneState extends State<AddProductOne> {
                                 context, "Please fill all the fields.");
                           }
                         },
-                        child: const Text("Next")),
+                        child: const Text(
+                          "Next",
+                          style: TextStyle(color: AppColors.bg1),
+                        )),
                   )
           ],
         ),

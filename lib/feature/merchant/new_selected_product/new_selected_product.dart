@@ -1186,7 +1186,10 @@ class _NewSelectedProductState extends State<NewSelectedProduct> {
                                     "Please fill all the necessary fields.");
                               }
                             },
-                            child: const Text("Edit Product")),
+                            child: const Text(
+                              "Edit Product",
+                              style: TextStyle(color: AppColors.bg1),
+                            )),
                       )
               ],
             ),
