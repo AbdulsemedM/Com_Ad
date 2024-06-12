@@ -424,7 +424,6 @@ class _AddProductOneState extends State<AddProductOne> {
                               focusedBorder: InputBorder.none,
                               focusedErrorBorder: InputBorder.none,
                               enabledBorder: InputBorder.none),
-                          // : 'Full Name',
                           keyboardType: TextInputType.text,
                           // onChanged: (value) {
                           //   setState(() {
@@ -528,7 +527,6 @@ class _AddProductOneState extends State<AddProductOne> {
                               focusedBorder: InputBorder.none,
                               focusedErrorBorder: InputBorder.none,
                               enabledBorder: InputBorder.none),
-                          // : 'Full Name',
                           keyboardType: TextInputType.text,
                           // onChanged: (value) {
                           //   setState(() {
@@ -642,7 +640,6 @@ class _AddProductOneState extends State<AddProductOne> {
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: AppColors.colorPrimaryDark),
                             onPressed: () async {
-                              // print(_formKey.currentState!.validate());
                               if (img1 != null &&
                                   img2 != null &&
                                   img3 != null &&
@@ -650,15 +647,6 @@ class _AddProductOneState extends State<AddProductOne> {
                                 bool done = await verifyForm();
 
                                 if (done) {
-                                  // bool done2 = await uploadProductImages(
-                                  //     myImage,
-                                  //     num.parse(pId!),
-                                  //     ImageTypes.productImages);
-
-                                  // bool done2 = await verifyForm2();
-                                  // print("hereisdone2$done2");
-                                  // print(done2);
-
                                   print("uploading successfull");
                                   // ignore: use_build_context_synchronously
                                   Navigator.pop(context);
@@ -816,7 +804,6 @@ class _AddProductOneState extends State<AddProductOne> {
   Future _getImage1(ImageSource source) async {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: source);
-    // final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     setState(() {
       if (pickedFile != null) {
