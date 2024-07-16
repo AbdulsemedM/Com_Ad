@@ -48,14 +48,14 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       padding:
                           EdgeInsets.symmetric(vertical: 8.0, horizontal: 4),
                       child: Text(
-                        "Email",
+                        "Email/ Phone Number",
                         style: TextStyle(color: Colors.black),
                       ),
                     ),
                     TextFormField(
                       validator: (value) {
                         if (value?.isEmpty == true) {
-                          return 'Email is required';
+                          return 'Email/ Phone number is required';
                         }
                         return null;
                       },

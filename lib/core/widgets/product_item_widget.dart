@@ -64,8 +64,11 @@ class ProductItemWidget extends StatelessWidget {
                       "${product.productName}",
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.headline3?.copyWith(
-                          fontSize: 14.sp, fontWeight: FontWeight.normal),
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineMedium
+                          ?.copyWith(
+                              fontSize: 14.sp, fontWeight: FontWeight.normal),
                     ),
                   ),
                   if (product.currency != null)

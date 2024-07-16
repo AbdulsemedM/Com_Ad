@@ -70,8 +70,7 @@ class _RoleCheckerState extends State<RoleChecker> {
               ),
             ),
             bottom: PreferredSize(
-              preferredSize:
-                  const Size.fromHeight(0),
+              preferredSize: const Size.fromHeight(0),
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
@@ -101,6 +100,7 @@ class _RoleCheckerState extends State<RoleChecker> {
                         //   ),
                         // ),
                         PopupMenuButton<String>(
+                          iconColor: AppColors.bgCreamWhite,
                           onSelected: (value) async {
                             if (value == 'reset') {
                               if (logout == "logout") {

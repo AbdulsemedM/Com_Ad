@@ -22,12 +22,10 @@ class MessengerDashboard extends StatefulWidget {
 
 class _MessengerDashboardState extends State<MessengerDashboard> {
   List<Icon> myIcons = const [
-    Icon(
-      Icons.lock_open,
-    ),
-    Icon(Icons.share_location_sharp),
-    Icon(FontAwesomeIcons.arrowDownWideShort),
-    Icon(FontAwesomeIcons.listCheck),
+    Icon(Icons.lock_open, color: AppColors.bgCreamWhite),
+    Icon(Icons.share_location_sharp, color: AppColors.bgCreamWhite),
+    Icon(FontAwesomeIcons.arrowDownWideShort, color: AppColors.bgCreamWhite),
+    Icon(FontAwesomeIcons.listCheck, color: AppColors.bgCreamWhite),
   ];
   List<String> status = [
     'Open Orders',
@@ -76,6 +74,15 @@ class _MessengerDashboardState extends State<MessengerDashboard> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Icon(
+                            Icons.arrow_back_ios_new,
+                            color: AppColors.bgCreamWhite,
+                          ),
+                        ),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8),
                           child: Text(

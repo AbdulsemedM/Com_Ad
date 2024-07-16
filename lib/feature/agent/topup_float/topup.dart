@@ -66,6 +66,15 @@ class _TopupFloatPageState extends State<TopupFloatPage>
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Icon(
+                            Icons.arrow_back_ios_new,
+                            color: AppColors.bgCreamWhite,
+                          ),
+                        ),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8),
                           child: Text(
@@ -76,6 +85,9 @@ class _TopupFloatPageState extends State<TopupFloatPage>
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
+                        SizedBox(
+                          width: 20,
+                        )
                       ],
                     ),
                   ),

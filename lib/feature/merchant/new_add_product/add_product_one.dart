@@ -287,6 +287,7 @@ class _AddProductOneState extends State<AddProductOne> {
                           ],
                         ),
                         DropdownButtonFormField<String>(
+                          value: myParentCategory,
                           decoration: const InputDecoration(
                               filled: true,
                               fillColor: AppColors.greyColor,
@@ -472,6 +473,7 @@ class _AddProductOneState extends State<AddProductOne> {
                           ],
                         ),
                         DropdownButtonFormField<String>(
+                          value: myProductType,
                           decoration: const InputDecoration(
                             filled: true,
                             fillColor: AppColors.greyColor,
@@ -661,12 +663,85 @@ class _AddProductOneState extends State<AddProductOne> {
                                     context, "Please select product images.");
                               }
                             },
-                            child: const Text("Add Product")),
+                            child: const Text(
+                              "Add Product",
+                              style: TextStyle(color: AppColors.bgCreamWhite),
+                            )),
                       )
             ],
           ),
         ),
       )),
+      floatingActionButton: !loading && step1 == 1 && step2 == 0 && step3 == 0
+          ? Stack(
+              children: [
+                Positioned(
+                  bottom: 0,
+                  left: 10,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ClipOval(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: const CircleBorder(),
+                          backgroundColor: Colors.orange,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            if (step1 == 1) {
+                              step1 = 0;
+                              step2 = 0;
+                            }
+                          });
+                        },
+                        child: const Padding(
+                          padding: EdgeInsets.all(15.0),
+                          child: Icon(
+                            Icons.navigate_before_rounded,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            )
+          : !loading && step1 == 1 && step2 == 1 && step3 == 0
+              ? Stack(
+                  children: [
+                    Positioned(
+                      bottom: 0,
+                      left: 10,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ClipOval(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              shape: const CircleBorder(),
+                              backgroundColor: Colors.orange,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                if (step2 == 1) {
+                                  step2 = 0;
+                                }
+                              });
+                            },
+                            child: const Padding(
+                              padding: EdgeInsets.all(15.0),
+                              child: Icon(
+                                Icons.navigate_before_rounded,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              : null,
     );
   }
 
@@ -1426,7 +1501,10 @@ class _AddProductOneState extends State<AddProductOne> {
                           print(_addedProductVariants.length);
                         }
                       },
-                      child: Text("Add Variant")),
+                      child: Text(
+                        "Add Variant",
+                        style: TextStyle(color: AppColors.bgCreamWhite),
+                      )),
                 )
             ],
           ),

@@ -303,7 +303,7 @@ class _AddFlashSaleState extends State<AddFlashSale> {
                                                       TextOverflow.ellipsis,
                                                   style: Theme.of(context)
                                                       .textTheme
-                                                      .headline3
+                                                      .headlineMedium
                                                       ?.copyWith(
                                                           fontSize: 14.sp,
                                                           fontWeight: FontWeight

@@ -95,6 +95,7 @@ class _SpecialOrdersState extends State<SpecialOrders> {
                                             myOrder: myBids[index],
                                           );
                                         });
+                                    // ignore: unnecessary_null_comparison
                                     if (result != null) {
                                       fetchSpecialBids();
                                     }
@@ -167,7 +168,7 @@ class _SpecialOrdersState extends State<SpecialOrders> {
     TextEditingController phoneNumberController = TextEditingController();
     TextEditingController dateController = TextEditingController();
     // String selectedDate = "";
-    var loading1 = false;
+    // var loading1 = false;
     DateTime selectedDate = DateTime.now();
     dateController.text = DateFormat('dd MMM yyyy')
         .format(DateTime.parse(selectedDate.toString()));
@@ -427,8 +428,8 @@ class _SpecialOrdersState extends State<SpecialOrders> {
           for (var i in datas['data']) {
             if (i['status'] != 3) {
               myBids.add(AssignedSpecialOrders(
-                assignedDate: i['assignedDate'].toString() ?? '0',
-                merchantId: i['merchantId'].toString() ?? '',
+                assignedDate: i['assignedDate'].toString(),
+                merchantId: i['merchantId'].toString(),
                 specialOrderId: i['specialOrderId'].toString(),
                 bidId: i['bidId'].toString(),
                 quantity: i['quantity'].toString(),

@@ -87,6 +87,15 @@ class _AcceptedOrderState extends State<AcceptedOrder> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Icon(
+                            Icons.arrow_back_ios_new,
+                            color: AppColors.bgCreamWhite,
+                          ),
+                        ),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8),
                           child: Text(
@@ -97,6 +106,7 @@ class _AcceptedOrderState extends State<AcceptedOrder> {
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
+                        SizedBox(width: 20)
                         // GestureDetector(
                         //   onTap: () async {
                         //     bool change = await showDialog(

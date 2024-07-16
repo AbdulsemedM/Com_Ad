@@ -316,7 +316,7 @@ class _AddPromoCodeState extends State<AddPromoCode> {
                                                       TextOverflow.ellipsis,
                                                   style: Theme.of(context)
                                                       .textTheme
-                                                      .headline3
+                                                      .headlineMedium
                                                       ?.copyWith(
                                                           fontSize: 14.sp,
                                                           fontWeight: FontWeight
