@@ -168,8 +168,8 @@ class _DashboardOrdersState extends State<DashboardOrders> {
           for (var i in datas['data']) {
             if (i['status'] != 3) {
               myBids.add(AssignedSpecialOrders(
-                assignedDate: i['assignedDate'].toString() ?? '0',
-                merchantId: i['merchantId'].toString() ?? '',
+                assignedDate: i['assignedDate'].toString(),
+                merchantId: i['merchantId'].toString(),
                 specialOrderId: i['specialOrderId'].toString(),
                 bidId: i['bidId'].toString(),
                 quantity: i['quantity'].toString(),
@@ -177,6 +177,7 @@ class _DashboardOrdersState extends State<DashboardOrders> {
                 estimatePrice: i['estimatePrice'].toString(),
                 linkToProduct: i['linkToProduct'].toString(),
                 imageOne: i['imageOne'].toString(),
+                productDescription: i['productDescription'].toString(),
               ));
             }
           }

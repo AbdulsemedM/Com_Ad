@@ -29,6 +29,7 @@ class AssignedSpecialOrders {
   final String estimatePrice;
   final String linkToProduct;
   final String imageOne;
+  final String productDescription;
   AssignedSpecialOrders(
       {required this.assignedDate,
       required this.merchantId,
@@ -38,6 +39,7 @@ class AssignedSpecialOrders {
       required this.estimatePrice,
       required this.linkToProduct,
       required this.imageOne,
+      required this.productDescription,
       required this.specialOrderId});
 }
 
@@ -55,7 +57,11 @@ class _SpecialOrdersState extends State<SpecialOrders> {
     var sHeight = MediaQuery.of(context).size.height * 1;
     var sWidth = MediaQuery.of(context).size.width * 1;
     return Scaffold(
-      appBar: AppBar(title: Text("Special Orders")),
+      appBar: AppBar(
+          title: Text(
+        "Special Orders",
+        style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
+      )),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Column(
@@ -136,6 +142,7 @@ class _SpecialOrdersState extends State<SpecialOrders> {
                                                     fontSize: sWidth * 0.03)),
                                           ],
                                         ),
+                                        Text(myBids[index].productDescription),
                                         Padding(
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 15.0),
@@ -437,6 +444,7 @@ class _SpecialOrdersState extends State<SpecialOrders> {
                 estimatePrice: i['estimatePrice'].toString(),
                 linkToProduct: i['linkToProduct'].toString(),
                 imageOne: i['imageOne'].toString(),
+                productDescription: i['productDescription'].toString() ?? '',
               ));
             }
           }
