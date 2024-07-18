@@ -30,6 +30,7 @@ class _AddPromoCodeDialogState extends State<AddPromoCodeDialog> {
   TextEditingController codeController = TextEditingController();
   TextEditingController startController = TextEditingController();
   TextEditingController endController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
   var loading1 = false;
   DateTime startDate = DateTime.now();
   DateTime endDate = DateTime.now();
@@ -101,236 +102,257 @@ class _AddPromoCodeDialogState extends State<AddPromoCodeDialog> {
         'Add a Promo-code for ${widget.productName}',
         style: TextStyle(fontSize: 15),
       ),
-      actions: <Widget>[
-        SingleChildScrollView(
-          child: Column(
-            children: [
-              Form(
-                  key: _myForm,
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(5, 2, 0, 8),
-                        child: TextFormField(
-                          validator: _validateField,
-                          controller: codeController,
-                          decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.fromLTRB(
-                                  12.0, 10.0, 12.0, 10.0),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                                borderSide: const BorderSide(
-                                    color: AppColors.colorPrimaryDark),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                                borderSide: const BorderSide(
-                                    color: AppColors.colorPrimaryDark),
-                              ),
-                              labelText: "Code",
-                              hintText: "Ex. Test promo code"),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: TextFormField(
-                          keyboardType: TextInputType.number,
-                          validator: _validateField,
-                          controller: discountAmountController,
-                          decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.fromLTRB(
-                                12.0, 10.0, 12.0, 10.0),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                              borderSide: const BorderSide(
-                                  color: AppColors.colorPrimaryDark),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                              borderSide: const BorderSide(
-                                  color: AppColors.colorPrimaryDark),
-                            ),
-                            labelText: "Discount Amount (%)",
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: TextFormField(
-                          readOnly: true,
-                          keyboardType: TextInputType.number,
-                          validator: _validateField,
-                          controller: startController,
-                          decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.fromLTRB(
-                                12.0, 10.0, 12.0, 10.0),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                              borderSide: const BorderSide(
-                                  color: AppColors.colorPrimaryDark),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                              borderSide: const BorderSide(
-                                  color: AppColors.colorPrimaryDark),
-                            ),
-                            labelText: "Start date",
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: 200,
-                              height: 40,
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor:
-                                        AppColors.colorPrimaryDark),
-                                onPressed: () => _startDate(context),
-                                child: Text('Change date',
-                                    style: TextStyle(color: Colors.white)),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: TextFormField(
-                          readOnly: true,
-                          keyboardType: TextInputType.number,
-                          validator: _validateField,
-                          controller: endController,
-                          decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.fromLTRB(
-                                12.0, 10.0, 12.0, 10.0),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                              borderSide: const BorderSide(
-                                  color: AppColors.colorPrimaryDark),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                              borderSide: const BorderSide(
-                                  color: AppColors.colorPrimaryDark),
-                            ),
-                            labelText: "End date",
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: 200,
-                              height: 40,
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor:
-                                        AppColors.colorPrimaryDark),
-                                onPressed: () => _endDate(context),
-                                child: Text('Change date',
-                                    style: TextStyle(color: Colors.white)),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  )),
-              Row(
+      content: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Form(
+              key: _myForm,
+              child: Column(
                 children: [
-                  TextButton(
-                    onPressed: () async {
-                      print(widget.subProductId);
-                      if (!_myForm.currentState!.validate()) {
-                        print(widget.subProductId);
-                      } else {
-                        setState(() {
-                          loading = true;
-                        });
-                        print(widget.subProductId);
-                        final body = {
-                          "owner": "MERCHANT",
-                          "code": codeController.text,
-                          "productId": int.parse(widget.productId),
-                          "subProductId": int.parse(widget.subProductId),
-                          "discountType": "PERCENTAGE",
-                          "discountAmount":
-                              int.parse(discountAmountController.text),
-                          "startDate": "${startController.text} 12",
-                          "endDate": "${endController.text} 12",
-                          "promoCodeDescription": "-"
-                        };
-                        print(body);
-                        try {
-                          final prefsData = getIt<PrefsData>();
-                          final isUserLoggedIn = await prefsData
-                              .contains(PrefsKeys.userToken.name);
-                          if (isUserLoggedIn) {
-                            final token = await prefsData
-                                .readData(PrefsKeys.userToken.name);
-                            final response = await http.post(
-                                Uri.https("api.commercepal.com:2096",
-                                    "prime/api/v1/product/promo-codes"),
-                                body: jsonEncode(body),
-                                headers: <String, String>{
-                                  "Authorization": "Bearer $token",
-                                  'Content-Type':
-                                      'application/json; charset=UTF-8',
-                                });
-                            // print(response.body);
-                            var data = jsonDecode(response.body);
-                            print(data);
-
-                            if (data['statusCode'] == '000') {
-                              displaySnack(
-                                  context, "Promo-code placed successfully.");
-                              // PromoCodeDashboard.FetchthePromocodes(context);
-                              Navigator.pop(context, true);
-                              // fetchSpecialBids();
-                              setState(() {
-                                loading = false;
-                              });
-                              // return true;
-                            } else {
-                              setState(() {
-                                loading = false;
-                              });
-                            }
-                          }
-                        } catch (e) {
-                          var message = e.toString();
-                          'Please check your network connection';
-                          displaySnack(context, message);
-                        } finally {
-                          setState(() {
-                            loading = false;
-                          });
-                        }
-                      }
-                    },
-                    child: loading
-                        ? const CircularProgressIndicator(
-                            color: AppColors.colorPrimaryDark,
-                          )
-                        : Text(
-                            'Add',
-                          ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(5, 2, 0, 8),
+                    child: TextFormField(
+                      validator: _validateField,
+                      controller: codeController,
+                      decoration: InputDecoration(
+                        contentPadding:
+                            const EdgeInsets.fromLTRB(12.0, 10.0, 12.0, 10.0),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          borderSide: const BorderSide(
+                              color: AppColors.colorPrimaryDark),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          borderSide: const BorderSide(
+                              color: AppColors.colorPrimaryDark),
+                        ),
+                        labelText: "Code",
+                        hintText: "Ex. Test promo code",
+                      ),
+                    ),
                   ),
-                  TextButton(
-                      onPressed: () {
-                        Navigator.pop(context, true);
-                      },
-                      child: Text("Cancel"))
+                  Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      validator: _validateField,
+                      controller: discountAmountController,
+                      decoration: InputDecoration(
+                        contentPadding:
+                            const EdgeInsets.fromLTRB(12.0, 10.0, 12.0, 10.0),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          borderSide: const BorderSide(
+                              color: AppColors.colorPrimaryDark),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          borderSide: const BorderSide(
+                              color: AppColors.colorPrimaryDark),
+                        ),
+                        labelText: "Discount Amount (%)",
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(5, 2, 0, 8),
+                    child: TextFormField(
+                      validator: _validateField,
+                      controller: descriptionController,
+                      decoration: InputDecoration(
+                        contentPadding:
+                            const EdgeInsets.fromLTRB(12.0, 10.0, 12.0, 10.0),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          borderSide: const BorderSide(
+                              color: AppColors.colorPrimaryDark),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          borderSide: const BorderSide(
+                              color: AppColors.colorPrimaryDark),
+                        ),
+                        labelText: "Promo-code description",
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: TextFormField(
+                      readOnly: true,
+                      keyboardType: TextInputType.number,
+                      validator: _validateField,
+                      controller: startController,
+                      decoration: InputDecoration(
+                        contentPadding:
+                            const EdgeInsets.fromLTRB(12.0, 10.0, 12.0, 10.0),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          borderSide: const BorderSide(
+                              color: AppColors.colorPrimaryDark),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          borderSide: const BorderSide(
+                              color: AppColors.colorPrimaryDark),
+                        ),
+                        labelText: "Start date",
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 200,
+                          height: 40,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: AppColors.colorPrimaryDark),
+                            onPressed: () => _startDate(context),
+                            child: Text('Change date',
+                                style: TextStyle(color: Colors.white)),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: TextFormField(
+                      readOnly: true,
+                      keyboardType: TextInputType.number,
+                      validator: _validateField,
+                      controller: endController,
+                      decoration: InputDecoration(
+                        contentPadding:
+                            const EdgeInsets.fromLTRB(12.0, 10.0, 12.0, 10.0),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          borderSide: const BorderSide(
+                              color: AppColors.colorPrimaryDark),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          borderSide: const BorderSide(
+                              color: AppColors.colorPrimaryDark),
+                        ),
+                        labelText: "End date",
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 200,
+                          height: 40,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: AppColors.colorPrimaryDark),
+                            onPressed: () => _endDate(context),
+                            child: Text('Change date',
+                                style: TextStyle(color: Colors.white)),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
-            ],
-          ),
+            ),
+          ],
+        ),
+      ),
+      actions: [
+        Row(
+          children: [
+            TextButton(
+              onPressed: () async {
+                print(widget.subProductId);
+                if (!_myForm.currentState!.validate()) {
+                  print(widget.subProductId);
+                } else {
+                  setState(() {
+                    loading = true;
+                  });
+                  print(widget.subProductId);
+                  final body = {
+                    "owner": "MERCHANT",
+                    "code": codeController.text,
+                    "productId": int.parse(widget.productId),
+                    "subProductId": int.parse(widget.subProductId),
+                    "discountType": "PERCENTAGE",
+                    "discountAmount": int.parse(discountAmountController.text),
+                    "startDate": "${startController.text} 12",
+                    "endDate": "${endController.text} 12",
+                    "promoCodeDescription": descriptionController.text
+                  };
+                  print(body);
+                  try {
+                    final prefsData = getIt<PrefsData>();
+                    final isUserLoggedIn =
+                        await prefsData.contains(PrefsKeys.userToken.name);
+                    if (isUserLoggedIn) {
+                      final token =
+                          await prefsData.readData(PrefsKeys.userToken.name);
+                      final response = await http.post(
+                          Uri.https("api.commercepal.com:2096",
+                              "prime/api/v1/product/promo-codes"),
+                          body: jsonEncode(body),
+                          headers: <String, String>{
+                            "Authorization": "Bearer $token",
+                            'Content-Type': 'application/json; charset=UTF-8',
+                          });
+                      // print(response.body);
+                      var data = jsonDecode(response.body);
+                      print(data);
+
+                      if (data['statusCode'] == '000') {
+                        displaySnack(
+                            context, "Promo-code placed successfully.");
+                        // PromoCodeDashboard.FetchthePromocodes(context);
+                        Navigator.pop(context, true);
+                        // fetchSpecialBids();
+                        setState(() {
+                          loading = false;
+                        });
+                        // return true;
+                      } else {
+                        setState(() {
+                          loading = false;
+                        });
+                      }
+                    }
+                  } catch (e) {
+                    var message = e.toString();
+                    'Please check your network connection';
+                    displaySnack(context, message);
+                  } finally {
+                    setState(() {
+                      loading = false;
+                    });
+                  }
+                }
+              },
+              child: loading
+                  ? const CircularProgressIndicator(
+                      color: AppColors.colorPrimaryDark,
+                    )
+                  : Text(
+                      'Add',
+                    ),
+            ),
+            TextButton(
+                onPressed: () {
+                  Navigator.pop(context, true);
+                },
+                child: Text("Cancel"))
+          ],
         ),
       ],
     );

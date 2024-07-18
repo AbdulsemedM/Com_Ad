@@ -399,13 +399,23 @@ class _RegisterMerchantState extends State<RegisterMerchant> {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       var step1 = prefs.getStringList("step1");
       var step2 = prefs.getStringList("step2");
+      String? phoneNumber;
       if (step1!.isNotEmpty && step2!.isNotEmpty) {
+        var regExp1 = RegExp(r'^0\d{9}$');
+        var regExp2 = RegExp(r'^\+251\d{9}$');
+        print(regExp1.hasMatch(step1[2].toString()));
+        if (regExp1.hasMatch(step1[2].toString())) {
+          phoneNumber = step1[2].toString().replaceFirst(RegExp('^0'), '251');
+        } else if (regExp2.hasMatch(step1[2].toString())) {
+          phoneNumber = step1[2].toString().replaceFirst(RegExp(r'^\+'), '');
+        }
         print("hereeeewego");
+        print(phoneNumber);
         Map<String, dynamic> payload = {
           "userType": "MERCHANT",
           "firstName": step1[0].toString(),
           "email": step1[1].toString(),
-          "ownerPhoneNumber": step1[2].toString(),
+          "ownerPhoneNumber": phoneNumber ?? step1[2].toString(),
           "businessName": step2[0].toString(),
           "taxNumber": step2[1].toString(),
           "country": step2[2].toString(),
@@ -419,9 +429,9 @@ class _RegisterMerchantState extends State<RegisterMerchant> {
           "branch": "Jigjiga",
           "businessCategory": "1",
           "businessType": "Sh1op",
-          "businessPhoneNumber": "251932702288",
+          "businessPhoneNumber": "-",
           "businessLicense": "3434344",
-          "commercialCertNo": "213432321312",
+          "commercialCertNo": "-",
           "language": "en",
           "msisdn": "251932702256",
           "postalCode": "",

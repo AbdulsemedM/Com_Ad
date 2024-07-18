@@ -55,7 +55,7 @@ class _RoleCheckerState extends State<RoleChecker> {
     }
 
     return UpgradeAlert(
-      // showLater: false,
+      showLater: false,
       showIgnore: false,
       child: Scaffold(
         appBar: PreferredSize(

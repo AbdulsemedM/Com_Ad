@@ -57,6 +57,7 @@ class _FlashSaleDashboardState extends State<FlashSaleDashboard> {
   Widget build(BuildContext context) {
     var sHeight = MediaQuery.of(context).size.height;
     return Scaffold(
+      backgroundColor: AppColors.bg1,
       // appBar: AppBar(
       //   title: Text("Promo-Code",
       //       style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15)),

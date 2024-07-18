@@ -35,6 +35,7 @@ class PromoCodes {
   final String endDate;
   final String promoCodeStatus;
   final String status;
+  final String promoCodeDescription;
   PromoCodes(
       {required this.id,
       required this.code,
@@ -46,6 +47,7 @@ class PromoCodes {
       required this.endDate,
       required this.status,
       required this.subProductId,
+      required this.promoCodeDescription,
       required this.promoCodeStatus});
 }
 
@@ -62,6 +64,7 @@ class _PromoCodeDashboardState extends State<PromoCodeDashboard> {
   Widget build(BuildContext context) {
     var sHeight = MediaQuery.of(context).size.height;
     return Scaffold(
+      backgroundColor: AppColors.bg1,
       // appBar: AppBar(
       //   title: Text("Promo-Code",
       //       style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15)),
@@ -130,6 +133,9 @@ class _PromoCodeDashboardState extends State<PromoCodeDashboard> {
                                     context: context,
                                     builder: (context) {
                                       return EditPromoCodeDialog(
+                                        promoCodeDescription:
+                                            myPromocodes[index]
+                                                .promoCodeDescription,
                                         code: myPromocodes[index].code,
                                         productId:
                                             myPromocodes[index].productId,
@@ -206,6 +212,8 @@ class _PromoCodeDashboardState extends State<PromoCodeDashboard> {
                                   const SizedBox(
                                     height: 20,
                                   ),
+                                  Text(
+                                      myPromocodes[index].promoCodeDescription),
                                   Divider(),
                                   Row(
                                     mainAxisAlignment:
@@ -313,6 +321,7 @@ class _PromoCodeDashboardState extends State<PromoCodeDashboard> {
               status: i['promoCodeStatus'].toString(),
               subProductId: i['subProductId'].toString(),
               promoCodeStatus: i['promoCodeStatus'].toString(),
+              promoCodeDescription: i['promoCodeDescription'].toString(),
             ));
           }
           // if (myBids.isEmpty) {

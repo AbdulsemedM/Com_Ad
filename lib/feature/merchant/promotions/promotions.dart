@@ -46,6 +46,9 @@ class _PromotionTabState extends State<PromotionTab>
   Widget build(BuildContext context) {
     var sHeight = MediaQuery.of(context).size.height * 1;
     return Scaffold(
+      appBar: AppBar(
+          title: const Text("Promotional Campaigns",
+              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 17))),
       body: SingleChildScrollView(
           child: SafeArea(
               child: Column(

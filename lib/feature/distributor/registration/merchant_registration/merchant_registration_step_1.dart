@@ -159,7 +159,7 @@ class _MerchantStep1State extends State<MerchantStep1> {
                         },
                         validator: (value) {
                           if (value?.isEmpty == true) {
-                            return 'Email is required';
+                            return null;
                           } else if (!isValidEmail(value!)) {
                             return 'Please enter a valid email';
                           }
@@ -295,10 +295,11 @@ class _MerchantStep1State extends State<MerchantStep1> {
 
   Future<bool> submmitForm() async {
     try {
+      print(_formKey.currentState!.validate());
       if (_formKey.currentState!.validate()) {
         List<String> myList = [
           fullName!,
-          email!,
+          email ?? "",
           mobileNumber!,
           _image!.path,
           '1'

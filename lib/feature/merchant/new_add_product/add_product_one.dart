@@ -642,9 +642,9 @@ class _AddProductOneState extends State<AddProductOne> {
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: AppColors.colorPrimaryDark),
                             onPressed: () async {
-                              if (img1 != null &&
-                                  img2 != null &&
-                                  img3 != null &&
+                              if (img1 != null ||
+                                  img2 != null ||
+                                  img3 != null ||
                                   img4 != null) {
                                 bool done = await verifyForm();
 
@@ -684,7 +684,7 @@ class _AddProductOneState extends State<AddProductOne> {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           shape: const CircleBorder(),
-                          backgroundColor: Colors.orange,
+                          backgroundColor: AppColors.colorAccent,
                         ),
                         onPressed: () {
                           setState(() {
@@ -698,7 +698,7 @@ class _AddProductOneState extends State<AddProductOne> {
                           padding: EdgeInsets.all(15.0),
                           child: Icon(
                             Icons.navigate_before_rounded,
-                            color: Colors.black,
+                            color: AppColors.bgCreamWhite,
                           ),
                         ),
                       ),
@@ -719,7 +719,7 @@ class _AddProductOneState extends State<AddProductOne> {
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                               shape: const CircleBorder(),
-                              backgroundColor: Colors.orange,
+                              backgroundColor: AppColors.colorAccent,
                             ),
                             onPressed: () {
                               setState(() {
@@ -732,7 +732,7 @@ class _AddProductOneState extends State<AddProductOne> {
                               padding: EdgeInsets.all(15.0),
                               child: Icon(
                                 Icons.navigate_before_rounded,
-                                color: Colors.black,
+                                color: AppColors.bgCreamWhite,
                               ),
                             ),
                           ),
@@ -1033,6 +1033,7 @@ class _AddProductOneState extends State<AddProductOne> {
               ],
             ),
             DropdownButtonFormField<String>(
+              value: myProductUoM,
               decoration: const InputDecoration(
                   filled: true,
                   fillColor: AppColors.greyColor,
@@ -1076,6 +1077,7 @@ class _AddProductOneState extends State<AddProductOne> {
               ],
             ),
             DropdownButtonFormField<String>(
+              value: myProductDiscount,
               decoration: const InputDecoration(
                 filled: true,
                 fillColor: AppColors.greyColor,
@@ -1577,14 +1579,22 @@ class _AddProductOneState extends State<AddProductOne> {
           bool done = await verifyForm2();
           if (done) {
             print("uploadingheere");
-            await uploadProductImages(
-                img1!.path, num.parse(pId!), ImageTypes.productImages);
-            await uploadProductImages(
-                img2!.path, num.parse(pId!), ImageTypes.productImages);
-            await uploadProductImages(
-                img3!.path, num.parse(pId!), ImageTypes.productImages);
-            await uploadProductImages(
-                img4!.path, num.parse(pId!), ImageTypes.productImages);
+            if (img1 != null) {
+              await uploadProductImages(
+                  img1!.path, num.parse(pId!), ImageTypes.productImages);
+            }
+            if (img2 != null) {
+              await uploadProductImages(
+                  img2!.path, num.parse(pId!), ImageTypes.productImages);
+            }
+            if (img3 != null) {
+              await uploadProductImages(
+                  img3!.path, num.parse(pId!), ImageTypes.productImages);
+            }
+            if (img4 != null) {
+              await uploadProductImages(
+                  img4!.path, num.parse(pId!), ImageTypes.productImages);
+            }
           }
           setState(() {
             loading = false;

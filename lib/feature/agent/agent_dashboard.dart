@@ -26,15 +26,14 @@ class AgentDashboard extends StatefulWidget {
 }
 
 class _AgentDashboardState extends State<AgentDashboard> {
-  List<Icon> myIcons = const [
-    Icon(
-      FontAwesomeIcons.wallet,
-    ),
-    Icon(Icons.charging_station_sharp),
-    Icon(FontAwesomeIcons.clipboardList),
-    Icon(FontAwesomeIcons.handHoldingDollar),
-    Icon(FontAwesomeIcons.addressCard),
-    Icon(FontAwesomeIcons.tableList),
+  List<Icon> myIcons = [
+    const Icon(FontAwesomeIcons.wallet, color: AppColors.bgCreamWhite),
+    const Icon(Icons.charging_station_sharp, color: AppColors.bgCreamWhite),
+    const Icon(FontAwesomeIcons.clipboardList, color: AppColors.bgCreamWhite),
+    const Icon(FontAwesomeIcons.handHoldingDollar,
+        color: AppColors.bgCreamWhite),
+    const Icon(FontAwesomeIcons.addressCard, color: AppColors.bgCreamWhite),
+    const Icon(FontAwesomeIcons.tableList, color: AppColors.bgCreamWhite),
   ];
   List<String> status = [
     'Float Balance',

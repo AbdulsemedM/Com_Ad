@@ -19,6 +19,7 @@ class EditPromoCodeDialog extends StatefulWidget {
   final String code;
   final String id;
   final String discountAmount;
+  final String promoCodeDescription;
   const EditPromoCodeDialog(
       {super.key,
       required this.productId,
@@ -27,6 +28,7 @@ class EditPromoCodeDialog extends StatefulWidget {
       required this.code,
       required this.id,
       required this.discountAmount,
+      required this.promoCodeDescription,
       required this.subProductId});
   @override
   _EditPromoCodeDialogState createState() => _EditPromoCodeDialogState();
@@ -38,6 +40,7 @@ class _EditPromoCodeDialogState extends State<EditPromoCodeDialog> {
   TextEditingController codeController = TextEditingController();
   TextEditingController startController = TextEditingController();
   TextEditingController endController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
   var loading1 = false;
   DateTime startDate = DateTime.now();
   DateTime endDate = DateTime.now();
@@ -50,6 +53,7 @@ class _EditPromoCodeDialogState extends State<EditPromoCodeDialog> {
         .format(DateTime.parse(widget.endDate.toString()));
     codeController.text = widget.code.toString();
     discountAmountController.text = widget.discountAmount.toString();
+    descriptionController.text = widget.promoCodeDescription.toString();
   }
 
   Future<void> _startDate(BuildContext context) async {
@@ -166,6 +170,27 @@ class _EditPromoCodeDialogState extends State<EditPromoCodeDialog> {
                         ),
                       ),
                       Padding(
+                        padding: const EdgeInsets.fromLTRB(5, 2, 0, 8),
+                        child: TextFormField(
+                          validator: _validateField,
+                          controller: descriptionController,
+                          decoration: InputDecoration(
+                              contentPadding: const EdgeInsets.fromLTRB(
+                                  12.0, 10.0, 12.0, 10.0),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                                borderSide: const BorderSide(
+                                    color: AppColors.colorPrimaryDark),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                                borderSide: const BorderSide(
+                                    color: AppColors.colorPrimaryDark),
+                              ),
+                              labelText: "Promo-code Description"),
+                        ),
+                      ),
+                      Padding(
                         padding: const EdgeInsets.all(8),
                         child: TextFormField(
                           readOnly: true,
@@ -271,6 +296,7 @@ class _EditPromoCodeDialogState extends State<EditPromoCodeDialog> {
                           // "productId": int.parse(widget.productId),
                           // "subProductId": int.parse(widget.subProductId),
                           // "discountType": "PERCENTAGE",
+                          "promoCodeDescription": descriptionController.text,
                           "discountAmount":
                               int.parse(discountAmountController.text),
                           "startDate": "${startController.text} 12",
@@ -339,7 +365,12 @@ class _EditPromoCodeDialogState extends State<EditPromoCodeDialog> {
                       onPressed: () {
                         Navigator.pop(context, true);
                       },
-                      child: Text("Cancel"))
+                      child: Text("Cancel")),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.pop(context, true);
+                      },
+                      child: Text("View"))
                 ],
               ),
             ],
