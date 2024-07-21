@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 
 import 'prefs_data.dart';
 
-enum PrefsKeys { user, userToken }
+enum PrefsKeys { user, userToken, baseUrl }
 
 @Injectable(as: PrefsData)
 class PrefsDataImpl implements PrefsData {

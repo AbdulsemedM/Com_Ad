@@ -233,6 +233,8 @@ class _WithdrawMoneyState extends State<WithdrawMoney> {
               loading
                   ? CircularProgressIndicator()
                   : ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.colorPrimaryDark),
                       onPressed: () async {
                         if (_formKey.currentState!.validate() &&
                             selectedMethod!.toLowerCase() == "bank") {
@@ -277,9 +279,14 @@ class _WithdrawMoneyState extends State<WithdrawMoney> {
                           }
                         }
                       },
-                      child: const Text("Withdraw to Bank")),
+                      child: const Text(
+                        "Withdraw to Bank",
+                        style: TextStyle(color: AppColors.bgCreamWhite),
+                      )),
             if (selectedMethod != null && selectedMethod.toString() == "sahay")
               ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.colorPrimaryDark),
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       bool change = await showDialog(
@@ -359,7 +366,10 @@ class _WithdrawMoneyState extends State<WithdrawMoney> {
                       Navigator.pop(context);
                     }
                   },
-                  child: const Text("Withdraw to Sahay"))
+                  child: const Text(
+                    "Withdraw to Sahay",
+                    style: TextStyle(color: AppColors.bgCreamWhite),
+                  ))
           ],
         ),
       )),
@@ -380,11 +390,12 @@ class _WithdrawMoneyState extends State<WithdrawMoney> {
       final isUserLoggedIn = await prefsData.contains(PrefsKeys.userToken.name);
       if (isUserLoggedIn) {
         final token = await prefsData.readData(PrefsKeys.userToken.name);
+        // print(token);
         final response = await http.post(
             Uri.https("api.commercepal.com:2095", "/payment/v1/request"),
             body: jsonEncode(payload),
             headers: <String, String>{"Authorization": "Bearer $token"});
-        // print(response.body);
+        print(response.body);
         var data = jsonDecode(response.body);
         banks.clear();
         for (var b in data['data']) {

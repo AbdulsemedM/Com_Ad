@@ -444,7 +444,7 @@ class _SpecialOrdersState extends State<SpecialOrders> {
                 estimatePrice: i['estimatePrice'].toString(),
                 linkToProduct: i['linkToProduct'].toString(),
                 imageOne: i['imageOne'].toString(),
-                productDescription: i['productDescription'].toString() ?? '',
+                productDescription: i['productDescription'].toString(),
               ));
             }
           }

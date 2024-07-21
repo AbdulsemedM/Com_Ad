@@ -32,9 +32,11 @@ class _RoleCheckerState extends State<RoleChecker> {
   @override
   void initState() {
     super.initState();
-    fetchUser1(context: context);
-    getRoles();
-    fetchUser();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      fetchUser1(context: context);
+      getRoles();
+      fetchUser();
+    });
   }
 
   String? name;
@@ -49,10 +51,19 @@ class _RoleCheckerState extends State<RoleChecker> {
     var sHeight = MediaQuery.of(context).size.height * 1;
     var sWidth = MediaQuery.of(context).size.width * 1;
 
-    if (logout == "logout") {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const LoginPage()));
-    }
+    // Use a post-frame callback to handle navigation outside of the build process
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (logout == "logout") {
+        // displaySnack(
+        //     context, "Your session has been expired. Please login again");
+        // final prefsData = getIt<PrefsData>();
+        // await prefsData.deleteData(PrefsKeys.userToken.name);
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const LoginPage()),
+        );
+      }
+    });
 
     return UpgradeAlert(
       showLater: false,
@@ -240,107 +251,120 @@ class _RoleCheckerState extends State<RoleChecker> {
                 child: Text("choose the role you want to proceed"),
               ),
             ),
-            LayoutBuilder(
-                builder: (BuildContext context, BoxConstraints constraints) {
-              return SizedBox(
-                height: sHeight > 896 ? sHeight * 0.3 : sHeight * 0.2,
-                width: sWidth * 0.8,
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    childAspectRatio: 2,
-                    crossAxisCount: 2, // Number of columns in the grid
-                    crossAxisSpacing: 8.0, // Spacing between columns
-                    mainAxisSpacing: 8.0, // Spacing between rows
-                  ),
-                  itemCount: myRoles!.length, // Number of items in the grid
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () async {
-                        if (logout == "logout") {
-                          displaySnack(context,
-                              "Your session has been expired. Please login again");
-                          final prefsData = getIt<PrefsData>();
-                          await prefsData.deleteData(PrefsKeys.userToken.name);
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const LoginPage()));
-                        }
-                        switch (myRoles![index].toLowerCase()) {
-                          case "messenger":
-                            Navigator.pushNamed(
-                                context, MessengerDashboard.routeName);
-                            break;
-                          case "distributor":
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const DistributorDashboard()),
-                            );
-                            break;
-                          case "merchant":
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const MerchantDashboardPage()));
-                            break;
-                          case "agent":
-                            Navigator.pushNamed(
-                                context, AgentDashboard.routeName);
-                            break;
-                          case "business":
-                            context.displaySnack("Will be available soon");
-                            break;
-                        }
-                      },
-                      child: Container(
-                        height: sHeight * 0.02,
-                        decoration: BoxDecoration(
-                            color: AppColors.bgCreamWhite,
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Center(
-                            child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            myRoles![index].toLowerCase() == "merchant"
-                                ? const Icon(FontAwesomeIcons.store)
-                                : myRoles![index].toLowerCase() == "messenger"
-                                    ? const Icon(FontAwesomeIcons.motorcycle)
-                                    : myRoles![index].toLowerCase() ==
-                                            "distributor"
-                                        ? const Icon(FontAwesomeIcons
-                                            .buildingCircleArrowRight)
-                                        : myRoles![index].toLowerCase() ==
-                                                "business"
-                                            ? const Icon(
-                                                FontAwesomeIcons.briefcase)
-                                            : myRoles![index].toLowerCase() ==
-                                                    "admin"
-                                                ? const Icon(
-                                                    FontAwesomeIcons.userTie)
-                                                : myRoles![index]
-                                                            .toLowerCase() ==
-                                                        "agent"
-                                                    ? const Icon(
-                                                        FontAwesomeIcons
-                                                            .userCheck)
-                                                    : const Icon(
-                                                        Icons.numbers_outlined),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8.0),
-                              child: Text(myRoles![index]),
+            loading
+                ? const CircularProgressIndicator(
+                    color: AppColors.colorPrimaryDark,
+                  )
+                : LayoutBuilder(builder:
+                    (BuildContext context, BoxConstraints constraints) {
+                    return SizedBox(
+                      height: sHeight > 896 ? sHeight * 0.3 : sHeight * 0.2,
+                      width: sWidth * 0.8,
+                      child: GridView.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          childAspectRatio: 2,
+                          crossAxisCount: 2, // Number of columns in the grid
+                          crossAxisSpacing: 8.0, // Spacing between columns
+                          mainAxisSpacing: 8.0, // Spacing between rows
+                        ),
+                        itemCount:
+                            myRoles!.length, // Number of items in the grid
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                            onTap: () async {
+                              if (logout == "logout") {
+                                displaySnack(context,
+                                    "Your session has been expired. Please login again");
+                                final prefsData = getIt<PrefsData>();
+                                await prefsData
+                                    .deleteData(PrefsKeys.userToken.name);
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const LoginPage()));
+                              }
+                              switch (myRoles![index].toLowerCase()) {
+                                case "messenger":
+                                  Navigator.pushNamed(
+                                      context, MessengerDashboard.routeName);
+                                  break;
+                                case "distributor":
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const DistributorDashboard()),
+                                  );
+                                  break;
+                                case "merchant":
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const MerchantDashboardPage()));
+                                  break;
+                                case "agent":
+                                  Navigator.pushNamed(
+                                      context, AgentDashboard.routeName);
+                                  break;
+                                case "business":
+                                  context
+                                      .displaySnack("Will be available soon");
+                                  break;
+                              }
+                            },
+                            child: Container(
+                              height: sHeight * 0.02,
+                              decoration: BoxDecoration(
+                                  color: AppColors.bgCreamWhite,
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: Center(
+                                  child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  myRoles![index].toLowerCase() == "merchant"
+                                      ? const Icon(FontAwesomeIcons.store)
+                                      : myRoles![index].toLowerCase() ==
+                                              "messenger"
+                                          ? const Icon(
+                                              FontAwesomeIcons.motorcycle)
+                                          : myRoles![index].toLowerCase() ==
+                                                  "distributor"
+                                              ? const Icon(FontAwesomeIcons
+                                                  .buildingCircleArrowRight)
+                                              : myRoles![index].toLowerCase() ==
+                                                      "business"
+                                                  ? const Icon(FontAwesomeIcons
+                                                      .briefcase)
+                                                  : myRoles![index]
+                                                              .toLowerCase() ==
+                                                          "admin"
+                                                      ? const Icon(
+                                                          FontAwesomeIcons
+                                                              .userTie)
+                                                      : myRoles![index]
+                                                                  .toLowerCase() ==
+                                                              "agent"
+                                                          ? const Icon(
+                                                              FontAwesomeIcons
+                                                                  .userCheck)
+                                                          : const Icon(Icons
+                                                              .numbers_outlined),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 8.0),
+                                    child: Text(myRoles![index]),
+                                  ),
+                                ],
+                              )),
                             ),
-                          ],
-                        )),
+                          );
+                        },
                       ),
                     );
-                  },
-                ),
-              );
-            }),
+                  }),
             Padding(
               padding: const EdgeInsets.all(18.0),
               child: GestureDetector(

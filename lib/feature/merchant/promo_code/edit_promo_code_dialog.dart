@@ -337,6 +337,7 @@ class _EditPromoCodeDialogState extends State<EditPromoCodeDialog> {
                               });
                               // return true;
                             } else {
+                              displaySnack(context, data['statusMessage']);
                               setState(() {
                                 loading = false;
                               });
