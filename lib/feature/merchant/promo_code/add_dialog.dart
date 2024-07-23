@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:commercepal_admin_flutter/app/di/injector.dart';
 import 'package:commercepal_admin_flutter/app/utils/app_colors.dart';
+import 'package:commercepal_admin_flutter/app/utils/capitalizer.dart';
 import 'package:commercepal_admin_flutter/app/utils/dialog_utils.dart';
 import 'package:commercepal_admin_flutter/core/database/prefs_data.dart';
 import 'package:commercepal_admin_flutter/core/database/prefs_data_impl.dart';
@@ -113,6 +114,7 @@ class _AddPromoCodeDialogState extends State<AddPromoCodeDialog> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(5, 2, 0, 8),
                     child: TextFormField(
+                      inputFormatters: [CapitalizeFirstLetterInputFormatter()],
                       validator: _validateField,
                       controller: codeController,
                       decoration: InputDecoration(
