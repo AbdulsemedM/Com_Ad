@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:commercepal_admin_flutter/app/utils/app_colors.dart';
+import 'package:commercepal_admin_flutter/app/utils/capitalizer.dart';
 import 'package:commercepal_admin_flutter/core/extensions/context_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:gallery_saver/gallery_saver.dart';
@@ -142,6 +143,7 @@ class _MerchantRegistrationstep2State extends State<MerchantRegistrationstep2> {
                         child: Text("Merchant Name"),
                       ),
                       TextFormField(
+                        inputFormatters: [CapitalizeEachWordInputFormatter()],
                         initialValue:
                             hereData!.isNotEmpty ? hereData![0] : null,
                         decoration: InputDecoration(
@@ -600,7 +602,6 @@ class _MerchantRegistrationstep2State extends State<MerchantRegistrationstep2> {
       });
       print("hereeee");
 
-   
       final response = await http.get(Uri.https(
           "api.commercepal.com:2096", "/prime/api/v1/service/cities"));
       // print(response.body);

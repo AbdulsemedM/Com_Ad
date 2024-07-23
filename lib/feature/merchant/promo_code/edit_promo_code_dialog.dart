@@ -367,11 +367,11 @@ class _EditPromoCodeDialogState extends State<EditPromoCodeDialog> {
                         Navigator.pop(context, true);
                       },
                       child: Text("Cancel")),
-                  TextButton(
-                      onPressed: () {
-                        Navigator.pop(context, true);
-                      },
-                      child: Text("View"))
+                  // TextButton(
+                  //     onPressed: () {
+                  //       Navigator.pop(context, true);
+                  //     },
+                  //     child: Text("View"))
                 ],
               ),
             ],

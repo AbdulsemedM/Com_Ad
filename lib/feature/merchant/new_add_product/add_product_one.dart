@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:commercepal_admin_flutter/app/di/injector.dart';
 import 'package:commercepal_admin_flutter/app/utils/app_colors.dart';
+import 'package:commercepal_admin_flutter/app/utils/capitalizer.dart';
 import 'package:commercepal_admin_flutter/app/utils/dialog_utils.dart';
 import 'package:commercepal_admin_flutter/core/database/prefs_data.dart';
 import 'package:commercepal_admin_flutter/core/database/prefs_data_impl.dart';
@@ -418,6 +419,7 @@ class _AddProductOneState extends State<AddProductOne> {
                           ],
                         ),
                         TextFormField(
+                          inputFormatters: [CapitalizeEachWordInputFormatter()],
                           controller: productName,
                           decoration: const InputDecoration(
                               filled: true,

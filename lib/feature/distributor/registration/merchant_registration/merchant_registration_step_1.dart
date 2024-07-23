@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:commercepal_admin_flutter/app/utils/app_colors.dart';
+import 'package:commercepal_admin_flutter/app/utils/capitalizer.dart';
 import 'package:commercepal_admin_flutter/core/extensions/context_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:gallery_saver/gallery_saver.dart';
@@ -116,6 +117,7 @@ class _MerchantStep1State extends State<MerchantStep1> {
                         child: Text("Full Name"),
                       ),
                       TextFormField(
+                        inputFormatters: [CapitalizeEachWordInputFormatter()],
                         initialValue:
                             hereData!.isNotEmpty ? hereData![0] : null,
                         decoration: InputDecoration(
