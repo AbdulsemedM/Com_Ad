@@ -7,9 +7,9 @@ PODS:
   - Flutter (1.0.0)
   - flutter_secure_storage (6.0.0):
     - Flutter
-  - FMDB (2.7.5):
-    - FMDB/standard (= 2.7.5)
-  - FMDB/standard (2.7.5)
+  - FMDB (2.7.10):
+    - FMDB/standard (= 2.7.10)
+  - FMDB/standard (2.7.10)
   - gallery_saver (0.0.1):
     - Flutter
   - geocoding_ios (1.0.5):
@@ -46,7 +46,7 @@ PODS:
   - qr_code_scanner (0.2.0):
     - Flutter
     - MTBBarcodeScanner
-  - Reachability (3.2)
+  - Reachability (3.7.6)
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
@@ -125,7 +125,7 @@ SPEC CHECKSUMS:
   device_info_plus: c6fb39579d0f423935b0c9ce7ee2f44b71b9fce6
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   flutter_secure_storage: 23fc622d89d073675f2eaa109381aefbcf5a49be
-  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  FMDB: eae540775bf7d0c87a5af926ae37af69effe5a19
   gallery_saver: 9fc173c9f4fcc48af53b2a9ebea1b643255be542
   geocoding_ios: a389ea40f6f548de6e63006a2e31bf66ff80769a
   geolocator_apple: cc556e6844d508c95df1e87e3ea6fa4e58c50401
@@ -139,7 +139,7 @@ SPEC CHECKSUMS:
   phone_number: ad6f917e4fd2e507a198b93dca5eadcb463ec8c2
   PhoneNumberKit: 441e8b26ec88d598e3591de9061eff18f5dd12e8
   qr_code_scanner: bb67d64904c3b9658ada8c402e8b4d406d5d796e
-  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  Reachability: fd0ecd23705e2599e4cceeb943222ae02296cbc6
   shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
   sqflite: 31f7eba61e3074736dff8807a9b41581e4f7f15a
   url_launcher_ios: bf5ce03e0e2088bad9cc378ea97fa0ed5b49673b
