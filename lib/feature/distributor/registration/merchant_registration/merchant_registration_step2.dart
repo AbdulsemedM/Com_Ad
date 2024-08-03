@@ -570,7 +570,6 @@ class _MerchantRegistrationstep2State extends State<MerchantRegistrationstep2> {
   Future _getImageComm(ImageSource source) async {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: source);
-    // final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     setState(() {
       if (pickedFile != null) {
@@ -585,7 +584,6 @@ class _MerchantRegistrationstep2State extends State<MerchantRegistrationstep2> {
           });
         } else {
           _imageCom = File(pickedFile.path);
-          // prefs.setString("myImage", _image!.path);
           print("herewego");
           print(_imageCom);
         }
@@ -604,7 +602,6 @@ class _MerchantRegistrationstep2State extends State<MerchantRegistrationstep2> {
 
       final response = await http.get(Uri.https(
           "api.commercepal.com:2096", "/prime/api/v1/service/cities"));
-      // print(response.body);
       var data = jsonDecode(response.body);
       cities.clear();
       for (var b in data['data']) {
