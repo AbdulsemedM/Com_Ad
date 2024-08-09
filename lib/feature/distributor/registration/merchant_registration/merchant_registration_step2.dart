@@ -289,112 +289,112 @@ class _MerchantRegistrationstep2State extends State<MerchantRegistrationstep2> {
                           });
                         },
                       ),
-                      Text("Shop image"),
-                      _imageShop == null
-                          ? SizedBox(child: Text('JPG/PNG images'))
-                          : SizedBox(
-                              height: sHeight * 0.15,
-                              child: Image.file(_imageShop!)),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            FloatingActionButton(
-                              onPressed: () =>
-                                  _getImageshop(ImageSource.gallery),
-                              tooltip: 'Pick Image from Gallery',
-                              child: Icon(Icons.photo),
-                            ),
-                            SizedBox(width: 16),
-                            FloatingActionButton(
-                              onPressed: () =>
-                                  _getImageshop(ImageSource.camera),
-                              tooltip: 'Take a Photo',
-                              child: Icon(Icons.camera_alt),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Text("Commercial Certificate image"),
-                      _imageCom == null
-                          ? SizedBox(child: Text('JPG/PNG images'))
-                          : SizedBox(
-                              height: sHeight * 0.15,
-                              child: Image.file(_imageCom!)),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            FloatingActionButton(
-                              onPressed: () =>
-                                  _getImageComm(ImageSource.gallery),
-                              tooltip: 'Pick Image from Gallery',
-                              child: Icon(Icons.photo),
-                            ),
-                            SizedBox(width: 16),
-                            FloatingActionButton(
-                              onPressed: () =>
-                                  _getImageComm(ImageSource.camera),
-                              tooltip: 'Take a Photo',
-                              child: Icon(Icons.camera_alt),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Text("Business Registration image"),
-                      _imageBus == null
-                          ? SizedBox(child: Text('JPG/PNG images'))
-                          : SizedBox(
-                              height: sHeight * 0.15,
-                              child: Image.file(_imageBus!)),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            FloatingActionButton(
-                              onPressed: () =>
-                                  _getImageBusiness(ImageSource.gallery),
-                              tooltip: 'Pick Image from Gallery',
-                              child: Icon(Icons.photo),
-                            ),
-                            SizedBox(width: 16),
-                            FloatingActionButton(
-                              onPressed: () =>
-                                  _getImageBusiness(ImageSource.camera),
-                              tooltip: 'Take a Photo',
-                              child: Icon(Icons.camera_alt),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Text("ID Photo"),
-                      _imageID == null
-                          ? SizedBox(child: Text('JPG/PNG images'))
-                          : SizedBox(
-                              height: sHeight * 0.15,
-                              child: Image.file(_imageID!)),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            FloatingActionButton(
-                              onPressed: () => _getImageID(ImageSource.gallery),
-                              tooltip: 'Pick Image from Gallery',
-                              child: Icon(Icons.photo),
-                            ),
-                            SizedBox(width: 16),
-                            FloatingActionButton(
-                              onPressed: () => _getImageID(ImageSource.camera),
-                              tooltip: 'Take a Photo',
-                              child: Icon(Icons.camera_alt),
-                            ),
-                          ],
-                        ),
-                      ),
+                      // Text("Shop image"),
+                      // _imageShop == null
+                      //     ? SizedBox(child: Text('JPG/PNG images'))
+                      //     : SizedBox(
+                      //         height: sHeight * 0.15,
+                      //         child: Image.file(_imageShop!)),
+                      // Padding(
+                      //   padding: const EdgeInsets.all(8.0),
+                      //   child: Row(
+                      //     mainAxisAlignment: MainAxisAlignment.start,
+                      //     children: [
+                      //       FloatingActionButton(
+                      //         onPressed: () =>
+                      //             _getImageshop(ImageSource.gallery),
+                      //         tooltip: 'Pick Image from Gallery',
+                      //         child: Icon(Icons.photo),
+                      //       ),
+                      //       SizedBox(width: 16),
+                      //       FloatingActionButton(
+                      //         onPressed: () =>
+                      //             _getImageshop(ImageSource.camera),
+                      //         tooltip: 'Take a Photo',
+                      //         child: Icon(Icons.camera_alt),
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
+                      // Text("Commercial Certificate image"),
+                      // _imageCom == null
+                      //     ? SizedBox(child: Text('JPG/PNG images'))
+                      //     : SizedBox(
+                      //         height: sHeight * 0.15,
+                      //         child: Image.file(_imageCom!)),
+                      // Padding(
+                      //   padding: const EdgeInsets.all(8.0),
+                      //   child: Row(
+                      //     mainAxisAlignment: MainAxisAlignment.start,
+                      //     children: [
+                      //       FloatingActionButton(
+                      //         onPressed: () =>
+                      //             _getImageComm(ImageSource.gallery),
+                      //         tooltip: 'Pick Image from Gallery',
+                      //         child: Icon(Icons.photo),
+                      //       ),
+                      //       SizedBox(width: 16),
+                      //       FloatingActionButton(
+                      //         onPressed: () =>
+                      //             _getImageComm(ImageSource.camera),
+                      //         tooltip: 'Take a Photo',
+                      //         child: Icon(Icons.camera_alt),
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
+                      // Text("Business Registration image"),
+                      // _imageBus == null
+                      //     ? SizedBox(child: Text('JPG/PNG images'))
+                      //     : SizedBox(
+                      //         height: sHeight * 0.15,
+                      //         child: Image.file(_imageBus!)),
+                      // Padding(
+                      //   padding: const EdgeInsets.all(8.0),
+                      //   child: Row(
+                      //     mainAxisAlignment: MainAxisAlignment.start,
+                      //     children: [
+                      //       FloatingActionButton(
+                      //         onPressed: () =>
+                      //             _getImageBusiness(ImageSource.gallery),
+                      //         tooltip: 'Pick Image from Gallery',
+                      //         child: Icon(Icons.photo),
+                      //       ),
+                      //       SizedBox(width: 16),
+                      //       FloatingActionButton(
+                      //         onPressed: () =>
+                      //             _getImageBusiness(ImageSource.camera),
+                      //         tooltip: 'Take a Photo',
+                      //         child: Icon(Icons.camera_alt),
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
+                      // Text("ID Photo"),
+                      // _imageID == null
+                      //     ? SizedBox(child: Text('JPG/PNG images'))
+                      //     : SizedBox(
+                      //         height: sHeight * 0.15,
+                      //         child: Image.file(_imageID!)),
+                      // Padding(
+                      //   padding: const EdgeInsets.all(8.0),
+                      //   child: Row(
+                      //     mainAxisAlignment: MainAxisAlignment.start,
+                      //     children: [
+                      //       FloatingActionButton(
+                      //         onPressed: () => _getImageID(ImageSource.gallery),
+                      //         tooltip: 'Pick Image from Gallery',
+                      //         child: Icon(Icons.photo),
+                      //       ),
+                      //       SizedBox(width: 16),
+                      //       FloatingActionButton(
+                      //         onPressed: () => _getImageID(ImageSource.camera),
+                      //         tooltip: 'Take a Photo',
+                      //         child: Icon(Icons.camera_alt),
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
                       SizedBox(
                         height: sHeight * 0.2,
                       )
@@ -409,21 +409,21 @@ class _MerchantRegistrationstep2State extends State<MerchantRegistrationstep2> {
         height: sHeight * 0.06,
         child: ElevatedButton(
             onPressed: () async {
-              if (_imageShop != null &&
-                  _imageID != null &&
-                  _imageCom != null &&
-                  _imageBus != null) {
-                bool myForm = await submmitForm();
-                if (!myForm) {
-                  context.displayDialog(
-                      title: "Failed",
-                      message: 'Something went wrong, please try again');
-                } else {
-                  Navigator.pop(context, "yes");
-                }
+              // if (_imageShop != null &&
+              //     _imageID != null &&
+              //     _imageCom != null &&
+              //     _imageBus != null) {
+              bool myForm = await submmitForm();
+              if (!myForm) {
+                context.displayDialog(
+                    title: "Failed",
+                    message: 'Something went wrong, please try again');
               } else {
-                context.displaySnack("Please select all images required");
+                Navigator.pop(context, "yes");
               }
+              // } else {
+              //   context.displaySnack("Please select all images required");
+              // }
             },
             child: const Text("Complete this step")),
       ),
@@ -439,10 +439,10 @@ class _MerchantRegistrationstep2State extends State<MerchantRegistrationstep2> {
           country!,
           district!,
           city!,
-          _imageShop!.path,
-          _imageCom!.path,
-          _imageBus!.path,
-          _imageID!.path,
+          "_imageShop!.path",
+          "_imageCom!.path",
+          "_imageBus!.path",
+          "_imageID!.path",
           '1'
         ];
         final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -483,115 +483,115 @@ class _MerchantRegistrationstep2State extends State<MerchantRegistrationstep2> {
     }
   }
 
-  Future _getImageshop(ImageSource source) async {
-    final picker = ImagePicker();
-    final pickedFile = await picker.pickImage(source: source);
-    // final SharedPreferences prefs = await SharedPreferences.getInstance();
+  // Future _getImageshop(ImageSource source) async {
+  //   final picker = ImagePicker();
+  //   final pickedFile = await picker.pickImage(source: source);
+  //   // final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    setState(() {
-      if (pickedFile != null) {
-        if (source == ImageSource.camera) {
-          _imageShop = File(pickedFile.path);
-          // prefs.setString("myImage", _image!.path);
-          // Save the image to the gallery
-          GallerySaver.saveImage(_imageShop!.path).then((success) {
-            print("Image saved to gallery: $success");
-            print("hereweare");
-            print(_imageShop);
-          });
-        } else {
-          _imageShop = File(pickedFile.path);
-          // prefs.setString("myImage", _image!.path);
-          print("herewego");
-          print(_imageShop);
-        }
-      } else {
-        print('No image selected.');
-      }
-    });
-  }
+  //   setState(() {
+  //     if (pickedFile != null) {
+  //       if (source == ImageSource.camera) {
+  //         _imageShop = File(pickedFile.path);
+  //         // prefs.setString("myImage", _image!.path);
+  //         // Save the image to the gallery
+  //         GallerySaver.saveImage(_imageShop!.path).then((success) {
+  //           print("Image saved to gallery: $success");
+  //           print("hereweare");
+  //           print(_imageShop);
+  //         });
+  //       } else {
+  //         _imageShop = File(pickedFile.path);
+  //         // prefs.setString("myImage", _image!.path);
+  //         print("herewego");
+  //         print(_imageShop);
+  //       }
+  //     } else {
+  //       print('No image selected.');
+  //     }
+  //   });
+  // }
 
-  Future _getImageID(ImageSource source) async {
-    final picker = ImagePicker();
-    final pickedFile = await picker.pickImage(source: source);
-    // final SharedPreferences prefs = await SharedPreferences.getInstance();
+  // Future _getImageID(ImageSource source) async {
+  //   final picker = ImagePicker();
+  //   final pickedFile = await picker.pickImage(source: source);
+  //   // final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    setState(() {
-      if (pickedFile != null) {
-        if (source == ImageSource.camera) {
-          _imageID = File(pickedFile.path);
-          // prefs.setString("myImage", _image!.path);
-          // Save the image to the gallery
-          GallerySaver.saveImage(_imageID!.path).then((success) {
-            print("Image saved to gallery: $success");
-            print("hereweare");
-            print(_imageID);
-          });
-        } else {
-          _imageID = File(pickedFile.path);
-          // prefs.setString("myImage", _image!.path);
-          print("herewego");
-          print(_imageID);
-        }
-      } else {
-        print('No image selected.');
-      }
-    });
-  }
+  //   setState(() {
+  //     if (pickedFile != null) {
+  //       if (source == ImageSource.camera) {
+  //         _imageID = File(pickedFile.path);
+  //         // prefs.setString("myImage", _image!.path);
+  //         // Save the image to the gallery
+  //         GallerySaver.saveImage(_imageID!.path).then((success) {
+  //           print("Image saved to gallery: $success");
+  //           print("hereweare");
+  //           print(_imageID);
+  //         });
+  //       } else {
+  //         _imageID = File(pickedFile.path);
+  //         // prefs.setString("myImage", _image!.path);
+  //         print("herewego");
+  //         print(_imageID);
+  //       }
+  //     } else {
+  //       print('No image selected.');
+  //     }
+  //   });
+  // }
 
-  Future _getImageBusiness(ImageSource source) async {
-    final picker = ImagePicker();
-    final pickedFile = await picker.pickImage(source: source);
-    // final SharedPreferences prefs = await SharedPreferences.getInstance();
+  // Future _getImageBusiness(ImageSource source) async {
+  //   final picker = ImagePicker();
+  //   final pickedFile = await picker.pickImage(source: source);
+  //   // final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    setState(() {
-      if (pickedFile != null) {
-        if (source == ImageSource.camera) {
-          _imageBus = File(pickedFile.path);
-          // prefs.setString("myImage", _image!.path);
-          // Save the image to the gallery
-          GallerySaver.saveImage(_imageBus!.path).then((success) {
-            print("Image saved to gallery: $success");
-            print("hereweare");
-            print(_imageBus);
-          });
-        } else {
-          _imageBus = File(pickedFile.path);
-          // prefs.setString("myImage", _image!.path);
-          print("herewego");
-          print(_imageBus);
-        }
-      } else {
-        print('No image selected.');
-      }
-    });
-  }
+  //   setState(() {
+  //     if (pickedFile != null) {
+  //       if (source == ImageSource.camera) {
+  //         _imageBus = File(pickedFile.path);
+  //         // prefs.setString("myImage", _image!.path);
+  //         // Save the image to the gallery
+  //         GallerySaver.saveImage(_imageBus!.path).then((success) {
+  //           print("Image saved to gallery: $success");
+  //           print("hereweare");
+  //           print(_imageBus);
+  //         });
+  //       } else {
+  //         _imageBus = File(pickedFile.path);
+  //         // prefs.setString("myImage", _image!.path);
+  //         print("herewego");
+  //         print(_imageBus);
+  //       }
+  //     } else {
+  //       print('No image selected.');
+  //     }
+  //   });
+  // }
 
-  Future _getImageComm(ImageSource source) async {
-    final picker = ImagePicker();
-    final pickedFile = await picker.pickImage(source: source);
+  // Future _getImageComm(ImageSource source) async {
+  //   final picker = ImagePicker();
+  //   final pickedFile = await picker.pickImage(source: source);
 
-    setState(() {
-      if (pickedFile != null) {
-        if (source == ImageSource.camera) {
-          _imageCom = File(pickedFile.path);
-          // prefs.setString("myImage", _image!.path);
-          // Save the image to the gallery
-          GallerySaver.saveImage(_imageCom!.path).then((success) {
-            print("Image saved to gallery: $success");
-            print("hereweare");
-            print(_imageCom);
-          });
-        } else {
-          _imageCom = File(pickedFile.path);
-          print("herewego");
-          print(_imageCom);
-        }
-      } else {
-        print('No image selected.');
-      }
-    });
-  }
+  //   setState(() {
+  //     if (pickedFile != null) {
+  //       if (source == ImageSource.camera) {
+  //         _imageCom = File(pickedFile.path);
+  //         // prefs.setString("myImage", _image!.path);
+  //         // Save the image to the gallery
+  //         GallerySaver.saveImage(_imageCom!.path).then((success) {
+  //           print("Image saved to gallery: $success");
+  //           print("hereweare");
+  //           print(_imageCom);
+  //         });
+  //       } else {
+  //         _imageCom = File(pickedFile.path);
+  //         print("herewego");
+  //         print(_imageCom);
+  //       }
+  //     } else {
+  //       print('No image selected.');
+  //     }
+  //   });
+  // }
 
   Future<void> fetchCity() async {
     try {

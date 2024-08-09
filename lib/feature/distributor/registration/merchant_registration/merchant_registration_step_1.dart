@@ -204,31 +204,31 @@ class _MerchantStep1State extends State<MerchantStep1> {
                           return null;
                         },
                       ),
-                      Text("Profile Image"),
-                      _image == null
-                          ? SizedBox(child: Text('JPG/PNG file'))
-                          : SizedBox(
-                              height: sHeight * 0.15,
-                              child: Image.file(_image!)),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            FloatingActionButton(
-                              onPressed: () => _getImage(ImageSource.gallery),
-                              tooltip: 'Pick Image from Gallery',
-                              child: Icon(Icons.photo),
-                            ),
-                            SizedBox(width: 16),
-                            FloatingActionButton(
-                              onPressed: () => _getImage(ImageSource.camera),
-                              tooltip: 'Take a Photo',
-                              child: Icon(Icons.camera_alt),
-                            ),
-                          ],
-                        ),
-                      ),
+                      // Text("Profile Image"),
+                      // _image == null
+                      //     ? SizedBox(child: Text('JPG/PNG file'))
+                      //     : SizedBox(
+                      //         height: sHeight * 0.15,
+                      //         child: Image.file(_image!)),
+                      // Padding(
+                      //   padding: const EdgeInsets.all(8.0),
+                      //   child: Row(
+                      //     mainAxisAlignment: MainAxisAlignment.start,
+                      //     children: [
+                      //       FloatingActionButton(
+                      //         onPressed: () => _getImage(ImageSource.gallery),
+                      //         tooltip: 'Pick Image from Gallery',
+                      //         child: Icon(Icons.photo),
+                      //       ),
+                      //       SizedBox(width: 16),
+                      //       FloatingActionButton(
+                      //         onPressed: () => _getImage(ImageSource.camera),
+                      //         tooltip: 'Take a Photo',
+                      //         child: Icon(Icons.camera_alt),
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
                     ]),
               ),
             )
@@ -240,18 +240,18 @@ class _MerchantStep1State extends State<MerchantStep1> {
         height: sHeight * 0.06,
         child: ElevatedButton(
             onPressed: () async {
-              if (_image != null) {
-                bool myForm = await submmitForm();
-                if (!myForm) {
-                  context.displayDialog(
-                      title: "Failed",
-                      message: 'Something went wrong, please try again');
-                } else {
-                  Navigator.pop(context, "yes");
-                }
+              // if (_image != null) {
+              bool myForm = await submmitForm();
+              if (!myForm) {
+                context.displayDialog(
+                    title: "Failed",
+                    message: 'Something went wrong, please try again');
               } else {
-                context.displaySnack("Please select a profie image");
+                Navigator.pop(context, "yes");
               }
+              // } else {
+              //   context.displaySnack("Please select a profie image");
+              // }
             },
             child: const Text("Complete this step")),
       ),
@@ -267,33 +267,33 @@ class _MerchantStep1State extends State<MerchantStep1> {
     return emailRegex.hasMatch(email);
   }
 
-  Future _getImage(ImageSource source) async {
-    final picker = ImagePicker();
-    final pickedFile = await picker.pickImage(source: source);
-    // final SharedPreferences prefs = await SharedPreferences.getInstance();
+  // Future _getImage(ImageSource source) async {
+  //   final picker = ImagePicker();
+  //   final pickedFile = await picker.pickImage(source: source);
+  //   // final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    setState(() {
-      if (pickedFile != null) {
-        if (source == ImageSource.camera) {
-          _image = File(pickedFile.path);
-          // prefs.setString("myImage", _image!.path);
-          // Save the image to the gallery
-          GallerySaver.saveImage(_image!.path).then((success) {
-            print("Image saved to gallery: $success");
-            print("hereweare");
-            print(_image);
-          });
-        } else {
-          _image = File(pickedFile.path);
-          // prefs.setString("myImage", _image!.path);
-          print("herewego");
-          print(_image);
-        }
-      } else {
-        print('No image selected.');
-      }
-    });
-  }
+  //   setState(() {
+  //     if (pickedFile != null) {
+  //       if (source == ImageSource.camera) {
+  //         _image = File(pickedFile.path);
+  //         // prefs.setString("myImage", _image!.path);
+  //         // Save the image to the gallery
+  //         GallerySaver.saveImage(_image!.path).then((success) {
+  //           print("Image saved to gallery: $success");
+  //           print("hereweare");
+  //           print(_image);
+  //         });
+  //       } else {
+  //         _image = File(pickedFile.path);
+  //         // prefs.setString("myImage", _image!.path);
+  //         print("herewego");
+  //         print(_image);
+  //       }
+  //     } else {
+  //       print('No image selected.');
+  //     }
+  //   });
+  // }
 
   Future<bool> submmitForm() async {
     try {
@@ -303,7 +303,7 @@ class _MerchantStep1State extends State<MerchantStep1> {
           fullName!,
           email ?? "",
           mobileNumber!,
-          _image!.path,
+          "_image!.path",
           '1'
         ];
         final SharedPreferences prefs = await SharedPreferences.getInstance();

@@ -460,39 +460,39 @@ class _RegisterMerchantState extends State<RegisterMerchant> {
             print(userId);
             // File imgShop = File(step2[5]);
             print(step2);
-            await uploadImage(
-              imageFile: step2[5],
-              fileType: 'ShopImage',
-              userType: 'MERCHANT',
-              userId: userId!,
-            );
+            // await uploadImage(
+            //   imageFile: step2[5],
+            //   fileType: 'ShopImage',
+            //   userType: 'MERCHANT',
+            //   userId: userId!,
+            // );
             // File imgCom = File(step2[6]);
-            await uploadImage(
-              imageFile: step2[6],
-              fileType: 'CommercialCertImage',
-              userType: 'MERCHANT',
-              userId: userId!,
-            );
+            // await uploadImage(
+            //   imageFile: step2[6],
+            //   fileType: 'CommercialCertImage',
+            //   userType: 'MERCHANT',
+            //   userId: userId!,
+            // );
             // File imgBus = File(step2[7]);
-            await uploadImage(
-              imageFile: step2[7],
-              fileType: 'BusinessRegistrationPhoto',
-              userType: 'MERCHANT',
-              userId: userId!,
-            );
+            // await uploadImage(
+            //   imageFile: step2[7],
+            //   fileType: 'BusinessRegistrationPhoto',
+            //   userType: 'MERCHANT',
+            //   userId: userId!,
+            // );
             // File imgID = File(step2[8]);
-            await uploadImage(
-              imageFile: step2[8],
-              fileType: 'TaxPhoto',
-              userType: 'MERCHANT',
-              userId: userId!,
-            );
-            await uploadImage(
-              imageFile: step1[3],
-              fileType: 'OwnerPhoto',
-              userType: 'MERCHANT',
-              userId: userId!,
-            );
+            // await uploadImage(
+            //   imageFile: step2[8],
+            //   fileType: 'TaxPhoto',
+            //   userType: 'MERCHANT',
+            //   userId: userId!,
+            // );
+            // await uploadImage(
+            //   imageFile: step1[3],
+            //   fileType: 'OwnerPhoto',
+            //   userType: 'MERCHANT',
+            //   userId: userId!,
+            // );
             setState(() {
               loading = false;
             });
