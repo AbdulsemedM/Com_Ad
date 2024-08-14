@@ -12,7 +12,7 @@ part of 'products_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$ProductsState {
@@ -183,6 +183,9 @@ class _$ProductsStateCopyWithImpl<$Res, $Val extends ProductsState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -199,6 +202,9 @@ class __$$ProductsStateInitImplCopyWithImpl<$Res>
   __$$ProductsStateInitImplCopyWithImpl(_$ProductsStateInitImpl _value,
       $Res Function(_$ProductsStateInitImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -212,7 +218,7 @@ class _$ProductsStateInitImpl implements ProductsStateInit {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$ProductsStateInitImpl);
   }
@@ -412,6 +418,9 @@ class __$$ProductsStateLoadingImplCopyWithImpl<$Res>
   __$$ProductsStateLoadingImplCopyWithImpl(_$ProductsStateLoadingImpl _value,
       $Res Function(_$ProductsStateLoadingImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -425,7 +434,7 @@ class _$ProductsStateLoadingImpl implements ProductsStateLoading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateLoadingImpl);
@@ -629,6 +638,8 @@ class __$$ProductsStateErrorImplCopyWithImpl<$Res>
       $Res Function(_$ProductsStateErrorImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -657,7 +668,7 @@ class _$ProductsStateErrorImpl implements ProductsStateError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateErrorImpl &&
@@ -668,7 +679,9 @@ class _$ProductsStateErrorImpl implements ProductsStateError {
   @override
   int get hashCode => Object.hash(runtimeType, messages);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProductsStateErrorImplCopyWith<_$ProductsStateErrorImpl> get copyWith =>
@@ -854,7 +867,10 @@ abstract class ProductsStateError implements ProductsState {
       _$ProductsStateErrorImpl;
 
   String get messages;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProductsStateErrorImplCopyWith<_$ProductsStateErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -876,6 +892,8 @@ class __$$ProductsStateSuccessImplCopyWithImpl<$Res>
       $Res Function(_$ProductsStateSuccessImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -904,7 +922,7 @@ class _$ProductsStateSuccessImpl implements ProductsStateSuccess {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateSuccessImpl &&
@@ -914,7 +932,9 @@ class _$ProductsStateSuccessImpl implements ProductsStateSuccess {
   @override
   int get hashCode => Object.hash(runtimeType, msg);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProductsStateSuccessImplCopyWith<_$ProductsStateSuccessImpl>
@@ -1101,7 +1121,10 @@ abstract class ProductsStateSuccess implements ProductsState {
       _$ProductsStateSuccessImpl;
 
   String? get msg;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProductsStateSuccessImplCopyWith<_$ProductsStateSuccessImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1123,6 +1146,8 @@ class __$$ProductsStateAddedImplCopyWithImpl<$Res>
       $Res Function(_$ProductsStateAddedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1151,7 +1176,7 @@ class _$ProductsStateAddedImpl implements ProductsStateAdded {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateAddedImpl &&
@@ -1162,7 +1187,9 @@ class _$ProductsStateAddedImpl implements ProductsStateAdded {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProductsStateAddedImplCopyWith<_$ProductsStateAddedImpl> get copyWith =>
@@ -1348,7 +1375,10 @@ abstract class ProductsStateAdded implements ProductsState {
       _$ProductsStateAddedImpl;
 
   dynamic get data;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProductsStateAddedImplCopyWith<_$ProductsStateAddedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1373,6 +1403,8 @@ class __$$ProductsStateSubProductAddedImplCopyWithImpl<$Res>
       $Res Function(_$ProductsStateSubProductAddedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1402,7 +1434,7 @@ class _$ProductsStateSubProductAddedImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateSubProductAddedImpl &&
@@ -1413,7 +1445,9 @@ class _$ProductsStateSubProductAddedImpl
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProductsStateSubProductAddedImplCopyWith<
@@ -1600,7 +1634,10 @@ abstract class ProductsStateSubProductAdded implements ProductsState {
       _$ProductsStateSubProductAddedImpl;
 
   dynamic get data;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProductsStateSubProductAddedImplCopyWith<
           _$ProductsStateSubProductAddedImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -1626,6 +1663,8 @@ class __$$ProductsStateParentCategoriesImplCopyWithImpl<$Res>
       $Res Function(_$ProductsStateParentCategoriesImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1661,7 +1700,7 @@ class _$ProductsStateParentCategoriesImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateParentCategoriesImpl &&
@@ -1673,7 +1712,9 @@ class _$ProductsStateParentCategoriesImpl
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_categories));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProductsStateParentCategoriesImplCopyWith<
@@ -1860,7 +1901,10 @@ abstract class ProductsStateParentCategories implements ProductsState {
       _$ProductsStateParentCategoriesImpl;
 
   List<Category> get categories;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProductsStateParentCategoriesImplCopyWith<
           _$ProductsStateParentCategoriesImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -1885,6 +1929,8 @@ class __$$ProductsStateCategoriesImplCopyWithImpl<$Res>
       $Res Function(_$ProductsStateCategoriesImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1919,7 +1965,7 @@ class _$ProductsStateCategoriesImpl implements ProductsStateCategories {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateCategoriesImpl &&
@@ -1931,7 +1977,9 @@ class _$ProductsStateCategoriesImpl implements ProductsStateCategories {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_categories));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProductsStateCategoriesImplCopyWith<_$ProductsStateCategoriesImpl>
@@ -2117,7 +2165,10 @@ abstract class ProductsStateCategories implements ProductsState {
       _$ProductsStateCategoriesImpl;
 
   List<Category> get categories;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProductsStateCategoriesImplCopyWith<_$ProductsStateCategoriesImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2140,6 +2191,8 @@ class __$$ProductsStateProductsImplCopyWithImpl<$Res>
       $Res Function(_$ProductsStateProductsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2174,7 +2227,7 @@ class _$ProductsStateProductsImpl implements ProductsStateProducts {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateProductsImpl &&
@@ -2185,7 +2238,9 @@ class _$ProductsStateProductsImpl implements ProductsStateProducts {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_products));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProductsStateProductsImplCopyWith<_$ProductsStateProductsImpl>
@@ -2371,7 +2426,10 @@ abstract class ProductsStateProducts implements ProductsState {
       _$ProductsStateProductsImpl;
 
   List<Product> get products;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProductsStateProductsImplCopyWith<_$ProductsStateProductsImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2395,6 +2453,8 @@ class __$$ProductsStateProductImagesImplCopyWithImpl<$Res>
       $Res Function(_$ProductsStateProductImagesImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2431,7 +2491,7 @@ class _$ProductsStateProductImagesImpl implements ProductsStateProductImages {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateProductImagesImpl &&
@@ -2443,7 +2503,9 @@ class _$ProductsStateProductImagesImpl implements ProductsStateProductImages {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_productImages));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProductsStateProductImagesImplCopyWith<_$ProductsStateProductImagesImpl>
@@ -2629,7 +2691,10 @@ abstract class ProductsStateProductImages implements ProductsState {
       _$ProductsStateProductImagesImpl;
 
   List<String>? get productImages;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProductsStateProductImagesImplCopyWith<_$ProductsStateProductImagesImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2651,6 +2716,8 @@ class __$$ProductsStateUomImplCopyWithImpl<$Res>
       $Res Function(_$ProductsStateUomImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2684,7 +2751,7 @@ class _$ProductsStateUomImpl implements ProductsStateUom {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateUomImpl &&
@@ -2695,7 +2762,9 @@ class _$ProductsStateUomImpl implements ProductsStateUom {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_uom));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProductsStateUomImplCopyWith<_$ProductsStateUomImpl> get copyWith =>
@@ -2880,7 +2949,10 @@ abstract class ProductsStateUom implements ProductsState {
   const factory ProductsStateUom(final List<Uom> uom) = _$ProductsStateUomImpl;
 
   List<Uom> get uom;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProductsStateUomImplCopyWith<_$ProductsStateUomImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2902,6 +2974,8 @@ class __$$ProductsStateBrandsImplCopyWithImpl<$Res>
       $Res Function(_$ProductsStateBrandsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2935,7 +3009,7 @@ class _$ProductsStateBrandsImpl implements ProductsStateBrands {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateBrandsImpl &&
@@ -2946,7 +3020,9 @@ class _$ProductsStateBrandsImpl implements ProductsStateBrands {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_brands));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProductsStateBrandsImplCopyWith<_$ProductsStateBrandsImpl> get copyWith =>
@@ -3132,7 +3208,10 @@ abstract class ProductsStateBrands implements ProductsState {
       _$ProductsStateBrandsImpl;
 
   List<Brand> get brands;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProductsStateBrandsImplCopyWith<_$ProductsStateBrandsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3156,6 +3235,8 @@ class __$$ProductsStateCountriesImplCopyWithImpl<$Res>
       $Res Function(_$ProductsStateCountriesImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3190,7 +3271,7 @@ class _$ProductsStateCountriesImpl implements ProductsStateCountries {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateCountriesImpl &&
@@ -3202,7 +3283,9 @@ class _$ProductsStateCountriesImpl implements ProductsStateCountries {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_countries));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProductsStateCountriesImplCopyWith<_$ProductsStateCountriesImpl>
@@ -3388,7 +3471,10 @@ abstract class ProductsStateCountries implements ProductsState {
       _$ProductsStateCountriesImpl;
 
   List<Country> get countries;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProductsStateCountriesImplCopyWith<_$ProductsStateCountriesImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -3410,6 +3496,8 @@ class __$$ProductsStateTypesImplCopyWithImpl<$Res>
       $Res Function(_$ProductsStateTypesImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3444,7 +3532,7 @@ class _$ProductsStateTypesImpl implements ProductsStateTypes {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateTypesImpl &&
@@ -3456,7 +3544,9 @@ class _$ProductsStateTypesImpl implements ProductsStateTypes {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_productTypes));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProductsStateTypesImplCopyWith<_$ProductsStateTypesImpl> get copyWith =>
@@ -3642,7 +3732,10 @@ abstract class ProductsStateTypes implements ProductsState {
       _$ProductsStateTypesImpl;
 
   List<ProductType> get productTypes;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProductsStateTypesImplCopyWith<_$ProductsStateTypesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3666,6 +3759,8 @@ class __$$ProductsStateDiscountTypesImplCopyWithImpl<$Res>
       $Res Function(_$ProductsStateDiscountTypesImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3700,7 +3795,7 @@ class _$ProductsStateDiscountTypesImpl implements ProductsStateDiscountTypes {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateDiscountTypesImpl &&
@@ -3712,7 +3807,9 @@ class _$ProductsStateDiscountTypesImpl implements ProductsStateDiscountTypes {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_discountTypes));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProductsStateDiscountTypesImplCopyWith<_$ProductsStateDiscountTypesImpl>
@@ -3899,7 +3996,10 @@ abstract class ProductsStateDiscountTypes implements ProductsState {
       _$ProductsStateDiscountTypesImpl;
 
   List<DiscountType> get discountTypes;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProductsStateDiscountTypesImplCopyWith<_$ProductsStateDiscountTypesImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -3922,6 +4022,8 @@ class __$$ProductsStateVariantsImplCopyWithImpl<$Res>
       $Res Function(_$ProductsStateVariantsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3956,7 +4058,7 @@ class _$ProductsStateVariantsImpl implements ProductsStateVariants {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateVariantsImpl &&
@@ -3967,7 +4069,9 @@ class _$ProductsStateVariantsImpl implements ProductsStateVariants {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_variants));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProductsStateVariantsImplCopyWith<_$ProductsStateVariantsImpl>
@@ -4153,7 +4257,10 @@ abstract class ProductsStateVariants implements ProductsState {
       _$ProductsStateVariantsImpl;
 
   List<ProductVariant> get variants;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProductsStateVariantsImplCopyWith<_$ProductsStateVariantsImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -4177,6 +4284,8 @@ class __$$ProductsStateLocalVariantsImplCopyWithImpl<$Res>
       $Res Function(_$ProductsStateLocalVariantsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4212,7 +4321,7 @@ class _$ProductsStateLocalVariantsImpl implements ProductsStateLocalVariants {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateLocalVariantsImpl &&
@@ -4223,7 +4332,9 @@ class _$ProductsStateLocalVariantsImpl implements ProductsStateLocalVariants {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_variants));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProductsStateLocalVariantsImplCopyWith<_$ProductsStateLocalVariantsImpl>
@@ -4410,7 +4521,10 @@ abstract class ProductsStateLocalVariants implements ProductsState {
       _$ProductsStateLocalVariantsImpl;
 
   List<Map<ProductVariant, String>> get variants;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProductsStateLocalVariantsImplCopyWith<_$ProductsStateLocalVariantsImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -4435,6 +4549,8 @@ class __$$ProductsStateCategoriesChildCategoriesImplCopyWithImpl<$Res>
       $Res Function(_$ProductsStateCategoriesChildCategoriesImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4472,7 +4588,7 @@ class _$ProductsStateCategoriesChildCategoriesImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateCategoriesChildCategoriesImpl &&
@@ -4485,7 +4601,9 @@ class _$ProductsStateCategoriesChildCategoriesImpl
   int get hashCode => Object.hash(runtimeType,
       const DeepCollectionEquality().hash(_parentCategoryWithCategories));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProductsStateCategoriesChildCategoriesImplCopyWith<
@@ -4676,7 +4794,10 @@ abstract class ProductsStateCategoriesChildCategories implements ProductsState {
       _$ProductsStateCategoriesChildCategoriesImpl;
 
   List<ParentCategoryWithCategories> get parentCategoryWithCategories;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProductsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProductsStateCategoriesChildCategoriesImplCopyWith<
           _$ProductsStateCategoriesChildCategoriesImpl>
       get copyWith => throw _privateConstructorUsedError;

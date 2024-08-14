@@ -12,7 +12,7 @@ part of 'generic_cubit_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$GenericCubitState<T> {
@@ -91,6 +91,9 @@ class _$GenericCubitStateCopyWithImpl<T, $Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of GenericCubitState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -113,6 +116,8 @@ class __$$GenericCubitStateDataImplCopyWithImpl<T, $Res>
       $Res Function(_$GenericCubitStateDataImpl<T>) _then)
       : super(_value, _then);
 
+  /// Create a copy of GenericCubitState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -141,7 +146,7 @@ class _$GenericCubitStateDataImpl<T> implements GenericCubitStateData<T> {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GenericCubitStateDataImpl<T> &&
@@ -152,7 +157,9 @@ class _$GenericCubitStateDataImpl<T> implements GenericCubitStateData<T> {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GenericCubitState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GenericCubitStateDataImplCopyWith<T, _$GenericCubitStateDataImpl<T>>
@@ -245,7 +252,10 @@ abstract class GenericCubitStateData<T> implements GenericCubitState<T> {
       _$GenericCubitStateDataImpl<T>;
 
   T get data;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GenericCubitState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GenericCubitStateDataImplCopyWith<T, _$GenericCubitStateDataImpl<T>>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -270,6 +280,8 @@ class __$$GenericCubitStateErrorImplCopyWithImpl<T, $Res>
       $Res Function(_$GenericCubitStateErrorImpl<T>) _then)
       : super(_value, _then);
 
+  /// Create a copy of GenericCubitState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -298,7 +310,7 @@ class _$GenericCubitStateErrorImpl<T> implements GenericCubitStateError<T> {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GenericCubitStateErrorImpl<T> &&
@@ -308,7 +320,9 @@ class _$GenericCubitStateErrorImpl<T> implements GenericCubitStateError<T> {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GenericCubitState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GenericCubitStateErrorImplCopyWith<T, _$GenericCubitStateErrorImpl<T>>
@@ -401,7 +415,10 @@ abstract class GenericCubitStateError<T> implements GenericCubitState<T> {
       _$GenericCubitStateErrorImpl<T>;
 
   String get message;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GenericCubitState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GenericCubitStateErrorImplCopyWith<T, _$GenericCubitStateErrorImpl<T>>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -423,6 +440,9 @@ class __$$GenericCubitStateLoadingImplCopyWithImpl<T, $Res>
       _$GenericCubitStateLoadingImpl<T> _value,
       $Res Function(_$GenericCubitStateLoadingImpl<T>) _then)
       : super(_value, _then);
+
+  /// Create a copy of GenericCubitState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -436,7 +456,7 @@ class _$GenericCubitStateLoadingImpl<T> implements GenericCubitStateLoading<T> {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GenericCubitStateLoadingImpl<T>);
@@ -547,6 +567,9 @@ class __$$GenericCubitStateInitImplCopyWithImpl<T, $Res>
       _$GenericCubitStateInitImpl<T> _value,
       $Res Function(_$GenericCubitStateInitImpl<T>) _then)
       : super(_value, _then);
+
+  /// Create a copy of GenericCubitState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -560,7 +583,7 @@ class _$GenericCubitStateInitImpl<T> implements GenericCubitStateInit<T> {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GenericCubitStateInitImpl<T>);
@@ -674,6 +697,8 @@ class __$$GenericCubitStateSuccessImplCopyWithImpl<T, $Res>
       $Res Function(_$GenericCubitStateSuccessImpl<T>) _then)
       : super(_value, _then);
 
+  /// Create a copy of GenericCubitState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -702,7 +727,7 @@ class _$GenericCubitStateSuccessImpl<T> implements GenericCubitStateSuccess<T> {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GenericCubitStateSuccessImpl<T> &&
@@ -712,7 +737,9 @@ class _$GenericCubitStateSuccessImpl<T> implements GenericCubitStateSuccess<T> {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GenericCubitState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GenericCubitStateSuccessImplCopyWith<T, _$GenericCubitStateSuccessImpl<T>>
@@ -805,7 +832,10 @@ abstract class GenericCubitStateSuccess<T> implements GenericCubitState<T> {
       _$GenericCubitStateSuccessImpl<T>;
 
   String get message;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GenericCubitState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GenericCubitStateSuccessImplCopyWith<T, _$GenericCubitStateSuccessImpl<T>>
       get copyWith => throw _privateConstructorUsedError;
 }

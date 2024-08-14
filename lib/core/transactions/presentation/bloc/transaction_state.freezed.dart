@@ -12,7 +12,7 @@ part of 'transaction_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$TransactionState {
@@ -99,6 +99,9 @@ class _$TransactionStateCopyWithImpl<$Res, $Val extends TransactionState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of TransactionState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -115,6 +118,9 @@ class __$$TransactionStateInitImplCopyWithImpl<$Res>
   __$$TransactionStateInitImplCopyWithImpl(_$TransactionStateInitImpl _value,
       $Res Function(_$TransactionStateInitImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of TransactionState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -128,7 +134,7 @@ class _$TransactionStateInitImpl implements TransactionStateInit {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TransactionStateInitImpl);
@@ -247,6 +253,9 @@ class __$$TransactionStateLoadingImplCopyWithImpl<$Res>
       _$TransactionStateLoadingImpl _value,
       $Res Function(_$TransactionStateLoadingImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of TransactionState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -260,7 +269,7 @@ class _$TransactionStateLoadingImpl implements TransactionStateLoading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TransactionStateLoadingImpl);
@@ -383,6 +392,8 @@ class __$$TransactionStateSahayValidatedImplCopyWithImpl<$Res>
       $Res Function(_$TransactionStateSahayValidatedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TransactionState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -412,7 +423,7 @@ class _$TransactionStateSahayValidatedImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TransactionStateSahayValidatedImpl &&
@@ -422,7 +433,9 @@ class _$TransactionStateSahayValidatedImpl
   @override
   int get hashCode => Object.hash(runtimeType, name);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TransactionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TransactionStateSahayValidatedImplCopyWith<
@@ -525,7 +538,10 @@ abstract class TransactionStateSahayValidated implements TransactionState {
       _$TransactionStateSahayValidatedImpl;
 
   String get name;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TransactionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TransactionStateSahayValidatedImplCopyWith<
           _$TransactionStateSahayValidatedImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -549,6 +565,8 @@ class __$$TransactionStateErrorImplCopyWithImpl<$Res>
       $Res Function(_$TransactionStateErrorImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TransactionState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -577,7 +595,7 @@ class _$TransactionStateErrorImpl implements TransactionStateError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TransactionStateErrorImpl &&
@@ -587,7 +605,9 @@ class _$TransactionStateErrorImpl implements TransactionStateError {
   @override
   int get hashCode => Object.hash(runtimeType, error);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TransactionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TransactionStateErrorImplCopyWith<_$TransactionStateErrorImpl>
@@ -689,7 +709,10 @@ abstract class TransactionStateError implements TransactionState {
       _$TransactionStateErrorImpl;
 
   String get error;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TransactionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TransactionStateErrorImplCopyWith<_$TransactionStateErrorImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -714,6 +737,8 @@ class __$$TransactionStateWithdrawalMethodsImplCopyWithImpl<$Res>
       $Res Function(_$TransactionStateWithdrawalMethodsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TransactionState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -751,7 +776,7 @@ class _$TransactionStateWithdrawalMethodsImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TransactionStateWithdrawalMethodsImpl &&
@@ -763,7 +788,9 @@ class _$TransactionStateWithdrawalMethodsImpl
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_withdrawalMethods));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TransactionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TransactionStateWithdrawalMethodsImplCopyWith<
@@ -867,7 +894,10 @@ abstract class TransactionStateWithdrawalMethods implements TransactionState {
       _$TransactionStateWithdrawalMethodsImpl;
 
   List<WithdrawalMethod> get withdrawalMethods;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TransactionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TransactionStateWithdrawalMethodsImplCopyWith<
           _$TransactionStateWithdrawalMethodsImpl>
       get copyWith => throw _privateConstructorUsedError;

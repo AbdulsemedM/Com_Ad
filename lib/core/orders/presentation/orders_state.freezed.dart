@@ -12,7 +12,7 @@ part of 'orders_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$OrderState {
@@ -96,6 +96,9 @@ class _$OrderStateCopyWithImpl<$Res, $Val extends OrderState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of OrderState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -112,6 +115,9 @@ class __$$OrderStateInitImplCopyWithImpl<$Res>
   __$$OrderStateInitImplCopyWithImpl(
       _$OrderStateInitImpl _value, $Res Function(_$OrderStateInitImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of OrderState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -125,7 +131,7 @@ class _$OrderStateInitImpl implements OrderStateInit {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$OrderStateInitImpl);
   }
@@ -238,6 +244,9 @@ class __$$OrderStateSuccessImplCopyWithImpl<$Res>
   __$$OrderStateSuccessImplCopyWithImpl(_$OrderStateSuccessImpl _value,
       $Res Function(_$OrderStateSuccessImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of OrderState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -251,7 +260,7 @@ class _$OrderStateSuccessImpl implements OrderStateSuccess {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$OrderStateSuccessImpl);
   }
@@ -367,6 +376,8 @@ class __$$OrderStateErrorImplCopyWithImpl<$Res>
       _$OrderStateErrorImpl _value, $Res Function(_$OrderStateErrorImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of OrderState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -395,7 +406,7 @@ class _$OrderStateErrorImpl implements OrderStateError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$OrderStateErrorImpl &&
@@ -405,7 +416,9 @@ class _$OrderStateErrorImpl implements OrderStateError {
   @override
   int get hashCode => Object.hash(runtimeType, msg);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of OrderState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$OrderStateErrorImplCopyWith<_$OrderStateErrorImpl> get copyWith =>
@@ -503,7 +516,10 @@ abstract class OrderStateError implements OrderState {
   const factory OrderStateError(final String msg) = _$OrderStateErrorImpl;
 
   String get msg;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of OrderState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$OrderStateErrorImplCopyWith<_$OrderStateErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -522,6 +538,9 @@ class __$$OrderStateLoadingImplCopyWithImpl<$Res>
   __$$OrderStateLoadingImplCopyWithImpl(_$OrderStateLoadingImpl _value,
       $Res Function(_$OrderStateLoadingImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of OrderState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -535,7 +554,7 @@ class _$OrderStateLoadingImpl implements OrderStateLoading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$OrderStateLoadingImpl);
   }
@@ -654,6 +673,8 @@ class __$$OrderStateOrderItemInfoImplCopyWithImpl<$Res>
       $Res Function(_$OrderStateOrderItemInfoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of OrderState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -690,7 +711,7 @@ class _$OrderStateOrderItemInfoImpl implements OrderStateOrderItemInfo {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$OrderStateOrderItemInfoImpl &&
@@ -704,7 +725,9 @@ class _$OrderStateOrderItemInfoImpl implements OrderStateOrderItemInfo {
   int get hashCode =>
       Object.hash(runtimeType, orderItemInfo, orderItemProductInfo);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of OrderState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$OrderStateOrderItemInfoImplCopyWith<_$OrderStateOrderItemInfoImpl>
@@ -805,7 +828,10 @@ abstract class OrderStateOrderItemInfo implements OrderState {
 
   OrderItemInfo get orderItemInfo;
   OrderItemProductInfo get orderItemProductInfo;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of OrderState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$OrderStateOrderItemInfoImplCopyWith<_$OrderStateOrderItemInfoImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
