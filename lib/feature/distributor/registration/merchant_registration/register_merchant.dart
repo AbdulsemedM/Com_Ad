@@ -283,7 +283,6 @@ class _RegisterMerchantState extends State<RegisterMerchant> {
                             );
                             print(result2);
                             if (step == '1') {
-                              // Update state based on the result
                               fetchState2();
                             }
                           } else {
