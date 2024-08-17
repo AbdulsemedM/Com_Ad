@@ -12,7 +12,7 @@ part of 'products_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$ProductsState {
@@ -212,7 +212,7 @@ class _$ProductsStateInitImpl implements ProductsStateInit {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$ProductsStateInitImpl);
   }
@@ -425,7 +425,7 @@ class _$ProductsStateLoadingImpl implements ProductsStateLoading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateLoadingImpl);
@@ -657,7 +657,7 @@ class _$ProductsStateErrorImpl implements ProductsStateError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateErrorImpl &&
@@ -904,7 +904,7 @@ class _$ProductsStateSuccessImpl implements ProductsStateSuccess {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateSuccessImpl &&
@@ -1151,7 +1151,7 @@ class _$ProductsStateAddedImpl implements ProductsStateAdded {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateAddedImpl &&
@@ -1402,7 +1402,7 @@ class _$ProductsStateSubProductAddedImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateSubProductAddedImpl &&
@@ -1661,7 +1661,7 @@ class _$ProductsStateParentCategoriesImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateParentCategoriesImpl &&
@@ -1919,7 +1919,7 @@ class _$ProductsStateCategoriesImpl implements ProductsStateCategories {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateCategoriesImpl &&
@@ -2174,7 +2174,7 @@ class _$ProductsStateProductsImpl implements ProductsStateProducts {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateProductsImpl &&
@@ -2431,7 +2431,7 @@ class _$ProductsStateProductImagesImpl implements ProductsStateProductImages {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateProductImagesImpl &&
@@ -2684,7 +2684,7 @@ class _$ProductsStateUomImpl implements ProductsStateUom {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateUomImpl &&
@@ -2935,7 +2935,7 @@ class _$ProductsStateBrandsImpl implements ProductsStateBrands {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateBrandsImpl &&
@@ -3190,7 +3190,7 @@ class _$ProductsStateCountriesImpl implements ProductsStateCountries {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateCountriesImpl &&
@@ -3444,7 +3444,7 @@ class _$ProductsStateTypesImpl implements ProductsStateTypes {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateTypesImpl &&
@@ -3700,7 +3700,7 @@ class _$ProductsStateDiscountTypesImpl implements ProductsStateDiscountTypes {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateDiscountTypesImpl &&
@@ -3956,7 +3956,7 @@ class _$ProductsStateVariantsImpl implements ProductsStateVariants {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateVariantsImpl &&
@@ -4212,7 +4212,7 @@ class _$ProductsStateLocalVariantsImpl implements ProductsStateLocalVariants {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateLocalVariantsImpl &&
@@ -4472,7 +4472,7 @@ class _$ProductsStateCategoriesChildCategoriesImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductsStateCategoriesChildCategoriesImpl &&

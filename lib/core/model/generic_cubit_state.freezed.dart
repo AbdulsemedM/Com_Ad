@@ -12,7 +12,7 @@ part of 'generic_cubit_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$GenericCubitState<T> {
@@ -141,7 +141,7 @@ class _$GenericCubitStateDataImpl<T> implements GenericCubitStateData<T> {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GenericCubitStateDataImpl<T> &&
@@ -298,7 +298,7 @@ class _$GenericCubitStateErrorImpl<T> implements GenericCubitStateError<T> {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GenericCubitStateErrorImpl<T> &&
@@ -436,7 +436,7 @@ class _$GenericCubitStateLoadingImpl<T> implements GenericCubitStateLoading<T> {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GenericCubitStateLoadingImpl<T>);
@@ -560,7 +560,7 @@ class _$GenericCubitStateInitImpl<T> implements GenericCubitStateInit<T> {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GenericCubitStateInitImpl<T>);
@@ -702,7 +702,7 @@ class _$GenericCubitStateSuccessImpl<T> implements GenericCubitStateSuccess<T> {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GenericCubitStateSuccessImpl<T> &&
