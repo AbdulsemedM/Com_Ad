@@ -100,13 +100,13 @@ class _AppState extends State<App> {
         _isCountryFetched = true;
         loading = false;
       });
-      return true; // Return true if data is fetched successfully
+      return true;
     } catch (e) {
       print(e.toString());
       setState(() {
         loading = false;
       });
-      return false; // Return false if an error occurs
+      return false;
     }
   }
 }
