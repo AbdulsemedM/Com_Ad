@@ -41,8 +41,7 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor:
-          AppColors.colorAccent, // Set your desired status bar color
+      statusBarColor: AppColors.colorAccent,
     ));
     if (_isCountryFetched) {
       return ScreenUtilInit(
@@ -60,7 +59,7 @@ class _AppState extends State<App> {
       );
     } else {
       return Directionality(
-        textDirection: TextDirection.ltr, // Set the text direction
+        textDirection: TextDirection.ltr,
         child: Scaffold(
           body: Center(
             child: Column(
