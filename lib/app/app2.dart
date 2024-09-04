@@ -48,14 +48,13 @@ class _AppState extends State<App> {
         designSize: const Size(428, 926),
         minTextAdapt: true,
         builder: (context, child) => MaterialApp(
-          theme: AppTheme.themeData(context),
-          debugShowCheckedModeBanner: false,
-          localizationsDelegates: const [],
-          routes: routes,
-          navigatorKey: navigationKey,
-          initialRoute: SplashPage.routeName,
-          home: child,
-        ),
+            theme: AppTheme.themeData(context),
+            debugShowCheckedModeBanner: false,
+            localizationsDelegates: const [],
+            routes: routes,
+            navigatorKey: navigationKey,
+            initialRoute: SplashPage.routeName,
+            home: child),
       );
     } else {
       return Directionality(
