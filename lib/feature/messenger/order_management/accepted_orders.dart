@@ -930,7 +930,7 @@ class _AcceptedOrderState extends State<AcceptedOrder> {
       if (isUserLoggedIn) {
         final token = await prefsData.readData(PrefsKeys.userToken.name);
         final response = await http.get(
-          Uri.https("api.commercepal.com:2095",
+          Uri.https("pay.commercepal.com",
               "/prime/api/v1/messenger/shipping/order-item", {"ItemId": id}),
           headers: <String, String>{"Authorization": "Bearer $token"},
         );
@@ -945,7 +945,7 @@ class _AcceptedOrderState extends State<AcceptedOrder> {
             print(productId);
             final response1 = await http.get(
               Uri.https(
-                  "api.commercepal.com:2095",
+                  "pay.commercepal.com",
                   "/prime/api/v1/messenger/shipping/merchant-address",
                   {"ItemId": widget.ItemId}),
               headers: <String, String>{"Authorization": "Bearer $token"},
@@ -1022,7 +1022,7 @@ class _AcceptedOrderState extends State<AcceptedOrder> {
         print(payload);
         final response = await http.post(
           Uri.https(
-            "api.commercepal.com:2095",
+            "pay.commercepal.com",
             "/prime/api/v1/messenger/shipping/generate-otp-code",
           ),
           body: jsonEncode(payload),
@@ -1179,7 +1179,7 @@ class _AcceptedOrderState extends State<AcceptedOrder> {
         final token = await prefsData.readData(PrefsKeys.userToken.name);
         final response = await http.get(
           Uri.https(
-              "api.commercepal.com:2095",
+              "pay.commercepal.com",
               "/prime/api/v1/merchant/order/product-info",
               {"ItemId": widget.ItemId.toString()}),
           headers: <String, String>{"Authorization": "Bearer $token"},
@@ -1236,7 +1236,7 @@ class _AcceptedOrderState extends State<AcceptedOrder> {
         final token = await prefsData.readData(PrefsKeys.userToken.name);
         final response = await http.post(
           Uri.https(
-            "api.commercepal.com:2095",
+            "pay.commercepal.com",
             "/prime/api/v1/messenger/shipping/attach-qr-code-item",
           ),
           body: jsonEncode(QRpayload),

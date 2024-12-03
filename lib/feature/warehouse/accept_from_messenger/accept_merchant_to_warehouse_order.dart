@@ -554,7 +554,7 @@ class _AcceptMTWOrderState extends State<AcceptMTWOrder> {
       print("hereeee");
 
       final response = await http.get(Uri.https(
-          "api.commercepal.com:2052", "/api/v1/admin/services/wareHouses"));
+          "who.commercepal.com", "/api/v1/admin/services/wareHouses"));
       // print(response.body);
       var data = jsonDecode(response.body);
       apiResponse = ApiResponse.fromJson(data);
@@ -588,7 +588,7 @@ class _AcceptMTWOrderState extends State<AcceptMTWOrder> {
       if (isUserLoggedIn) {
         final token = await prefsData.readData(PrefsKeys.userToken.name);
         final response = await http.get(
-          Uri.https("api.commercepal.com:2095",
+          Uri.https("pay.commercepal.com",
               "/prime/api/v1/messenger/shipping/order-item", {"ItemId": id}),
           headers: <String, String>{"Authorization": "Bearer $token"},
         );
@@ -603,7 +603,7 @@ class _AcceptMTWOrderState extends State<AcceptMTWOrder> {
             print(productId);
             final response1 = await http.get(
               Uri.https(
-                  "api.commercepal.com:2095",
+                  "pay.commercepal.com",
                   "/prime/api/v1/messenger/shipping/merchant-address",
                   {"ItemId": widget.ItemOrderId}),
               headers: <String, String>{"Authorization": "Bearer $token"},
@@ -733,7 +733,7 @@ class _AcceptMTWOrderState extends State<AcceptMTWOrder> {
         final token = await prefsData.readData(PrefsKeys.userToken.name);
         final response = await http.post(
           Uri.https(
-            "api.commercepal.com:2095",
+            "pay.commercepal.com",
             "/prime/api/v1/ware-house/shipping/accept-item",
           ),
           body: jsonEncode(payload),

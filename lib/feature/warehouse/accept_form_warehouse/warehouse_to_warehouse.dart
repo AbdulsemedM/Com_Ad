@@ -237,7 +237,7 @@ class _WarehouseToWarehouseState extends State<WarehouseToWarehouse> {
 
         final response = await http.get(
           Uri.https(
-              "api.commercepal.com:2095",
+              "pay.commercepal.com",
               "/prime/api/v1/ware-house/shipping/orderItems",
               {'recipientWarehouseId': "2", "sortDirection": "desc"}),
           headers: <String, String>{"Authorization": "Bearer $token"},

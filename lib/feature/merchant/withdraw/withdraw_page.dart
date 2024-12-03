@@ -434,7 +434,7 @@ class _WithdrawPageState extends State<WithdrawPage> {
       if (isUserLoggedIn) {
         final token = await prefsData.readData(PrefsKeys.userToken.name);
         final response = await http.post(
-            Uri.https("api.commercepal.com:2095", "/payment/v1/request"),
+            Uri.https("pay.commercepal.com", "/payment/v1/request"),
             body: jsonEncode(payload),
             headers: <String, String>{"Authorization": "Bearer $token"});
         // print(response.body);
@@ -476,7 +476,7 @@ class _WithdrawPageState extends State<WithdrawPage> {
       if (isUserLoggedIn) {
         final token = await prefsData.readData(PrefsKeys.userToken.name);
         final response = await http.post(
-            Uri.https("api.commercepal.com:2095", "/payment/v1/request"),
+            Uri.https("pay.commercepal.com", "/payment/v1/request"),
             body: jsonEncode(payload),
             headers: <String, String>{"Authorization": "Bearer $token"});
         // print(response.body);
@@ -524,7 +524,7 @@ class _WithdrawPageState extends State<WithdrawPage> {
       if (isUserLoggedIn) {
         final token = await prefsData.readData(PrefsKeys.userToken.name);
         final response = await http.post(
-            Uri.https("api.commercepal.com:2095",
+            Uri.https("pay.commercepal.com",
                 "/prime/api/v1/merchant/transaction/request-withdrawal"),
             body: jsonEncode(payload),
             headers: <String, String>{"Authorization": "Bearer $token"});

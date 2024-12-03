@@ -23,14 +23,17 @@ enum EndPoints {
   orderItem(url: '${EndPoints._baseUrl2}/merchant/order/order-item'),
   orderItemProductInfo(
       url: '${EndPoints._baseUrl2}/merchant/order/product-info'),
-  acceptOrderItem(url: '${EndPoints._baseUrl2}/merchant/shipping/accept-item-pickup'),
-  validatePickUpOtp(url: '${EndPoints._baseUrl2}/merchant/shipping/validate-pick-up-code'),
+  acceptOrderItem(
+      url: '${EndPoints._baseUrl2}/merchant/shipping/accept-item-pickup'),
+  validatePickUpOtp(
+      url: '${EndPoints._baseUrl2}/merchant/shipping/validate-pick-up-code'),
   validateSahay(url: _paymentRequest);
 
   const EndPoints({required this.url});
 
   final String url;
   static const _baseUrl = "https://api.commercepal.com:2096/prime/api/v1";
-  static const _baseUrl2 = "https://api.commercepal.com:2095/prime/api/v1";
-  static const _paymentRequest = "https://api.commercepal.com:2095/payment/v1/request";
+  static const _baseUrl2 = "https://pay.commercepal.com/prime/api/v1";
+  static const _paymentRequest =
+      "https://pay.commercepal.com/payment/v1/request";
 }

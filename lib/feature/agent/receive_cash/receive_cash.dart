@@ -457,7 +457,7 @@ class _ReceiveCashPageState extends State<ReceiveCashPage> {
       if (isUserLoggedIn) {
         final token = await prefsData.readData(PrefsKeys.userToken.name);
         final response = await http.post(
-            Uri.https("api.commercepal.com:2095",
+            Uri.https("pay.commercepal.com",
                 "/prime/api/v1/agent/order/order-detail"),
             body: jsonEncode(payload),
             headers: <String, String>{"Authorization": "Bearer $token"});
@@ -518,7 +518,7 @@ class _ReceiveCashPageState extends State<ReceiveCashPage> {
       if (isUserLoggedIn) {
         final token = await prefsData.readData(PrefsKeys.userToken.name);
         final response = await http.post(
-            Uri.https("api.commercepal.com:2095", "/payment/v1/request"),
+            Uri.https("pay.commercepal.com", "/payment/v1/request"),
             body: jsonEncode(payload),
             headers: <String, String>{"Authorization": "Bearer $token"});
         // print(response.body);

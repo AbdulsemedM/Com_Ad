@@ -805,7 +805,7 @@ class _CollectedOrdersState extends State<CollectedOrders> {
       if (isUserLoggedIn) {
         final token = await prefsData.readData(PrefsKeys.userToken.name);
         final response = await http.get(
-          Uri.https("api.commercepal.com:2095",
+          Uri.https("pay.commercepal.com",
               "/prime/api/v1/messenger/shipping/order-item", {"ItemId": id}),
           headers: <String, String>{"Authorization": "Bearer $token"},
         );
@@ -820,7 +820,7 @@ class _CollectedOrdersState extends State<CollectedOrders> {
             print(productId);
             final response1 = await http.get(
               Uri.https(
-                  "api.commercepal.com:2095",
+                  "pay.commercepal.com",
                   "/prime/api/v1/messenger/shipping/merchant-address",
                   {"ItemId": widget.ItemId}),
               headers: <String, String>{"Authorization": "Bearer $token"},
@@ -895,7 +895,7 @@ class _CollectedOrdersState extends State<CollectedOrders> {
         final token = await prefsData.readData(PrefsKeys.userToken.name);
         final response = await http.post(
           Uri.https(
-            "api.commercepal.com:2095",
+            "pay.commercepal.com",
             "/prime/api/v1/messenger/shipping/generate-otp-code-customer-delivery",
           ),
           body: jsonEncode(payload),
@@ -958,7 +958,7 @@ class _CollectedOrdersState extends State<CollectedOrders> {
         final token = await prefsData.readData(PrefsKeys.userToken.name);
         final response = await http.post(
           Uri.https(
-            "api.commercepal.com:2095",
+            "pay.commercepal.com",
             "/prime/api/v1/messenger/shipping/confirm-customer-delivery",
           ),
           body: jsonEncode(payload),
@@ -1095,7 +1095,7 @@ class _CollectedOrdersState extends State<CollectedOrders> {
         final token = await prefsData.readData(PrefsKeys.userToken.name);
         final response = await http.get(
           Uri.https(
-              "api.commercepal.com:2095",
+              "pay.commercepal.com",
               "/prime/api/v1/merchant/order/product-info",
               {"ItemId": widget.ItemId.toString()}),
           headers: <String, String>{"Authorization": "Bearer $token"},

@@ -440,7 +440,7 @@ class _MessengerOrderItemsState extends State<MessengerOrderItems> {
         if (widget.orederType == 'Open Orders') {
           final response = await http.get(
             Uri.https(
-                "api.commercepal.com:2095",
+                "pay.commercepal.com",
                 "/prime/api/v1/messenger/shipping/deliveries",
                 {'status': "0", "deliveryStatus": "0"}),
             headers: <String, String>{"Authorization": "Bearer $token"},
@@ -478,7 +478,7 @@ class _MessengerOrderItemsState extends State<MessengerOrderItems> {
         } else if (widget.orederType == 'Accepted Orders') {
           final response = await http.get(
             Uri.https(
-                "api.commercepal.com:2095",
+                "pay.commercepal.com",
                 "/prime/api/v1/messenger/shipping/deliveries",
                 {'status': "1", "deliveryStatus": "0"}),
             headers: <String, String>{"Authorization": "Bearer $token"},
@@ -516,7 +516,7 @@ class _MessengerOrderItemsState extends State<MessengerOrderItems> {
         } else if (widget.orederType == 'Collected Orders') {
           final response = await http.get(
             Uri.https(
-                "api.commercepal.com:2095",
+                "pay.commercepal.com",
                 "/prime/api/v1/messenger/shipping/deliveries",
                 {'status': "1", "deliveryStatus": "1"}),
             headers: <String, String>{"Authorization": "Bearer $token"},
@@ -554,7 +554,7 @@ class _MessengerOrderItemsState extends State<MessengerOrderItems> {
         } else if (widget.orederType == 'Delivered Orders') {
           final response = await http.get(
             Uri.https(
-                "api.commercepal.com:2095",
+                "pay.commercepal.com",
                 "/prime/api/v1/messenger/shipping/deliveries",
                 {'status': "1", "deliveryStatus": "3"}),
             headers: <String, String>{"Authorization": "Bearer $token"},

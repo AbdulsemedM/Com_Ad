@@ -99,7 +99,7 @@ class _MyWalletState extends State<MyWallet>
               Column(
                 children: [
                   SizedBox(
-                    child: Column(  
+                    child: Column(
                       children: [
                         TabBar(
                             indicatorSize: TabBarIndicatorSize.label,
@@ -170,7 +170,7 @@ class _MyWalletState extends State<MyWallet>
         final token = await prefsData.readData(PrefsKeys.userToken.name);
         final response = await http.get(
           Uri.https(
-            "api.commercepal.com:2095",
+            "pay.commercepal.com",
             "/prime/api/v1/distributor/transaction/account-balance",
           ),
           headers: <String, String>{"Authorization": "Bearer $token"},

@@ -543,7 +543,7 @@ class _OrdererdItemDetailsState extends State<OrdererdItemDetails> {
       if (isUserLoggedIn) {
         final token = await prefsData.readData(PrefsKeys.userToken.name);
         final response = await http.get(
-          Uri.https("api.commercepal.com:2095",
+          Uri.https("pay.commercepal.com",
               "/prime/api/v1/messenger/shipping/order-item", {"ItemId": id}),
           headers: <String, String>{"Authorization": "Bearer $token"},
         );
@@ -558,7 +558,7 @@ class _OrdererdItemDetailsState extends State<OrdererdItemDetails> {
             print(productId);
             final response1 = await http.get(
               Uri.https(
-                  "api.commercepal.com:2095",
+                  "pay.commercepal.com",
                   "/prime/api/v1/messenger/shipping/merchant-address",
                   {"ItemId": widget.ItemId}),
               headers: <String, String>{"Authorization": "Bearer $token"},
@@ -704,7 +704,7 @@ class _OrdererdItemDetailsState extends State<OrdererdItemDetails> {
         final token = await prefsData.readData(PrefsKeys.userToken.name);
         final response = await http.post(
           Uri.https(
-            "api.commercepal.com:2095",
+            "pay.commercepal.com",
             "/prime/api/v1/messenger/shipping/accept-order-delivery",
           ),
           body: jsonEncode(payload),
@@ -756,7 +756,7 @@ class _OrdererdItemDetailsState extends State<OrdererdItemDetails> {
         final token = await prefsData.readData(PrefsKeys.userToken.name);
         final response = await http.get(
           Uri.https(
-              "api.commercepal.com:2095",
+              "pay.commercepal.com",
               "/prime/api/v1/merchant/order/product-info",
               {"ItemId": widget.ItemId.toString()}),
           headers: <String, String>{"Authorization": "Bearer $token"},

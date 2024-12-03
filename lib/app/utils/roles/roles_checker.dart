@@ -414,6 +414,7 @@ class _RoleCheckerState extends State<RoleChecker> {
       });
       print(myRoles?.length);
     } catch (e) {
+      print("the error");
       print(e.toString());
     }
   }

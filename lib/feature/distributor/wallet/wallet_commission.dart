@@ -101,7 +101,7 @@ class _WalletCommissionState extends State<WalletCommission> {
         final token = await prefsData.readData(PrefsKeys.userToken.name);
         final response = await http.get(
           Uri.https(
-            "api.commercepal.com:2095",
+            "pay.commercepal.com",
             "/prime/api/v1/distributor/transaction/transactions",
             {"accountType": "COMMISSION"},
           ),
@@ -149,6 +149,4 @@ class _WalletCommissionState extends State<WalletCommission> {
       // Handle other exceptions
     }
   }
-
-  
 }
