@@ -532,7 +532,7 @@ class _ReceiveCashPageState extends State<ReceiveCashPage> {
           });
           return true;
         } else {
-          message = data['statusMessage'];
+          message = data['statusDescription'];
           setState(() {
             loading = false;
           });
