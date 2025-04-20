@@ -356,7 +356,10 @@ class _ReceiveCashPageState extends State<ReceiveCashPage> {
                                         style: ElevatedButton.styleFrom(
                                             backgroundColor:
                                                 AppColors.colorAccent),
-                                        child: const Text("Confirm Amount")))
+                                        child: const Text(
+                                          "Confirm Amount",
+                                          style: TextStyle(color: Colors.white),
+                                        )))
                           ],
                         ),
                       ))
@@ -415,8 +418,10 @@ class _ReceiveCashPageState extends State<ReceiveCashPage> {
                                           context.displaySnack(message);
                                         }
                                       },
-                                      child:
-                                          const Text("Confirm Amount Receipt")),
+                                      child: const Text(
+                                        "Confirm Amount Receipt",
+                                        style: TextStyle(color: Colors.white),
+                                      )),
                                 )
                         ],
                       )
