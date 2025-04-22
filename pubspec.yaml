@@ -53,6 +53,7 @@ dependencies:
   upgrader: ^9.0.0
   flutter_image_compress: ^2.3.0
   image: ^3.0.1
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:

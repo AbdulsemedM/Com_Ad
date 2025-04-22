@@ -11,6 +11,7 @@ import 'package:commercepal_admin_flutter/feature/distributor/distributor_dashbo
 import 'package:commercepal_admin_flutter/feature/login/presentation/login_page.dart';
 import 'package:commercepal_admin_flutter/feature/merchant/dashboard/merchant_dashboard_page.dart';
 import 'package:commercepal_admin_flutter/feature/messenger/messenger_dashboard.dart';
+import 'package:commercepal_admin_flutter/feature/new_messenger/presentation/screen/delivery_items_screen.dart';
 import 'package:commercepal_admin_flutter/feature/reset_password/reset_password.dart';
 import 'package:commercepal_admin_flutter/feature/warehouse/warehouse_Dashboard.dart';
 import 'package:connectivity/connectivity.dart';
@@ -287,8 +288,14 @@ class _RoleCheckerState extends State<RoleChecker> {
                               }
                               switch (myRoles![index].toLowerCase()) {
                                 case "messenger":
-                                  Navigator.pushNamed(
-                                      context, MessengerDashboard.routeName);
+                                  // Navigator.pushNamed(
+                                  //     context, MessengerDashboard.routeName);
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const DeliveryItemsScreen()),
+                                  );
                                   break;
                                 case "distributor":
                                   Navigator.push(
