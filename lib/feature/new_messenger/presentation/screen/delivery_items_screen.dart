@@ -63,7 +63,7 @@ class _DeliveryItemsScreenState extends State<DeliveryItemsScreen> {
                   ),
                 ),
                 const SizedBox(height: 8),
-                Text(
+                const Text(
                   'Delivery Type',
                   style: TextStyle(
                     fontSize: 16,
@@ -87,7 +87,7 @@ class _DeliveryItemsScreenState extends State<DeliveryItemsScreen> {
                   ],
                 ),
                 const SizedBox(height: 8),
-                Text(
+                const Text(
                   'Delivery Status',
                   style: TextStyle(
                     fontSize: 16,
