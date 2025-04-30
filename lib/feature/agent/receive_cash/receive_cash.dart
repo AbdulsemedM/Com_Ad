@@ -452,8 +452,15 @@ class _ReceiveCashPageState extends State<ReceiveCashPage> {
       setState(() {
         loading = true;
       });
+      var pNumber = ordRef.text;
+      pNumber = pNumber.replaceAll(RegExp(r'\s+'), '');
+      if (pNumber.startsWith('0')) {
+        pNumber = '251${pNumber.substring(1)}';
+        print(pNumber);
+      }
       Map<String, dynamic> payload = {
-        "TransRef": traRef.text,
+        "PhoneNumber": pNumber,
+        "ValidCode": valCode.text
       };
       print(payload);
 
