@@ -316,6 +316,147 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                           ),
                         ),
                       ),
+
+                    // Merchant Information
+                    if (details.merchantInfo != null)
+                      Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(16),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  'Merchant Information',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const Divider(),
+                                ListTile(
+                                  leading: const CircleAvatar(
+                                    child: Icon(Icons.store),
+                                  ),
+                                  title:
+                                      Text(details.merchantInfo!.merchantName),
+                                  subtitle: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      if (details.merchantInfo!.district !=
+                                          null)
+                                        Text(
+                                            'District: ${details.merchantInfo!.district!}'),
+                                      if (details
+                                              .merchantInfo!.physicalAddress !=
+                                          null)
+                                        Text(details
+                                            .merchantInfo!.physicalAddress!),
+                                    ],
+                                  ),
+                                ),
+                                const Divider(),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: ListTile(
+                                        leading: const Icon(Icons.phone,
+                                            color: Colors.blue),
+                                        title: const Text('Business'),
+                                        subtitle: Text(details
+                                            .merchantInfo!.businessPhoneNumber),
+                                        onTap: () async {
+                                          final Uri phoneUri = Uri(
+                                            scheme: 'tel',
+                                            path: details.merchantInfo!
+                                                .businessPhoneNumber,
+                                          );
+                                          if (await canLaunchUrl(phoneUri)) {
+                                            await launchUrl(phoneUri);
+                                          }
+                                        },
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: ListTile(
+                                        leading: const Icon(Icons.phone,
+                                            color: Colors.green),
+                                        title: const Text('Owner'),
+                                        subtitle: Text(details
+                                            .merchantInfo!.ownerPhoneNumber),
+                                        onTap: () async {
+                                          final Uri phoneUri = Uri(
+                                            scheme: 'tel',
+                                            path: details
+                                                .merchantInfo!.ownerPhoneNumber,
+                                          );
+                                          if (await canLaunchUrl(phoneUri)) {
+                                            await launchUrl(phoneUri);
+                                          }
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                if (details.merchantInfo!.latitude != null &&
+                                    details.merchantInfo!.longitude != null)
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 16.0,
+                                      vertical: 8.0,
+                                    ),
+                                    child: ElevatedButton.icon(
+                                      onPressed: () async {
+                                        final lat =
+                                            details.merchantInfo!.latitude;
+                                        final lng =
+                                            details.merchantInfo!.longitude;
+                                        final Uri mapsUri = Uri.parse(
+                                            'https://www.google.com/maps/search/?api=1&query=$lat,$lng');
+
+                                        if (await canLaunchUrl(mapsUri)) {
+                                          await launchUrl(
+                                            mapsUri,
+                                            mode:
+                                                LaunchMode.externalApplication,
+                                          );
+                                        } else {
+                                          if (context.mounted) {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              const SnackBar(
+                                                content:
+                                                    Text('Could not open maps'),
+                                              ),
+                                            );
+                                          }
+                                        }
+                                      },
+                                      icon: const Icon(Icons.map),
+                                      label: const Text('View on Maps'),
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            Theme.of(context).primaryColor,
+                                        foregroundColor: Colors.white,
+                                        minimumSize:
+                                            const Size(double.infinity, 45),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
                   ],
                 ),
               ),

@@ -24,11 +24,11 @@ class _ReceiveCashPageState extends State<ReceiveCashPage> {
   TextEditingController traRef = TextEditingController();
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   late QRViewController controller;
-  bool scanDone = false;
+  bool scanDone = true;
   final GlobalKey<FormState> _formKey = GlobalKey();
   String message = '';
   var loading = false;
-  bool manual = false;
+  bool manual = true;
   bool fetched = false;
   double? price;
   double? dPrice;
@@ -240,7 +240,7 @@ class _ReceiveCashPageState extends State<ReceiveCashPage> {
                                       enabled: manual,
                                       controller: valCode,
                                       decoration: const InputDecoration(
-                                          hintText: 'Enter Amount',
+                                          hintText: 'Enter validation code',
                                           filled: true,
                                           fillColor: AppColors.greyColor,
                                           focusedBorder: InputBorder.none,
@@ -265,7 +265,7 @@ class _ReceiveCashPageState extends State<ReceiveCashPage> {
                                         Padding(
                                           padding: EdgeInsets.symmetric(
                                               vertical: 8.0),
-                                          child: Text("Order Ref"),
+                                          child: Text("Phone Number"),
                                         ),
                                       ],
                                     ),
@@ -273,13 +273,13 @@ class _ReceiveCashPageState extends State<ReceiveCashPage> {
                                       enabled: manual,
                                       controller: ordRef,
                                       decoration: const InputDecoration(
-                                          hintText: "Enter order reference",
+                                          hintText: "0987654321",
                                           filled: true,
                                           fillColor: AppColors.greyColor,
                                           focusedBorder: InputBorder.none,
                                           focusedErrorBorder: InputBorder.none,
                                           enabledBorder: InputBorder.none),
-                                      keyboardType: TextInputType.text,
+                                      keyboardType: TextInputType.number,
                                       // onChanged: (value) {
                                       //   setState(() {
                                       //     comment = value;
@@ -287,44 +287,44 @@ class _ReceiveCashPageState extends State<ReceiveCashPage> {
                                       // },
                                       validator: (value) {
                                         if (value?.isEmpty == true) {
-                                          return 'Order Ref is required';
+                                          return 'Phone number is required';
                                         }
                                         return null;
                                       },
                                     ),
-                                    const Row(
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: 8.0),
-                                          child: Text("Trans. Ref"),
-                                        ),
-                                      ],
-                                    ),
-                                    TextFormField(
-                                      enabled: manual,
-                                      controller: traRef,
-                                      decoration: const InputDecoration(
-                                          hintText:
-                                              "Enter transaction reference",
-                                          filled: true,
-                                          fillColor: AppColors.greyColor,
-                                          focusedBorder: InputBorder.none,
-                                          focusedErrorBorder: InputBorder.none,
-                                          enabledBorder: InputBorder.none),
-                                      keyboardType: TextInputType.text,
-                                      // onChanged: (value) {
-                                      //   setState(() {
-                                      //     comment = value;
-                                      //   });
-                                      // },
-                                      validator: (value) {
-                                        if (value?.isEmpty == true) {
-                                          return 'Trans Ref is required';
-                                        }
-                                        return null;
-                                      },
-                                    ),
+                                    // const Row(
+                                    //   children: [
+                                    //     Padding(
+                                    //       padding: EdgeInsets.symmetric(
+                                    //           vertical: 8.0),
+                                    //       child: Text("Trans. Ref"),
+                                    //     ),
+                                    //   ],
+                                    // ),
+                                    // TextFormField(
+                                    //   enabled: manual,
+                                    //   controller: traRef,
+                                    //   decoration: const InputDecoration(
+                                    //       hintText:
+                                    //           "Enter transaction reference",
+                                    //       filled: true,
+                                    //       fillColor: AppColors.greyColor,
+                                    //       focusedBorder: InputBorder.none,
+                                    //       focusedErrorBorder: InputBorder.none,
+                                    //       enabledBorder: InputBorder.none),
+                                    //   keyboardType: TextInputType.text,
+                                    //   // onChanged: (value) {
+                                    //   //   setState(() {
+                                    //   //     comment = value;
+                                    //   //   });
+                                    //   // },
+                                    //   validator: (value) {
+                                    //     if (value?.isEmpty == true) {
+                                    //       return 'Trans Ref is required';
+                                    //     }
+                                    //     return null;
+                                    //   },
+                                    // ),
                                   ],
                                 )),
                             SizedBox(
@@ -508,13 +508,20 @@ class _ReceiveCashPageState extends State<ReceiveCashPage> {
       setState(() {
         loading = true;
       });
+      var pNumber = ordRef.text;
+      pNumber = pNumber.replaceAll(RegExp(r'\s+'), '');
+      if (pNumber.startsWith('0')) {
+        pNumber = '251${pNumber.substring(1)}';
+        print(pNumber);
+      }
       Map<String, dynamic> payload = {
         "ServiceCode": "AGENT-CASH-FULFILLMENT",
         "AgentId": 2,
         "UserType": "A",
         "ValidCode": valCode.text,
-        "OrderRef": ordRef.text.toUpperCase(),
-        "TransRef": traRef.text.toUpperCase(),
+        "PhoneNumber": pNumber,
+        // "OrderRef": ordRef.text.toUpperCase(),
+        // "TransRef": traRef.text.toUpperCase(),
       };
       print(payload);
 

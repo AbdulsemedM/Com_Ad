@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:commercepal_admin_flutter/feature/new_messenger/model/customer_info_model.dart';
 import 'package:commercepal_admin_flutter/feature/new_messenger/model/delivery_address_model.dart';
 import 'package:commercepal_admin_flutter/feature/new_messenger/model/item_model.dart';
+import 'package:commercepal_admin_flutter/feature/new_messenger/model/merchant_info_model.dart';
 import 'package:commercepal_admin_flutter/feature/new_messenger/model/warehouse_delivery_address_model.dart';
 
 class DeliveryDetailsModel {
@@ -17,6 +18,7 @@ class DeliveryDetailsModel {
   final String deliveryStatus;
   final ItemModel itemModel;
   final CustomerInfoModel? customerInfoModel;
+  final MerchantInfoModel? merchantInfo;
   final DeliveryAddressModel deliveryAddressModel;
   final WarehouseDeliveryAddressModel warehouseDeliveryAddressModel;
   DeliveryDetailsModel({
@@ -30,6 +32,7 @@ class DeliveryDetailsModel {
     required this.deliveryStatus,
     required this.itemModel,
     this.customerInfoModel,
+    this.merchantInfo,
     required this.deliveryAddressModel,
     required this.warehouseDeliveryAddressModel,
   });
@@ -45,6 +48,7 @@ class DeliveryDetailsModel {
     String? deliveryStatus,
     ItemModel? itemModel,
     CustomerInfoModel? customerInfoModel,
+    MerchantInfoModel? merchantInfo,
     DeliveryAddressModel? deliveryAddressModel,
     WarehouseDeliveryAddressModel? warehouseDeliveryAddressModel,
   }) {
@@ -59,6 +63,7 @@ class DeliveryDetailsModel {
       deliveryStatus: deliveryStatus ?? this.deliveryStatus,
       itemModel: itemModel ?? this.itemModel,
       customerInfoModel: customerInfoModel ?? this.customerInfoModel,
+      merchantInfo: merchantInfo ?? this.merchantInfo,
       deliveryAddressModel: deliveryAddressModel ?? this.deliveryAddressModel,
       warehouseDeliveryAddressModel:
           warehouseDeliveryAddressModel ?? this.warehouseDeliveryAddressModel,
@@ -77,6 +82,7 @@ class DeliveryDetailsModel {
       'deliveryStatus': deliveryStatus,
       'itemModel': itemModel.toMap(),
       'customerInfoModel': customerInfoModel?.toMap(),
+      'merchantInfo': merchantInfo?.toMap(),
       'deliveryAddressModel': deliveryAddressModel.toMap(),
       'warehouseDeliveryAddressModel': warehouseDeliveryAddressModel.toMap(),
     };
@@ -98,6 +104,10 @@ class DeliveryDetailsModel {
           ? CustomerInfoModel.fromMap(
               map['customerInfo'] as Map<String, dynamic>)
           : null,
+      merchantInfo: map['merchantInfo'] != null
+          ? MerchantInfoModel.fromMap(
+              map['merchantInfo'] as Map<String, dynamic>)
+          : null,
       deliveryAddressModel: DeliveryAddressModel.fromMap(
           map['deliveryAddress'] as Map<String, dynamic>),
       warehouseDeliveryAddressModel: WarehouseDeliveryAddressModel.fromMap(
@@ -112,7 +122,7 @@ class DeliveryDetailsModel {
 
   @override
   String toString() {
-    return 'DeliveryDetailsModel(id: $id, deliveryType: $deliveryType, appName: $appName, pickingDate: $pickingDate, validationCode: $validationCode, validationStatus: $validationStatus, deliveryCode: $deliveryCode, deliveryStatus: $deliveryStatus, itemModel: $itemModel, customerInfoModel: $customerInfoModel, deliveryAddressModel: $deliveryAddressModel, warehouseDeliveryAddressModel: $warehouseDeliveryAddressModel)';
+    return 'DeliveryDetailsModel(id: $id, deliveryType: $deliveryType, appName: $appName, pickingDate: $pickingDate, validationCode: $validationCode, validationStatus: $validationStatus, deliveryCode: $deliveryCode, deliveryStatus: $deliveryStatus, itemModel: $itemModel, customerInfoModel: $customerInfoModel, merchantInfo: $merchantInfo, deliveryAddressModel: $deliveryAddressModel, warehouseDeliveryAddressModel: $warehouseDeliveryAddressModel)';
   }
 
   @override
@@ -129,6 +139,7 @@ class DeliveryDetailsModel {
         other.deliveryStatus == deliveryStatus &&
         other.itemModel == itemModel &&
         other.customerInfoModel == customerInfoModel &&
+        other.merchantInfo == merchantInfo &&
         other.deliveryAddressModel == deliveryAddressModel &&
         other.warehouseDeliveryAddressModel == warehouseDeliveryAddressModel;
   }
@@ -145,6 +156,7 @@ class DeliveryDetailsModel {
         deliveryStatus.hashCode ^
         itemModel.hashCode ^
         customerInfoModel.hashCode ^
+        merchantInfo.hashCode ^
         deliveryAddressModel.hashCode ^
         warehouseDeliveryAddressModel.hashCode;
   }
