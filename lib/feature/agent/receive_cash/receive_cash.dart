@@ -473,11 +473,9 @@ class _ReceiveCashPageState extends State<ReceiveCashPage> {
                 "/prime/api/v1/agent/order/order-detail"),
             body: jsonEncode(payload),
             headers: <String, String>{"Authorization": "Bearer $token"});
-        // print(response.body);
         var data = jsonDecode(response.body);
         print(data);
 
-        // print((data['data']['TotalPrice']).toString());
         if (data['statusCode'] == '000') {
           setState(() {
             price = double.parse(data['data']['TotalPrice'].toString());
