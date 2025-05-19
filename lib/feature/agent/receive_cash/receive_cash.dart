@@ -406,6 +406,9 @@ class _ReceiveCashPageState extends State<ReceiveCashPage> {
                               : SizedBox(
                                   width: sWidth * 0.9,
                                   child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                          backgroundColor:
+                                              AppColors.colorAccent),
                                       onPressed: () async {
                                         bool confirm = await confirmAmount();
                                         if (confirm) {
@@ -474,12 +477,20 @@ class _ReceiveCashPageState extends State<ReceiveCashPage> {
             body: jsonEncode(payload),
             headers: <String, String>{"Authorization": "Bearer $token"});
         var data = jsonDecode(response.body);
-        print(data);
 
         if (data['statusCode'] == '000') {
+          print("success");
+          print(data['data']['TotalPrice'].toString());
+          // Remove non-numeric characters except decimal point
+          String cleanPrice = data['data']['TotalPrice']
+              .toString()
+              .replaceAll(RegExp(r'[^\d.]'), '');
+          String cleanDPrice = data['data']['DeliveryPrice']
+              .toString()
+              .replaceAll(RegExp(r'[^\d.]'), '');
           setState(() {
-            price = double.parse(data['data']['TotalPrice'].toString());
-            dPrice = double.parse(data['data']['DeliveryPrice'].toString());
+            price = double.parse(cleanPrice);
+            dPrice = double.parse(cleanDPrice);
             message = data['statusMessage'];
             loading = false;
             fetched = true;
