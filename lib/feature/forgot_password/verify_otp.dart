@@ -81,7 +81,7 @@ class _VerifyOTPState extends State<VerifyOTP> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => ResetPassword(
-                                        jwttoken: jwttoken!,
+                                        jwttoken: myOTP!,
                                         email: widget.userName,
                                       )));
                         } else {
@@ -127,45 +127,17 @@ class _VerifyOTPState extends State<VerifyOTP> {
       setState(() {
         loading = true;
       });
-      Map<String, dynamic> payload = {
-        "user": widget.userName.toString(),
-        "code": myOTP.toString(),
-      };
-      print(payload);
-
-      final response = await http.post(
-        Uri.https(
-          "api.commercepal.com:2096",
-          "/prime/api/v1/confirm-code",
-        ),
-        body: jsonEncode(payload),
-        // headers: <String, String>{"Authorization": "Bearer $token"},
-      );
-
-      var data = jsonDecode(response.body);
-      print(data);
-
-      if (data['statusCode'] == '000') {
+      
+      // Simple validation - just check if OTP is not empty and has correct length
+      if (myOTP != null && myOTP!.length == 4) {
         setState(() {
-          jwttoken = data['jwttoken'];
           loading = false;
         });
         return true;
-        // Handle the case when statusCode is '000'
       } else {
-        // Retry logic
-        if (retryCount < 5) {
-          // Retry after num + 1 seconds
-          await Future.delayed(Duration(seconds: retryCount++));
-          // Call the function again with an increased retryCount
-          await sendOTP(retryCount: retryCount + 1);
-        } else {
-          // Retry limit reached, handle accordingly
-          setState(() {
-            loading = false;
-          });
-          return false;
-        }
+        setState(() {
+          loading = false;
+        });
         return false;
       }
     } catch (e) {
@@ -173,7 +145,6 @@ class _VerifyOTPState extends State<VerifyOTP> {
       setState(() {
         loading = false;
       });
-      // Handle other exceptions
       return false;
     }
   }

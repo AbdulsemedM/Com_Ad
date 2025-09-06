@@ -32,7 +32,7 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
         title: BlocBuilder<NewMessengerBloc, NewMessengerState>(
           builder: (context, state) {
             if (state is FetchDeliveryItemDetailsSuccess) {
-              return Text(state.deliveryDetails.appName);
+              return Text(state.deliveryDetails.appName ?? "");
             }
             return const Text('Delivery Details');
           },
@@ -47,7 +47,8 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor:
-                          state.deliveryDetails.deliveryStatus.toLowerCase() ==
+                          (state.deliveryDetails.deliveryStatus?.toLowerCase() ??
+                                  '') ==
                                   'pending'
                               ? Colors.green
                               : Colors.grey,
@@ -57,7 +58,8 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                       ),
                     ),
                     onPressed:
-                        state.deliveryDetails.deliveryStatus.toLowerCase() ==
+                        (state.deliveryDetails.deliveryStatus?.toLowerCase() ??
+                                '') ==
                                 'pending'
                             ? () {
                                 // context.read<NewMessengerBloc>().add(
@@ -70,7 +72,8 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Icon(
-                          state.deliveryDetails.deliveryStatus.toLowerCase() ==
+                          (state.deliveryDetails.deliveryStatus?.toLowerCase() ??
+                                  '') ==
                                   'pending'
                               ? Icons.check_circle_outline
                               : Icons.check_circle,
@@ -154,14 +157,14 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                             children: [
                               StatusBadge(
                                 codeName: "Validation Code",
-                                status: details.validationStatus,
-                                code: details.validationCode,
+                                status: details.validationStatus ?? '',
+                                code: details.validationCode ?? '',
                                 isValidation: true,
                               ),
                               StatusBadge(
                                 codeName: "Delivery Code",
-                                status: details.deliveryStatus,
-                                code: details.deliveryCode,
+                                status: details.deliveryStatus ?? '',
+                                code: details.deliveryCode ?? '',
                               ),
                             ],
                           ),
@@ -186,7 +189,7 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                                       ),
                                     ),
                                     Text(
-                                      details.deliveryType,
+                                      details.deliveryType ?? '',
                                       style: const TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold,
@@ -233,24 +236,27 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Column(
                         children: [
-                          AddressCard(
-                            title: 'Warehouse Address',
-                            address: details
-                                .warehouseDeliveryAddressModel.physicalAddress,
-                            contactPerson: details
-                                .warehouseDeliveryAddressModel.wareHouseName,
-                            phone: "",
-                            icon: Icons.warehouse,
-                          ),
-                          const SizedBox(height: 16),
-                          AddressCard(
-                            title: 'Delivery Address',
-                            address:
-                                details.deliveryAddressModel.physicalAddress,
-                            contactPerson: details.deliveryAddressModel.country,
-                            phone: details.deliveryAddressModel.cityName,
-                            icon: Icons.location_on,
-                          ),
+                          if (details.warehouseDeliveryAddressModel != null)
+                            AddressCard(
+                              title: 'Warehouse Address',
+                              address: details
+                                  .warehouseDeliveryAddressModel?.physicalAddress ?? '',
+                              contactPerson: details
+                                  .warehouseDeliveryAddressModel?.wareHouseName ?? '',
+                              phone: "",
+                              icon: Icons.warehouse,
+                            ),
+                          if (details.warehouseDeliveryAddressModel != null)
+                            const SizedBox(height: 16),
+                          if (details.deliveryAddressModel != null)
+                            AddressCard(
+                              title: 'Delivery Address',
+                              address:
+                                  details.deliveryAddressModel?.physicalAddress ?? '',
+                              contactPerson: details.deliveryAddressModel?.country ?? '',
+                              phone: details.deliveryAddressModel?.cityName ?? '',
+                              icon: Icons.location_on,
+                            ),
                         ],
                       ),
                     ),
@@ -281,9 +287,9 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                                     child: Icon(Icons.person),
                                   ),
                                   title:
-                                      Text(details.customerInfoModel!.fullName),
+                                      Text(details.customerInfoModel?.fullName ?? ''),
                                   subtitle: Text(
-                                      details.customerInfoModel!.phoneNumber),
+                                      details.customerInfoModel?.phoneNumber ?? ''),
                                   trailing: IconButton(
                                     icon: const Icon(
                                       Icons.phone,
@@ -293,7 +299,7 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                                       final Uri phoneUri = Uri(
                                         scheme: 'tel',
                                         path: details
-                                            .customerInfoModel!.phoneNumber,
+                                            .customerInfoModel?.phoneNumber ?? '',
                                       );
                                       if (await canLaunchUrl(phoneUri)) {
                                         await launchUrl(phoneUri);
@@ -343,20 +349,20 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                                     child: Icon(Icons.store),
                                   ),
                                   title:
-                                      Text(details.merchantInfo!.merchantName),
+                                      Text(details.merchantInfo?.merchantName ?? ''),
                                   subtitle: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      if (details.merchantInfo!.district !=
+                                      if (details.merchantInfo?.district !=
                                           null)
                                         Text(
-                                            'District: ${details.merchantInfo!.district!}'),
+                                            'District: ${details.merchantInfo?.district ?? ''}'),
                                       if (details
-                                              .merchantInfo!.physicalAddress !=
+                                              .merchantInfo?.physicalAddress !=
                                           null)
                                         Text(details
-                                            .merchantInfo!.physicalAddress!),
+                                            .merchantInfo?.physicalAddress ?? ''),
                                     ],
                                   ),
                                 ),
@@ -369,12 +375,11 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                                             color: Colors.blue),
                                         title: const Text('Business'),
                                         subtitle: Text(details
-                                            .merchantInfo!.businessPhoneNumber),
+                                            .merchantInfo?.businessPhoneNumber ?? ''),
                                         onTap: () async {
                                           final Uri phoneUri = Uri(
                                             scheme: 'tel',
-                                            path: details.merchantInfo!
-                                                .businessPhoneNumber,
+                                            path: details.merchantInfo?.businessPhoneNumber ?? '',
                                           );
                                           if (await canLaunchUrl(phoneUri)) {
                                             await launchUrl(phoneUri);
@@ -388,12 +393,12 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                                             color: Colors.green),
                                         title: const Text('Owner'),
                                         subtitle: Text(details
-                                            .merchantInfo!.ownerPhoneNumber),
+                                            .merchantInfo?.ownerPhoneNumber ?? ''),
                                         onTap: () async {
                                           final Uri phoneUri = Uri(
                                             scheme: 'tel',
                                             path: details
-                                                .merchantInfo!.ownerPhoneNumber,
+                                                .merchantInfo?.ownerPhoneNumber ?? '',
                                           );
                                           if (await canLaunchUrl(phoneUri)) {
                                             await launchUrl(phoneUri);
@@ -403,8 +408,8 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                                     ),
                                   ],
                                 ),
-                                if (details.merchantInfo!.latitude != null &&
-                                    details.merchantInfo!.longitude != null)
+                                if (details.merchantInfo?.latitude != null &&
+                                    details.merchantInfo?.longitude != null)
                                   Padding(
                                     padding: const EdgeInsets.symmetric(
                                       horizontal: 16.0,
@@ -413,9 +418,9 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                                     child: ElevatedButton.icon(
                                       onPressed: () async {
                                         final lat =
-                                            details.merchantInfo!.latitude;
+                                            details.merchantInfo?.latitude;
                                         final lng =
-                                            details.merchantInfo!.longitude;
+                                            details.merchantInfo?.longitude;
                                         final Uri mapsUri = Uri.parse(
                                             'https://www.google.com/maps/search/?api=1&query=$lat,$lng');
 

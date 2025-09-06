@@ -15,8 +15,7 @@ class NewMessengerDataProvider {
           Uri.parse(
               "https://api.commercepal.com:2096/prime/api/v1/messenger/shipping/deliveries"),
           headers: <String, String>{
-            "Authorization":
-                "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYmRpdHJuaGRldkBnbWFpbC5jb20iLCJleHAiOjIzNDk1MDY5MDMsImlhdCI6MTc0NDcwNjkwM30.eogMGCsQT2icTrctpsEVME3Ese_UgtkqDIzuEyyejqh8Or7ZG8zNtPXIcSGR8AicIbpdV7fgbfxqxuyZ_TskNQ"
+            "Authorization": "Bearer $token"
           });
       print(response.body);
       return response.body;
@@ -32,8 +31,7 @@ class NewMessengerDataProvider {
           Uri.parse(
               "https://api.commercepal.com:2096/prime/api/v1/messenger/shipping/deliveries/$id"),
           headers: <String, String>{
-            "Authorization":
-                "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYmRpdHJuaGRldkBnbWFpbC5jb20iLCJleHAiOjIzNDk1MDY5MDMsImlhdCI6MTc0NDcwNjkwM30.eogMGCsQT2icTrctpsEVME3Ese_UgtkqDIzuEyyejqh8Or7ZG8zNtPXIcSGR8AicIbpdV7fgbfxqxuyZ_TskNQ"
+            "Authorization": "Bearer $token"
           });
       print(response.body);
       return response.body;

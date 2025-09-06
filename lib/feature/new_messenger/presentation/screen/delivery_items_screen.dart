@@ -15,6 +15,7 @@ class DeliveryItemsScreen extends StatefulWidget {
 class _DeliveryItemsScreenState extends State<DeliveryItemsScreen> {
   String? selectedType;
   String? selectedStatus;
+  List<DeliveryItemsModel>? _cachedDeliveries;
 
   final List<String> deliveryTypes = [
     'Newly Assigned',
@@ -119,11 +120,15 @@ class _DeliveryItemsScreenState extends State<DeliveryItemsScreen> {
           Expanded(
             child: BlocBuilder<NewMessengerBloc, NewMessengerState>(
               builder: (context, state) {
-                if (state is FetchDeliveryItemsLoading) {
+                if (state is FetchDeliveryItemsLoading && _cachedDeliveries == null) {
                   return const Center(child: CircularProgressIndicator());
                 } else if (state is FetchDeliveryItemsSuccess) {
+                  _cachedDeliveries = state.deliveryItems;
+                }
+                
+                if (_cachedDeliveries != null) {
                   final filteredDeliveries =
-                      _filterDeliveries(state.deliveryItems);
+                      _filterDeliveries(_cachedDeliveries!);
 
                   if (filteredDeliveries.isEmpty) {
                     return const Center(
@@ -141,8 +146,8 @@ class _DeliveryItemsScreenState extends State<DeliveryItemsScreen> {
                       itemCount: filteredDeliveries.length,
                       itemBuilder: (context, index) {
                         return GestureDetector(
-                          onTap: () {
-                            Navigator.push(
+                          onTap: () async {
+                            await Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => DeliveryDetailsScreen(
@@ -150,13 +155,13 @@ class _DeliveryItemsScreenState extends State<DeliveryItemsScreen> {
                                       filteredDeliveries[index].id.toString(),
                                 ),
                               ),
-                            ).whenComplete(() {
-                              if (context.mounted) {
-                                context
-                                    .read<NewMessengerBloc>()
-                                    .add(FetchDeliveryItemsEvent());
-                              }
-                            });
+                            );
+                            // Refresh data after returning from details screen
+                            if (context.mounted) {
+                              context
+                                  .read<NewMessengerBloc>()
+                                  .add(RefreshDeliveryItemsEvent());
+                            }
                           },
                           child: DeliveryItemCard(
                             delivery: filteredDeliveries[index],
@@ -165,7 +170,9 @@ class _DeliveryItemsScreenState extends State<DeliveryItemsScreen> {
                       },
                     ),
                   );
-                } else if (state is FetchDeliveryItemsError) {
+                }
+                
+                if (state is FetchDeliveryItemsError) {
                   return Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -183,7 +190,8 @@ class _DeliveryItemsScreenState extends State<DeliveryItemsScreen> {
                     ),
                   );
                 }
-                return const SizedBox();
+                
+                return const Center(child: Text('No data available'));
               },
             ),
           ),

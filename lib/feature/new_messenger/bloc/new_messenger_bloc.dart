@@ -10,6 +10,7 @@ class NewMessengerBloc extends Bloc<NewMessengerEvent, NewMessengerState> {
   final NewMessengerRepository newMessengerRepository;
   NewMessengerBloc(this.newMessengerRepository) : super(NewMessengerInitial()) {
     on<FetchDeliveryItemsEvent>(_fetchDeliveryItems);
+    on<RefreshDeliveryItemsEvent>(_refreshDeliveryItems);
     on<FetchDeliveryItemDetailsEvent>(_fetchDeliveryItemDetails);
     // on<AddAgentEvent>(_addAgent);
     // on<UpdateAgentEvent>(_updateAgent);
@@ -23,6 +24,18 @@ class NewMessengerBloc extends Bloc<NewMessengerEvent, NewMessengerState> {
       emit(FetchDeliveryItemsSuccess(deliveryItems: deliveryItems));
     } catch (e) {
       emit(FetchDeliveryItemsError(error: e.toString()));
+    }
+  }
+
+  void _refreshDeliveryItems(
+      RefreshDeliveryItemsEvent event, Emitter<NewMessengerState> emit) async {
+    // Don't emit loading state to avoid items disappearing
+    try {
+      final deliveryItems = await newMessengerRepository.fetchDeliveryItems();
+      emit(FetchDeliveryItemsSuccess(deliveryItems: deliveryItems));
+    } catch (e) {
+      // Silently handle errors during refresh, keep current state
+      // Could optionally show a snackbar or toast for error feedback
     }
   }
 

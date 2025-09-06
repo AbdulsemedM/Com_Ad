@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:commercepal_admin_flutter/feature/login/presentation/login_page.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/io_client.dart';
 import 'package:flutter/material.dart';
 
 class ResetPassword extends StatefulWidget {
@@ -178,19 +180,27 @@ class _ResetPasswordState extends State<ResetPassword> {
         loading = true;
       });
       Map<String, dynamic> payload = {
-        "email": widget.email,
-        "password": password.toString(),
+        "emailOrPhone": widget.email,
+        "token": widget.jwttoken,
+        "newPassword": password.toString(),
       };
       print(payload);
 
-      final response = await http.post(
+      // Create HTTP client that bypasses SSL certificate verification
+      final httpClient = HttpClient()
+        ..badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+      final ioClient = IOClient(httpClient);
+
+      final response = await ioClient.post(
         Uri.https(
-          "api.commercepal.com:2096",
-          "/prime/api/v1/reset-password",
+          "api.commercepal.com",
+          "/api/v2/auth/password-reset/confirm",
         ),
         body: jsonEncode(payload),
-        headers: <String, String>{"Authorization": "Bearer ${widget.jwttoken}"},
+        headers: <String, String>{'Content-Type': 'application/json'},
       );
+      
+      ioClient.close();
 
       var data = jsonDecode(response.body);
       print(data);

@@ -14,7 +14,7 @@ class NewMessengerRepository {
       final response = await _newMessengerDataProvider.fetchDeliveryItems();
       final data = jsonDecode(response);
       if (data['statusCode'] != "000") {
-        throw data['message'];
+        throw data['statusMessage'];
       }
       if (data['responseData'] is List) {
         final deliveryItems = (data['responseData'] as List)
@@ -36,7 +36,7 @@ class NewMessengerRepository {
           await _newMessengerDataProvider.fetchDeliveryItemDetails(id);
       final data = jsonDecode(response);
       if (data['statusCode'] != "000") {
-        throw data['message'];
+        throw data['statusMessage'];
       }
       if (data['responseData'] is Map) {
         final deliveryItems =

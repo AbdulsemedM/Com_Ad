@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:commercepal_admin_flutter/core/extensions/context_ext.dart';
 import 'package:commercepal_admin_flutter/feature/forgot_password/verify_otp.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/io_client.dart';
 import 'package:flutter/material.dart';
 
 class ForgotPassword extends StatefulWidget {
@@ -136,18 +138,25 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         loading = true;
       });
       Map<String, dynamic> payload = {
-        "user": emailAddress.toString(),
+        "emailOrPhone": emailAddress.toString(),
       };
       print(payload);
 
-      final response = await http.post(
+      // Create HTTP client that bypasses SSL certificate verification
+      final httpClient = HttpClient()
+        ..badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+      final ioClient = IOClient(httpClient);
+
+      final response = await ioClient.post(
         Uri.https(
-          "api.commercepal.com:2096",
-          "/prime/api/v1/password-type-reset",
+          "api.commercepal.com",
+          "/api/v2/auth/password-reset/request",
         ),
         body: jsonEncode(payload),
-        // headers: <String, String>{"Authorization": "Bearer $token"},
+        headers: <String, String>{'Content-Type': 'application/json'},
       );
+      
+      ioClient.close();
 
       var data = jsonDecode(response.body);
       print(data);

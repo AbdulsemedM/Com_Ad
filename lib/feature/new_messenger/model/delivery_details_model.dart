@@ -8,33 +8,33 @@ import 'package:commercepal_admin_flutter/feature/new_messenger/model/merchant_i
 import 'package:commercepal_admin_flutter/feature/new_messenger/model/warehouse_delivery_address_model.dart';
 
 class DeliveryDetailsModel {
-  final int id;
-  final String deliveryType;
-  final String appName;
+  final int? id;
+  final String? deliveryType;
+  final String? appName;
   final String? pickingDate;
-  final String validationCode;
-  final String validationStatus;
-  final String deliveryCode;
-  final String deliveryStatus;
-  final ItemModel itemModel;
+  final String? validationCode;
+  final String? validationStatus;
+  final String? deliveryCode;
+  final String? deliveryStatus;
+  final ItemModel? itemModel;
   final CustomerInfoModel? customerInfoModel;
   final MerchantInfoModel? merchantInfo;
-  final DeliveryAddressModel deliveryAddressModel;
-  final WarehouseDeliveryAddressModel warehouseDeliveryAddressModel;
+  final DeliveryAddressModel? deliveryAddressModel;
+  final WarehouseDeliveryAddressModel? warehouseDeliveryAddressModel;
   DeliveryDetailsModel({
-    required this.id,
-    required this.deliveryType,
-    required this.appName,
+    this.id,
+    this.deliveryType,
+    this.appName,
     this.pickingDate,
-    required this.validationCode,
-    required this.validationStatus,
-    required this.deliveryCode,
-    required this.deliveryStatus,
-    required this.itemModel,
+    this.validationCode,
+    this.validationStatus,
+    this.deliveryCode,
+    this.deliveryStatus,
+    this.itemModel,
     this.customerInfoModel,
     this.merchantInfo,
-    required this.deliveryAddressModel,
-    required this.warehouseDeliveryAddressModel,
+    this.deliveryAddressModel,
+    this.warehouseDeliveryAddressModel,
   });
 
   DeliveryDetailsModel copyWith({
@@ -80,26 +80,26 @@ class DeliveryDetailsModel {
       'validationStatus': validationStatus,
       'deliveryCode': deliveryCode,
       'deliveryStatus': deliveryStatus,
-      'itemModel': itemModel.toMap(),
+      'itemModel': itemModel?.toMap(),
       'customerInfoModel': customerInfoModel?.toMap(),
       'merchantInfo': merchantInfo?.toMap(),
-      'deliveryAddressModel': deliveryAddressModel.toMap(),
-      'warehouseDeliveryAddressModel': warehouseDeliveryAddressModel.toMap(),
+      'deliveryAddressModel': deliveryAddressModel?.toMap(),
+      'warehouseDeliveryAddressModel': warehouseDeliveryAddressModel?.toMap(),
     };
   }
 
   factory DeliveryDetailsModel.fromMap(Map<String, dynamic> map) {
     return DeliveryDetailsModel(
-      id: map['id'] as int,
-      deliveryType: map['deliveryType'] as String,
-      appName: map['appName'] as String,
+      id: map['id'] as int?,
+      deliveryType: map['deliveryType'] as String?,
+      appName: map['appName'] as String?,
       pickingDate:
           map['pickingDate'] != null ? map['pickingDate'] as String : null,
-      validationCode: map['validationCode'] as String,
-      validationStatus: map['validationStatus'] as String,
-      deliveryCode: map['deliveryCode'] as String,
-      deliveryStatus: map['deliveryStatus'] as String,
-      itemModel: ItemModel.fromMap(map['item'] as Map<String, dynamic>),
+      validationCode: map['validationCode'] as String?,
+      validationStatus: map['validationStatus'] as String?,
+      deliveryCode: map['deliveryCode'] as String?,
+      deliveryStatus: map['deliveryStatus'] as String?,
+      itemModel: map['item'] != null ? ItemModel.fromMap(map['item'] as Map<String, dynamic>) : null,
       customerInfoModel: map['customerInfo'] != null
           ? CustomerInfoModel.fromMap(
               map['customerInfo'] as Map<String, dynamic>)
@@ -108,10 +108,10 @@ class DeliveryDetailsModel {
           ? MerchantInfoModel.fromMap(
               map['merchantInfo'] as Map<String, dynamic>)
           : null,
-      deliveryAddressModel: DeliveryAddressModel.fromMap(
-          map['deliveryAddress'] as Map<String, dynamic>),
-      warehouseDeliveryAddressModel: WarehouseDeliveryAddressModel.fromMap(
-          map['wareHouseAddress'] as Map<String, dynamic>),
+      deliveryAddressModel: map['deliveryAddress'] != null ? DeliveryAddressModel.fromMap(
+          map['deliveryAddress'] as Map<String, dynamic>) : null,
+      warehouseDeliveryAddressModel: map['wareHouseAddress'] != null ? WarehouseDeliveryAddressModel.fromMap(
+          map['wareHouseAddress'] as Map<String, dynamic>) : null,
     );
   }
 

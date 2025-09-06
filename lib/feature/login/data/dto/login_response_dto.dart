@@ -10,8 +10,8 @@ class LoginResponseDto {
   LoginResponseDto({
     String? userToken,
     String? statusDescription,
-    num? isPhoneValidated,
-    num? isEmailValidated,
+    bool? isPhoneValidated,
+    bool? isEmailValidated,
     num? changePin,
     String? statusMessage,
     String? statusCode,
@@ -40,8 +40,8 @@ class LoginResponseDto {
 
   String? _userToken;
   String? _statusDescription;
-  num? _isPhoneValidated;
-  num? _isEmailValidated;
+  bool? _isPhoneValidated;
+  bool? _isEmailValidated;
   num? _changePin;
   String? _statusMessage;
   String? _statusCode;
@@ -50,8 +50,8 @@ class LoginResponseDto {
   LoginResponseDto copyWith({
     String? userToken,
     String? statusDescription,
-    num? isPhoneValidated,
-    num? isEmailValidated,
+    bool? isPhoneValidated,
+    bool? isEmailValidated,
     num? changePin,
     String? statusMessage,
     String? statusCode,
@@ -72,9 +72,9 @@ class LoginResponseDto {
 
   String? get statusDescription => _statusDescription;
 
-  num? get isPhoneValidated => _isPhoneValidated;
+  bool? get isPhoneValidated => _isPhoneValidated;
 
-  num? get isEmailValidated => _isEmailValidated;
+  bool? get isEmailValidated => _isEmailValidated;
 
   num? get changePin => _changePin;
 
