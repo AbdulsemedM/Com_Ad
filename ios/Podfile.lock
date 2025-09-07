@@ -20,35 +20,22 @@ PODS:
     - Flutter
   - image_picker_ios (0.0.1):
     - Flutter
-  - libwebp (1.3.2):
-    - libwebp/demux (= 1.3.2)
-    - libwebp/mux (= 1.3.2)
-    - libwebp/sharpyuv (= 1.3.2)
-    - libwebp/webp (= 1.3.2)
-  - libwebp/demux (1.3.2):
+  - libwebp (1.5.0):
+    - libwebp/demux (= 1.5.0)
+    - libwebp/mux (= 1.5.0)
+    - libwebp/sharpyuv (= 1.5.0)
+    - libwebp/webp (= 1.5.0)
+  - libwebp/demux (1.5.0):
     - libwebp/webp
-  - libwebp/mux (1.3.2):
+  - libwebp/mux (1.5.0):
     - libwebp/demux
-  - libwebp/sharpyuv (1.3.2)
-  - libwebp/webp (1.3.2):
+  - libwebp/sharpyuv (1.5.0)
+  - libwebp/webp (1.5.0):
     - libwebp/sharpyuv
   - Mantle (2.2.0):
     - Mantle/extobjc (= 2.2.0)
   - Mantle/extobjc (2.2.0)
   - MTBBarcodeScanner (5.0.11)
-  - onesignal_flutter (3.5.3):
-    - Flutter
-    - OneSignalXCFramework (= 3.12.9)
-  - OneSignalXCFramework (3.12.9):
-    - OneSignalXCFramework/OneSignalCore (= 3.12.9)
-    - OneSignalXCFramework/OneSignalExtension (= 3.12.9)
-    - OneSignalXCFramework/OneSignalOutcomes (= 3.12.9)
-  - OneSignalXCFramework/OneSignalCore (3.12.9)
-  - OneSignalXCFramework/OneSignalExtension (3.12.9):
-    - OneSignalXCFramework/OneSignalCore
-    - OneSignalXCFramework/OneSignalOutcomes
-  - OneSignalXCFramework/OneSignalOutcomes (3.12.9):
-    - OneSignalXCFramework/OneSignalCore
   - package_info_plus (0.4.5):
     - Flutter
   - path_provider_foundation (0.0.1):
@@ -64,9 +51,9 @@ PODS:
     - Flutter
     - MTBBarcodeScanner
   - Reachability (3.7.6)
-  - SDWebImage (5.19.6):
-    - SDWebImage/Core (= 5.19.6)
-  - SDWebImage/Core (5.19.6)
+  - SDWebImage (5.21.2):
+    - SDWebImage/Core (= 5.21.2)
+  - SDWebImage/Core (5.21.2)
   - SDWebImageWebPCoder (0.14.6):
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.17)
@@ -89,8 +76,6 @@ DEPENDENCIES:
   - geocoding_ios (from `.symlinks/plugins/geocoding_ios/ios`)
   - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
-  - onesignal_flutter (from `.symlinks/plugins/onesignal_flutter/ios`)
-  - OneSignalXCFramework (< 6.0, >= 2.5.2)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
@@ -105,7 +90,6 @@ SPEC REPOS:
     - libwebp
     - Mantle
     - MTBBarcodeScanner
-    - OneSignalXCFramework
     - PhoneNumberKit
     - Reachability
     - SDWebImage
@@ -130,8 +114,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/geolocator_apple/ios"
   image_picker_ios:
     :path: ".symlinks/plugins/image_picker_ios/ios"
-  onesignal_flutter:
-    :path: ".symlinks/plugins/onesignal_flutter/ios"
   package_info_plus:
     :path: ".symlinks/plugins/package_info_plus/ios"
   path_provider_foundation:
@@ -150,33 +132,31 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
-  connectivity: c4130b2985d4ef6fd26f9702e886bd5260681467
-  device_info_plus: c6fb39579d0f423935b0c9ce7ee2f44b71b9fce6
+  connectivity: e7d9fd79099f39025737062855c00248b7afcdf0
+  device_info_plus: 335f3ce08d2e174b9fdc3db3db0f4e3b1f66bd89
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  flutter_image_compress_common: ec1d45c362c9d30a3f6a0426c297f47c52007e3e
-  flutter_secure_storage: 23fc622d89d073675f2eaa109381aefbcf5a49be
-  gallery_saver: 9fc173c9f4fcc48af53b2a9ebea1b643255be542
-  geocoding_ios: a389ea40f6f548de6e63006a2e31bf66ff80769a
-  geolocator_apple: 6cbaf322953988e009e5ecb481f07efece75c450
-  image_picker_ios: c560581cceedb403a6ff17f2f816d7fea1421fc1
-  libwebp: 1786c9f4ff8a279e4dac1e8f385004d5fc253009
+  flutter_image_compress_common: 1697a328fd72bfb335507c6bca1a65fa5ad87df1
+  flutter_secure_storage: 2c2ff13db9e0a5647389bff88b0ecac56e3f3418
+  gallery_saver: 1d68d1818df11b1afa84a97d1a530463753e92e3
+  geocoding_ios: 86f1c479822f07a2f79f7094f2b753d1e9e20215
+  geolocator_apple: d981750b9f47dbdb02427e1476d9a04397beb8d9
+  image_picker_ios: 7fe1ff8e34c1790d6fff70a32484959f563a928a
+  libwebp: 02b23773aedb6ff1fd38cec7a77b81414c6842a8
   Mantle: c5aa8794a29a022dfbbfc9799af95f477a69b62d
   MTBBarcodeScanner: f453b33c4b7dfe545d8c6484ed744d55671788cb
-  onesignal_flutter: c56e81f5a422b0b1e06820338f299333ca85c171
-  OneSignalXCFramework: 3c3ef25ecca5eae1bf80a3272c49fd1dbab96b35
-  package_info_plus: 115f4ad11e0698c8c1c5d8a689390df880f47e85
-  path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
-  permission_handler_apple: 9878588469a2b0d0fc1e048d9f43605f92e6cec2
-  phone_number: ad6f917e4fd2e507a198b93dca5eadcb463ec8c2
+  package_info_plus: 566e1b7a2f3900e4b0020914ad3fc051dcc95596
+  path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
+  permission_handler_apple: 4ed2196e43d0651e8ff7ca3483a069d469701f2d
+  phone_number: 87eabaecb73194fbb682f8575dd4e03eca276ef2
   PhoneNumberKit: 441e8b26ec88d598e3591de9061eff18f5dd12e8
-  qr_code_scanner: bb67d64904c3b9658ada8c402e8b4d406d5d796e
+  qr_code_scanner: d77f94ecc9abf96d9b9b8fc04ef13f611e5a147a
   Reachability: fd0ecd23705e2599e4cceeb943222ae02296cbc6
-  SDWebImage: a79252b60f4678812d94316c91da69ec83089c9f
+  SDWebImage: 9f177d83116802728e122410fb25ad88f5c7608a
   SDWebImageWebPCoder: e38c0a70396191361d60c092933e22c20d5b1380
-  shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
-  sqflite: 673a0e54cc04b7d6dba8d24fb8095b31c3a99eec
-  url_launcher_ios: 5334b05cef931de560670eeae103fd3e431ac3fe
+  shared_preferences_foundation: 9e1978ff2562383bd5676f64ec4e9aa8fa06a6f7
+  sqflite: c35dad70033b8862124f8337cc994a809fcd9fa3
+  url_launcher_ios: 694010445543906933d732453a59da0a173ae33d
 
-PODFILE CHECKSUM: 1f3ac7082f97afb5774cbf266bec94d225c49850
+PODFILE CHECKSUM: 52c1cb81fcd5be01fe0fe5312ad6e5c7b14f871f
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.16.2
